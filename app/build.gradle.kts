@@ -23,12 +23,18 @@ android {
     }
 
     buildTypes {
-        release {
+        getByName("release") {
             isMinifyEnabled = false
+            isDebuggable = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+            buildConfigField("String", "BASE_API_URL", "\"https://api.jikan.moe/v4/\"")
+        }
+        getByName("debug"){
+            isDebuggable = true
+            buildConfigField("String", "BASE_API_URL", "\"https://api.jikan.moe/v4/\"")
         }
     }
     compileOptions {
@@ -40,6 +46,7 @@ android {
     }
     buildFeatures {
         compose = true
+        buildConfig = true
     }
     composeOptions {
         kotlinCompilerExtensionVersion = "1.4.3"
@@ -55,6 +62,7 @@ dependencies {
 
     val hiltVersion = "2.44"
     val retrofitVersion = "2.9.0"
+    val okhttp3Version = "4.11.0"
 
     implementation("androidx.core:core-ktx:1.9.0")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.6.2")
@@ -79,6 +87,9 @@ dependencies {
     //Retrofit
     implementation("com.squareup.retrofit2:retrofit:$retrofitVersion")
     implementation("com.squareup.retrofit2:converter-gson:$retrofitVersion")
+
+    //Logging Interceptor
+    implementation("com.squareup.okhttp3:logging-interceptor:$okhttp3Version")
 }
 
 kapt {
