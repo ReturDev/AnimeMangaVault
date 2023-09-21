@@ -7,7 +7,7 @@ import com.google.gson.annotations.SerializedName
  *
  *  @property date The date property containing the start and end dates.
  */
-data class ApiDataReleased(
+data class DataReleasedResponseComponent(
     @SerializedName("prop") val date : DateProp
 ) {
 

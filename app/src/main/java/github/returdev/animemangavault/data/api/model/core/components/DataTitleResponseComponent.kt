@@ -8,7 +8,7 @@ import com.google.gson.annotations.SerializedName
  * @property type The type of the title.
  * @property title The title value.
  */
-data class ApiDataTitle(
+data class DataTitleResponseComponent(
     @SerializedName("type") val type : String,
     @SerializedName("title") val title : String
 )

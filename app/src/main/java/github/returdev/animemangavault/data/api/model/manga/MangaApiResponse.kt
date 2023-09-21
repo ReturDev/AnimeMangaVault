@@ -1,17 +1,17 @@
 package github.returdev.animemangavault.data.api.model.manga
 
 import com.google.gson.annotations.SerializedName
-import github.returdev.animemangavault.data.api.model.core.components.ApiDataGenre
-import github.returdev.animemangavault.data.api.model.core.components.ApiDataImage
-import github.returdev.animemangavault.data.api.model.core.components.ApiDataReleased
-import github.returdev.animemangavault.data.api.model.core.components.ApiDataTitle
+import github.returdev.animemangavault.data.api.model.core.components.DataGenreResponseComponent
+import github.returdev.animemangavault.data.api.model.core.components.DataImageResponseComponent
+import github.returdev.animemangavault.data.api.model.core.components.DataReleasedResponseComponent
+import github.returdev.animemangavault.data.api.model.core.components.DataTitleResponseComponent
 
 /**
  * Represents a response containing manga data from the API.
  *
  * @property data The manga data contained in the API response.
  */
-data class ApiMangaResponse(
+data class MangaApiResponse(
     @SerializedName("data") val data : ApiMangaExtendedDataResponse
 ){
 
@@ -35,18 +35,18 @@ data class ApiMangaResponse(
      */
     data class ApiMangaExtendedDataResponse(
         @SerializedName("mal_id") val id : Int,
-        @SerializedName("images") val images : ApiDataImage,
-        @SerializedName("titles") val titles : List<ApiDataTitle>,
+        @SerializedName("images") val images : DataImageResponseComponent,
+        @SerializedName("titles") val titles : List<DataTitleResponseComponent>,
         @SerializedName("type") val type : String?,
         @SerializedName("score") val score : Float,
         @SerializedName("scored_by") val numberOfScorers : Long,
         @SerializedName("rank") val rank : Int,
         @SerializedName("synopsis") val synopsis : String,
-        @SerializedName("genres") val genres : List<ApiDataGenre>,
-        @SerializedName("demographics") val demographics : List<ApiDataGenre>,
+        @SerializedName("genres") val genres : List<DataGenreResponseComponent>,
+        @SerializedName("demographics") val demographics : List<DataGenreResponseComponent>,
         @SerializedName("chapters") val chapters : Int,
         @SerializedName("volumes") val volumes : Int,
         @SerializedName("publishing") val publishing : Boolean,
-        @SerializedName("published") val published : ApiDataReleased
+        @SerializedName("published") val published : DataReleasedResponseComponent
     )
 }

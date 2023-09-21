@@ -1,12 +1,12 @@
 package github.returdev.animemangavault.data.api.model.anime
 
 import com.google.gson.annotations.SerializedName
-import github.returdev.animemangavault.data.api.model.core.components.ApiDataGenre
-import github.returdev.animemangavault.data.api.model.core.components.ApiDataImage
-import github.returdev.animemangavault.data.api.model.core.components.ApiDataReleased
-import github.returdev.animemangavault.data.api.model.core.components.ApiDataTitle
+import github.returdev.animemangavault.data.api.model.core.components.DataGenreResponseComponent
+import github.returdev.animemangavault.data.api.model.core.components.DataImageResponseComponent
+import github.returdev.animemangavault.data.api.model.core.components.DataReleasedResponseComponent
+import github.returdev.animemangavault.data.api.model.core.components.DataTitleResponseComponent
 
-data class ApiAnimeResponse(
+data class AnimeApiResponse(
     @SerializedName("data") val data: ApiAnimeExtendedDataResponse
 ) {
 
@@ -32,20 +32,20 @@ data class ApiAnimeResponse(
      */
     data class ApiAnimeExtendedDataResponse(
         @SerializedName("mal_id") val id: Int,
-        @SerializedName("images") val images: ApiDataImage,
-        @SerializedName("titles") val titles: List<ApiDataTitle>,
+        @SerializedName("images") val images: DataImageResponseComponent,
+        @SerializedName("titles") val titles: List<DataTitleResponseComponent>,
         @SerializedName("type") val type : String?,
         @SerializedName("score") val score: Float,
         @SerializedName("scored_by") val numberOfScorers: Long,
         @SerializedName("rank") val rank: Int,
         @SerializedName("synopsis") val synopsis: String,
-        @SerializedName("genres") val genres: List<ApiDataGenre>,
-        @SerializedName("demographics") val demographics: List<ApiDataGenre>,
+        @SerializedName("genres") val genres: List<DataGenreResponseComponent>,
+        @SerializedName("demographics") val demographics: List<DataGenreResponseComponent>,
         @SerializedName("source") val source: String,
         @SerializedName("episodes") val episodes: Int,
         @SerializedName("status") val status: String,
         @SerializedName("airing") val airing: Boolean,
-        @SerializedName("aired") val aired: ApiDataReleased,
+        @SerializedName("aired") val aired: DataReleasedResponseComponent,
         @SerializedName("season") val season: String?
     )
 }

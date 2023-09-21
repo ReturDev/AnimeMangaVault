@@ -2,7 +2,7 @@ package github.returdev.animemangavault.data.api.model.core.components
 
 import com.google.gson.annotations.SerializedName
 
-data class ApiDataImage(
+data class DataImageResponseComponent(
 
     @SerializedName("webp") val webpFormat : ImageUrls
 
