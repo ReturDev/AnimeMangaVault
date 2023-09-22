@@ -69,6 +69,7 @@ dependencies {
     val retrofitVersion = "2.9.0"
     val okhttp3Version = "4.11.0"
     val mockitoVersion = "3.12.4"
+    val roomVersion = "2.5.0"
 
     implementation("androidx.core:core-ktx:1.9.0")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.6.2")
@@ -106,7 +107,12 @@ dependencies {
     androidTestImplementation ("org.mockito:mockito-core:$mockitoVersion")
     androidTestImplementation ("org.mockito:mockito-android:$mockitoVersion")
 
-    
+    //Room
+    implementation("androidx.room:room-ktx:$roomVersion")
+    kapt ("androidx.room:room-compiler:$roomVersion")
+    implementation ("androidx.room:room-paging:$roomVersion")
+
+
 }
 
 kapt {
