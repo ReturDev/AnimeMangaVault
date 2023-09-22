@@ -2,7 +2,12 @@ plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     id("com.google.dagger.hilt.android")
+    id("org.jetbrains.kotlin.plugin.allopen")
     kotlin ("kapt")
+}
+
+allOpen{
+    annotation("androidx.annotation.OpenForTesting")
 }
 
 android {
@@ -16,7 +21,7 @@ android {
         versionCode = 1
         versionName = "1.0"
 
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner = "github.returdev.animemangavault.di.CustomTestRunner"
         vectorDrawables {
             useSupportLibrary = true
         }
@@ -60,7 +65,7 @@ android {
 
 dependencies {
 
-    val hiltVersion = "2.44"
+    val hiltVersion = "2.48"
     val retrofitVersion = "2.9.0"
     val okhttp3Version = "4.11.0"
     val mockitoVersion = "3.12.4"
@@ -85,10 +90,13 @@ dependencies {
     //Hilt
     implementation("com.google.dagger:hilt-android:$hiltVersion")
     kapt("com.google.dagger:hilt-compiler:$hiltVersion")
+    androidTestImplementation("com.google.dagger:hilt-android-testing:$hiltVersion")
+    kaptAndroidTest ("com.google.dagger:hilt-android-compiler:$hiltVersion")
 
     //Retrofit
     implementation("com.squareup.retrofit2:retrofit:$retrofitVersion")
     implementation("com.squareup.retrofit2:converter-gson:$retrofitVersion")
+
 
     //Logging Interceptor
     implementation("com.squareup.okhttp3:logging-interceptor:$okhttp3Version")
@@ -96,11 +104,14 @@ dependencies {
     //Mockito
     implementation("org.mockito:mockito-core:$mockitoVersion")
     implementation("org.mockito:mockito-inline:$mockitoVersion")
+    androidTestImplementation ("org.mockito:mockito-core:$mockitoVersion")
+    androidTestImplementation ("org.mockito:mockito-android:$mockitoVersion")
 
     //Room
     implementation("androidx.room:room-ktx:$roomVersion")
     kapt ("androidx.room:room-compiler:$roomVersion")
     implementation ("androidx.room:room-paging:$roomVersion")
+
 
 }
 
