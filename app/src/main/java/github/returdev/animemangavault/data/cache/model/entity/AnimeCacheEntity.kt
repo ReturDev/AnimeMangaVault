@@ -1,11 +1,11 @@
-package github.returdev.animemangavault.data.cache.entity
+package github.returdev.animemangavault.data.cache.model.entity
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-@Entity(tableName = "manga_cache")
-data class MangaCacheEntity(
+@Entity(tableName = "anime_cache")
+data class AnimeCacheEntity(
     @PrimaryKey(autoGenerate = true) override val order: Long = 0,
     @ColumnInfo(name = "id") override val id: Int,
     @ColumnInfo(name = "images")override val images: List<String>,

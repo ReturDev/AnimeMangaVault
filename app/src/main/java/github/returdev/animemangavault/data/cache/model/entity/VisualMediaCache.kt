@@ -1,4 +1,4 @@
-package github.returdev.animemangavault.data.cache.entity;
+package github.returdev.animemangavault.data.cache.model.entity;
 
 sealed class VisualMediaCache{
     abstract val order : Long
