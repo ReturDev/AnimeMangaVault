@@ -65,7 +65,7 @@ android {
 
 dependencies {
 
-    val hiltVersion = "2.44"
+    val hiltVersion = "2.48"
     val retrofitVersion = "2.9.0"
     val okhttp3Version = "4.11.0"
     val mockitoVersion = "3.12.4"
@@ -106,6 +106,7 @@ dependencies {
     androidTestImplementation ("org.mockito:mockito-core:$mockitoVersion")
     androidTestImplementation ("org.mockito:mockito-android:$mockitoVersion")
 
+    
 }
 
 kapt {
