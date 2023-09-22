@@ -16,7 +16,7 @@ android {
         versionCode = 1
         versionName = "1.0"
 
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner = "github.returdev.animemangavault.di.CustomTestRunner"
         vectorDrawables {
             useSupportLibrary = true
         }
