@@ -63,6 +63,7 @@ dependencies {
     val hiltVersion = "2.44"
     val retrofitVersion = "2.9.0"
     val okhttp3Version = "4.11.0"
+    val mockitoVersion = "3.12.4"
 
     implementation("androidx.core:core-ktx:1.9.0")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.6.2")
@@ -90,6 +91,11 @@ dependencies {
 
     //Logging Interceptor
     implementation("com.squareup.okhttp3:logging-interceptor:$okhttp3Version")
+
+    //Mockito
+    implementation("org.mockito:mockito-core:$mockitoVersion")
+    implementation("org.mockito:mockito-inline:$mockitoVersion")
+
 }
 
 kapt {
