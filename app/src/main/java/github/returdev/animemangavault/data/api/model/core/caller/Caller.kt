@@ -1,5 +1,6 @@
 package github.returdev.animemangavault.data.api.model.core.caller
 
+import kotlinx.coroutines.flow.StateFlow
 import retrofit2.Call
 
 /**
@@ -14,6 +15,6 @@ interface Caller {
      * @param call The [Call] to execute.
      * @return The result of the call.
      */
-    suspend fun <R> executeCall(hasNetworkConnection : Boolean, call : Call<R>) : R
+    suspend fun <R> executeCall(hasNetworkConnection : StateFlow<Boolean>, call : Call<R>) : R
 
 }
