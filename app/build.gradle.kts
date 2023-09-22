@@ -98,6 +98,8 @@ dependencies {
     //Mockito
     implementation("org.mockito:mockito-core:$mockitoVersion")
     implementation("org.mockito:mockito-inline:$mockitoVersion")
+    androidTestImplementation ("org.mockito:mockito-core:$mockitoVersion")
+    androidTestImplementation ("org.mockito:mockito-android:$mockitoVersion")
 
 }
 
