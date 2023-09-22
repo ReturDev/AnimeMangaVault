@@ -2,7 +2,12 @@ plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     id("com.google.dagger.hilt.android")
+    id("org.jetbrains.kotlin.plugin.allopen")
     kotlin ("kapt")
+}
+
+allOpen{
+    annotation("androidx.annotation.OpenForTesting")
 }
 
 android {
@@ -98,6 +103,8 @@ dependencies {
     //Mockito
     implementation("org.mockito:mockito-core:$mockitoVersion")
     implementation("org.mockito:mockito-inline:$mockitoVersion")
+    androidTestImplementation ("org.mockito:mockito-core:$mockitoVersion")
+    androidTestImplementation ("org.mockito:mockito-android:$mockitoVersion")
 
 }
 
