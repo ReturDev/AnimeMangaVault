@@ -5,6 +5,7 @@ import github.returdev.animemangavault.data.api.model.core.caller.AnimeMangaApiC
 import github.returdev.animemangavault.data.api.model.manga.MangaApiResponse
 import github.returdev.animemangavault.data.api.model.manga.MangaSearchApiResponse
 import github.returdev.animemangavault.data.api.service.ApiService
+import kotlinx.coroutines.flow.StateFlow
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -29,7 +30,7 @@ class MangaApiRepository @Inject constructor(
      * @param hasNetworkConnection Indicates whether there is an active network connection.
      * @return The response containing manga information.
      */
-    suspend fun getMangaById(id: String, hasNetworkConnection : Boolean): MangaApiResponse {
+    suspend fun getMangaById(id: String, hasNetworkConnection : StateFlow<Boolean>): MangaApiResponse {
 
         return caller.executeCall(
             hasNetworkConnection,
@@ -69,7 +70,7 @@ class MangaApiRepository @Inject constructor(
         magazines: String? = null,
         startDate: String? = null,
         endDate: String? = null,
-        hasNetworkConnection : Boolean
+        hasNetworkConnection : StateFlow<Boolean>
     ): MangaSearchApiResponse {
 
         return caller.executeCall(
@@ -97,7 +98,7 @@ class MangaApiRepository @Inject constructor(
         limit: Int,
         type: String? = null,
         filter : String? = null,
-        hasNetworkConnection : Boolean
+        hasNetworkConnection : StateFlow<Boolean>
     ): MangaSearchApiResponse {
 
         return caller.executeCall(

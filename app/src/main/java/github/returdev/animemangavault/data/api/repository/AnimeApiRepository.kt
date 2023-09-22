@@ -5,6 +5,7 @@ import github.returdev.animemangavault.data.api.model.anime.AnimeApiResponse
 import github.returdev.animemangavault.data.api.model.anime.AnimeSearchApiResponse
 import github.returdev.animemangavault.data.api.model.core.caller.AnimeMangaApiCaller
 import github.returdev.animemangavault.data.api.service.ApiService
+import kotlinx.coroutines.flow.StateFlow
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -29,7 +30,7 @@ class AnimeApiRepository @Inject constructor(
      * @param hasNetworkConnection Indicates whether there is an active network connection.
      * @return The response containing anime information.
      */
-    suspend fun getAnimeById(id: String, hasNetworkConnection : Boolean): AnimeApiResponse {
+    suspend fun getAnimeById(id: String, hasNetworkConnection : StateFlow<Boolean>): AnimeApiResponse {
 
         return caller.executeCall(
             hasNetworkConnection,
@@ -73,7 +74,7 @@ class AnimeApiRepository @Inject constructor(
         producers: String? = null,
         startDate: String? = null,
         endDate: String? = null,
-        hasNetworkConnection : Boolean
+        hasNetworkConnection : StateFlow<Boolean>
     ): AnimeSearchApiResponse {
 
         return caller.executeCall(
@@ -101,7 +102,7 @@ class AnimeApiRepository @Inject constructor(
         limit: Int,
         type: String? = null,
         filter: String? = null,
-        hasNetworkConnection : Boolean
+        hasNetworkConnection : StateFlow<Boolean>
     ): AnimeSearchApiResponse {
 
         return caller.executeCall(
@@ -124,7 +125,7 @@ class AnimeApiRepository @Inject constructor(
         page: Int,
         limit: Int,
         filter: String? = null,
-        hasNetworkConnection: Boolean
+        hasNetworkConnection : StateFlow<Boolean>
     ): AnimeSearchApiResponse {
 
         return caller.executeCall(
@@ -151,7 +152,7 @@ class AnimeApiRepository @Inject constructor(
         page: Int,
         limit: Int,
         filter: String? = null,
-        hasNetworkConnection: Boolean
+        hasNetworkConnection : StateFlow<Boolean>
     ): AnimeSearchApiResponse {
 
         return caller.executeCall(
