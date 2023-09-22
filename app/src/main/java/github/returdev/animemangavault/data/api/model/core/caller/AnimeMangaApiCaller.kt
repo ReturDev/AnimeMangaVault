@@ -5,6 +5,7 @@ import github.returdev.animemangavault.core.exceptions.ApiExceptions.*
 import github.returdev.animemangavault.core.exceptions.NetworkException
 import github.returdev.animemangavault.data.api.model.core.ApiResponseCode
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.StateFlow
 import retrofit2.Call
 import javax.inject.Inject
 
@@ -23,10 +24,8 @@ class AnimeMangaApiCaller @Inject constructor() : Caller {
     val maxDelayMillis: Long = 3000
     val repeatTimeMultiplier: Float = 2f
 
-    var retryCount : Int = 0
-        private set
-    var currentDelay = initialDelayMillis
-        private set
+    private var retryCount : Int = 0
+    private var currentDelay = initialDelayMillis
 
     /**
      * Executes a given [Call] and returns the result of the call, with support for retries.
@@ -40,17 +39,17 @@ class AnimeMangaApiCaller @Inject constructor() : Caller {
      * @throws ServerInternalException if the API responds with an "INTERNAL_SERVER_ERROR".
      * @throws RuntimeException for unexpected API response codes.
      */
-    override suspend fun <R> executeCall(hasNetworkConnection : Boolean, call: Call<R>): R {
+    override suspend fun <R> executeCall(hasNetworkConnection : StateFlow<Boolean>, call: Call<R>): R {
 
         resetCaller()
-
-        if (!hasNetworkConnection){
-            throw NetworkException()
-        }
 
         var result : R? = null
 
         while (retryCount <= maxRetries){
+
+            if (!hasNetworkConnection.value){
+                throw NetworkException()
+            }
 
             val callResponse = call.execute()
 
