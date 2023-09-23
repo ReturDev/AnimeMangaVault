@@ -83,5 +83,7 @@ interface MangaLibraryDao {
     @Query("UPDATE library_manga SET state = :newState WHERE id = :id")
     fun updateMangaState(id : Int, newState : String) : Int
 
+    @Query("DELETE FROM library_manga")
+    fun clearMangaTable()
 
 }

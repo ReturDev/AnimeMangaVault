@@ -85,4 +85,7 @@ interface AnimeLibraryDao {
     fun updateAnimeState(id : Int, newState : String) : Int
 
 
+    @Query("DELETE FROM library_anime")
+    fun clearAnimeTable()
+
 }
