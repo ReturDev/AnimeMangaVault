@@ -5,4 +5,9 @@
     <string name="network_connection_error">Connection error</string>
     <string name="api_server_internal_error">Our service is not available, please try it later</string>
     <string name="generic_error">An error has occurred</string>
+
+    //Items
+    <string name="icon_score_description">Score icon</string>
+    <string name="visual_media_cover_content_description">Cover of %s</string>
+
 </resources>
