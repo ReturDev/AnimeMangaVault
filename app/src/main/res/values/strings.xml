@@ -49,10 +49,27 @@
     <string name="manga_type_manhwa">Manhwa</string>
     <string name="manga_type_manhua">Manhua</string>
 
+    //Status
+    <string name="status_finished">Finished</string>
+    <string name="status_upcoming">Upcoming</string>
+        //Anime
+    <string name="anime_status_airing">Airing</string>
+        //Manga
+    <string name="manga_status_publishing">Publishing</string>
+    <string name="manga_status_hiatus">Hiatus</string>
+    <string name="manga_status_discontinued">Discontinued</string>
+    <string name="manga_status_upcoming">Upcoming</string>
+
+    //Season
+    <string name="season_spring">Spring</string>
+    <string name="season_summer">Summer</string>
+    <string name="season_fall">Fall</string>
+    <string name="season_winter">Winter</string>
 
     //Errors
     <string name="network_connection_error">Connection error</string>
     <string name="api_server_internal_error">Our service is not available, please try it later</string>
     <string name="generic_error">An error has occurred</string>
+
 
 </resources>
