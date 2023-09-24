@@ -70,6 +70,7 @@ dependencies {
     val okhttp3Version = "4.11.0"
     val mockitoVersion = "3.12.4"
     val roomVersion = "2.5.0"
+    val pagingVersion = "3.2.1"
 
     implementation("androidx.core:core-ktx:1.9.0")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.6.2")
@@ -97,7 +98,6 @@ dependencies {
     implementation("com.squareup.retrofit2:retrofit:$retrofitVersion")
     implementation("com.squareup.retrofit2:converter-gson:$retrofitVersion")
 
-
     //Logging Interceptor
     implementation("com.squareup.okhttp3:logging-interceptor:$okhttp3Version")
 
@@ -112,6 +112,10 @@ dependencies {
     kapt ("androidx.room:room-compiler:$roomVersion")
     implementation ("androidx.room:room-paging:$roomVersion")
 
+    //Paging
+    implementation("androidx.paging:paging-runtime-ktx:$pagingVersion")
+    testImplementation("androidx.paging:paging-common-ktx:$pagingVersion")
+    androidTestImplementation("androidx.paging:paging-common-ktx:$pagingVersion")
 
 }
 
