@@ -1,4 +1,4 @@
-package github.returdev.animemangavault.ui.model.components
+package github.returdev.animemangavault.ui.model.components.common
 
 import androidx.annotation.StringRes
 import github.returdev.animemangavault.R

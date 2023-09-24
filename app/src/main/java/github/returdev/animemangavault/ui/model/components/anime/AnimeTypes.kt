@@ -1,4 +1,4 @@
-package github.returdev.animemangavault.ui.model.components
+package github.returdev.animemangavault.ui.model.components.anime
 
 import androidx.annotation.StringRes
 import github.returdev.animemangavault.R
@@ -14,5 +14,15 @@ enum class AnimeTypes(@StringRes val stringResource : Int) {
     SPECIAL(R.string.anime_type_special),
     ONA(R.string.anime_type_ona),
     MUSIC(R.string.anime_type_music),
-    UNKNOWN(R.string.type_unknown)
+    UNKNOWN(R.string.type_unknown);
+
+    companion object{
+        fun getAnimeType(value : String?) : AnimeTypes{
+            return value?.let {
+                val formattedValue = it.replace(" ","").lowercase()
+                AnimeTypes.values().first { type -> type.name.lowercase() == formattedValue }
+            } ?: UNKNOWN
+        }
+    }
+
 }

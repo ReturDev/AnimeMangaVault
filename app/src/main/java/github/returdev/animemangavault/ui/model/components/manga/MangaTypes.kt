@@ -1,10 +1,12 @@
-package github.returdev.animemangavault.ui.model.components
+package github.returdev.animemangavault.ui.model.components.manga
 
 import androidx.annotation.StringRes
 import github.returdev.animemangavault.R
+import github.returdev.animemangavault.ui.model.components.anime.AnimeTypes
 
 /**
  * Enum class representing different types of manga.
+ *
  * @property stringResource The string resource ID for the type name.
  */
 enum class MangaTypes(@StringRes val stringResource : Int){
@@ -15,5 +17,15 @@ enum class MangaTypes(@StringRes val stringResource : Int){
     DOUJIN(R.string.manga_type_doujin),
     MANHWA(R.string.manga_type_manhwa),
     MANHUA(R.string.manga_type_manhua),
-    UNKNOWN(R.string.type_unknown)
+    UNKNOWN(R.string.type_unknown);
+
+    companion object{
+        fun getMangaType(value : String?) : MangaTypes {
+
+            return value?.let {
+                val formattedValue = it.replace(" ","").lowercase()
+                MangaTypes.values().first {type -> type.name.lowercase() == formattedValue }
+            } ?: UNKNOWN
+        }
+    }
 }

@@ -1,8 +1,8 @@
 package github.returdev.animemangavault.ui.model.basic
 
 import github.returdev.animemangavault.domain.model.components.ImageUrl
-import github.returdev.animemangavault.ui.model.components.Demographics
-import github.returdev.animemangavault.ui.model.components.Genres
+import github.returdev.animemangavault.ui.model.components.common.Demographics
+import github.returdev.animemangavault.ui.model.components.common.Genres
 
 /**
  * Sealed class representing basic information about visual media for UI purposes, such as anime and manga.
