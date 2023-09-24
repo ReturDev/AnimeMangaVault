@@ -1,8 +1,8 @@
 package github.returdev.animemangavault.ui.model.basic
 
 import github.returdev.animemangavault.core.model.components.ImageUrl
+import github.returdev.animemangavault.ui.model.components.anime.AnimeDemographics
 import github.returdev.animemangavault.ui.model.components.anime.AnimeTypes
-import github.returdev.animemangavault.ui.model.components.common.Demographics
 import github.returdev.animemangavault.ui.model.components.common.Genres
 
 /**
@@ -23,5 +23,5 @@ data class BasicAnimeUi(
     override val score: Float,
     override val type: AnimeTypes,
     override val genres: List<Genres>,
-    override val demographics: List<Demographics>
+    override val demographics: List<AnimeDemographics>
 ) : BasicVisualMediaUi()

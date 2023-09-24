@@ -3,8 +3,8 @@ package github.returdev.animemangavault.ui.model.full
 import github.returdev.animemangavault.core.model.components.ImageUrl
 import github.returdev.animemangavault.core.model.components.Released
 import github.returdev.animemangavault.core.model.components.Title
-import github.returdev.animemangavault.ui.model.components.common.Demographics
 import github.returdev.animemangavault.ui.model.components.common.Genres
+import github.returdev.animemangavault.ui.model.components.manga.MangaDemographics
 
 /**
  * Data class representing detailed information about a manga for UI purposes.
@@ -34,7 +34,7 @@ data class FullMangaUi(
     override val rank: Int,
     override val synopsis: String,
     override val genres: List<Genres>,
-    override val demographics: List<Demographics>,
+    override val demographics: List<MangaDemographics>,
     val chapters: Int,
     val volumes: Int,
     val publishing: Boolean,

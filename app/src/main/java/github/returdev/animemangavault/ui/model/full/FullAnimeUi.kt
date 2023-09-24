@@ -4,10 +4,10 @@ package github.returdev.animemangavault.ui.model.full
 import github.returdev.animemangavault.core.model.components.ImageUrl
 import github.returdev.animemangavault.core.model.components.Released
 import github.returdev.animemangavault.core.model.components.Title
+import github.returdev.animemangavault.ui.model.components.anime.AnimeDemographics
 import github.returdev.animemangavault.ui.model.components.anime.AnimeStatus
 import github.returdev.animemangavault.ui.model.components.anime.AnimeTypes
 import github.returdev.animemangavault.ui.model.components.anime.Season
-import github.returdev.animemangavault.ui.model.components.common.Demographics
 import github.returdev.animemangavault.ui.model.components.common.Genres
 
 /**
@@ -40,7 +40,7 @@ data class FullAnimeUi(
     override val rank: Int,
     override val synopsis: String,
     override val genres: List<Genres>,
-    override val demographics: List<Demographics>,
+    override val demographics: List<AnimeDemographics>,
     val source: String,
     val episodes: Int,
     val status: AnimeStatus,

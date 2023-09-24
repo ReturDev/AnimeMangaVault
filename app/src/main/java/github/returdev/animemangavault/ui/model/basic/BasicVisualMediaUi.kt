@@ -1,7 +1,6 @@
 package github.returdev.animemangavault.ui.model.basic
 
 import github.returdev.animemangavault.core.model.components.ImageUrl
-import github.returdev.animemangavault.ui.model.components.common.Demographics
 import github.returdev.animemangavault.ui.model.components.common.Genres
 
 /**
@@ -22,5 +21,5 @@ sealed class BasicVisualMediaUi{
     abstract val score: Float
     abstract val type : Any
     abstract val genres : List<Genres>
-    abstract val demographics : List<Demographics>
+    abstract val demographics : List<Any>
 }
