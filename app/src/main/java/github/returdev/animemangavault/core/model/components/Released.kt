@@ -1,4 +1,4 @@
-package github.returdev.animemangavault.domain.model.components
+package github.returdev.animemangavault.core.model.components
 
 import android.icu.text.DateFormat
 import android.icu.text.SimpleDateFormat

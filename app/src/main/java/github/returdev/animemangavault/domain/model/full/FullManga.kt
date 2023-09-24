@@ -1,8 +1,8 @@
 package github.returdev.animemangavault.domain.model.full
 
-import github.returdev.animemangavault.domain.model.components.ImageUrl
-import github.returdev.animemangavault.domain.model.components.Released
-import github.returdev.animemangavault.domain.model.components.Title
+import github.returdev.animemangavault.core.model.components.ImageUrl
+import github.returdev.animemangavault.core.model.components.Released
+import github.returdev.animemangavault.core.model.components.Title
 
 
 /**
@@ -25,15 +25,15 @@ import github.returdev.animemangavault.domain.model.components.Title
  */
 data class FullManga (
     override val id: Int,
-    override val type: String,
+    override val type: String?,
     override val images: List<ImageUrl>,
     override val titles: List<Title>,
     override val score: Float,
     override val numberOfScorers: Long,
     override val rank: Int,
     override val synopsis: String,
-    override val genres: List<String>,
-    override val demographics: List<String>,
+    override val genres: List<Int>,
+    override val demographics: List<Int>,
     val chapters: Int,
     val volumes: Int,
     val publishing: Boolean,

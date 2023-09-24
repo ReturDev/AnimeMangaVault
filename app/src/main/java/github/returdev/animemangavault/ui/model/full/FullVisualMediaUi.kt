@@ -1,8 +1,8 @@
 package github.returdev.animemangavault.ui.model.full
 
 
-import github.returdev.animemangavault.domain.model.components.ImageUrl
-import github.returdev.animemangavault.domain.model.components.Title
+import github.returdev.animemangavault.core.model.components.ImageUrl
+import github.returdev.animemangavault.core.model.components.Title
 import github.returdev.animemangavault.ui.model.components.common.Demographics
 import github.returdev.animemangavault.ui.model.components.common.Genres
 
