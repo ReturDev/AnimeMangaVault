@@ -14,4 +14,9 @@
     <string name="search_bar_search" tools:ignore="PrivateResource">Search</string>
     <string name="search_bar_icon_content_desc">Search icon</string>
 
+    //HomeScreen
+    <string name="top_anime">Top Anime</string>
+    <string name="top_manga">Top Manga</string>
+    <string name="this_season">This Season</string>
+
 </resources>
