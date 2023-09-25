@@ -71,5 +71,21 @@
     <string name="api_server_internal_error">Our service is not available, please try it later</string>
     <string name="generic_error">An error has occurred</string>
 
+    //Library
+    <string name="library_vm_state_following">Following</string>
+    <string name="library_vm_state_favourites">Favourites</string>
+    <string name="library_vm_state_completed">Completed</string>
+    <string name="library_vm_state_on_hold">On Hold</string>
+    <string name="library_vm_state_dropped">Dropped</string>
+
+    //Filters
+        //Order By
+    <string name="order_by_added_date">Added Date</string>
+    <string name="order_by_title">Title</string>
+    <string name="order_by_score">Score</string>
+        //Sort Direction
+    <string name="sort_direction_asc_abbreviation">Asc</string>
+    <string name="sort_direction_desc_abbreviation">Desc</string>
+
 
 </resources>
