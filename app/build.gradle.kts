@@ -114,6 +114,7 @@ dependencies {
 
     //Paging
     implementation("androidx.paging:paging-runtime-ktx:$pagingVersion")
+    implementation("androidx.paging:paging-compose:3.3.0-alpha02")
     testImplementation("androidx.paging:paging-common-ktx:$pagingVersion")
     androidTestImplementation("androidx.paging:paging-common-ktx:$pagingVersion")
 
