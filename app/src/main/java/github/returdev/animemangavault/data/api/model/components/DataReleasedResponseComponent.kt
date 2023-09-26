@@ -1,4 +1,4 @@
-package github.returdev.animemangavault.data.api.model.core.components
+package github.returdev.animemangavault.data.api.model.components
 
 import com.google.gson.annotations.SerializedName
 

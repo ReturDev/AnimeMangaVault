@@ -1,7 +1,7 @@
 package github.returdev.animemangavault.data.api.repository
 
 
-import github.returdev.animemangavault.data.api.model.core.caller.AnimeMangaApiCaller
+import github.returdev.animemangavault.data.api.core.caller.AnimeMangaApiCaller
 import github.returdev.animemangavault.data.api.model.manga.MangaApiResponse
 import github.returdev.animemangavault.data.api.model.manga.MangaSearchApiResponse
 import github.returdev.animemangavault.data.api.service.ApiService

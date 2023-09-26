@@ -1,4 +1,4 @@
-package github.returdev.animemangavault.data.api.model.core.pagination
+package github.returdev.animemangavault.data.api.model.pagination
 
 import com.google.gson.annotations.SerializedName
 

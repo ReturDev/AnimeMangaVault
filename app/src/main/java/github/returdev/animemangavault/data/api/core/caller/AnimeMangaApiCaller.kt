@@ -1,9 +1,9 @@
-package github.returdev.animemangavault.data.api.model.core.caller
+package github.returdev.animemangavault.data.api.core.caller
 
 
 import github.returdev.animemangavault.core.exceptions.ApiExceptions.*
 import github.returdev.animemangavault.core.exceptions.NetworkException
-import github.returdev.animemangavault.data.api.model.core.ApiResponseCode
+import github.returdev.animemangavault.data.api.core.ApiResponseCode
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.StateFlow
 import retrofit2.Call

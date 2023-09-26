@@ -7,8 +7,8 @@ import github.returdev.animemangavault.core.model.components.Title
 import github.returdev.animemangavault.core.model.library.UserLibraryVisualMediaStates
 import github.returdev.animemangavault.data.api.model.anime.AnimeApiResponse
 import github.returdev.animemangavault.data.api.model.anime.AnimeSearchApiResponse
-import github.returdev.animemangavault.data.api.model.core.components.DataImageResponseComponent
-import github.returdev.animemangavault.data.api.model.core.components.DataReleasedResponseComponent
+import github.returdev.animemangavault.data.api.model.components.DataImageResponseComponent
+import github.returdev.animemangavault.data.api.model.components.DataReleasedResponseComponent
 import github.returdev.animemangavault.data.api.model.manga.MangaApiResponse
 import github.returdev.animemangavault.data.api.model.manga.MangaSearchApiResponse
 import github.returdev.animemangavault.data.library.model.entity.AnimeLibraryEntity

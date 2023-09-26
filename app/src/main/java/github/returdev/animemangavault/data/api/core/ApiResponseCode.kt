@@ -1,4 +1,4 @@
-package github.returdev.animemangavault.data.api.model.core
+package github.returdev.animemangavault.data.api.core
 
 /**
  * Object containing constants for common HTTP response codes used in API responses.

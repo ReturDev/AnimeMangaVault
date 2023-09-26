@@ -1,9 +1,9 @@
 package github.returdev.animemangavault.data.api.model.anime
 
 import com.google.gson.annotations.SerializedName
-import github.returdev.animemangavault.data.api.model.core.components.DataGenreResponseComponent
-import github.returdev.animemangavault.data.api.model.core.components.DataImageResponseComponent
-import github.returdev.animemangavault.data.api.model.core.pagination.PaginationResponseComponent
+import github.returdev.animemangavault.data.api.model.components.DataGenreResponseComponent
+import github.returdev.animemangavault.data.api.model.components.DataImageResponseComponent
+import github.returdev.animemangavault.data.api.model.pagination.PaginationResponseComponent
 
 /**
  * Represents the response for a list of anime from the API.

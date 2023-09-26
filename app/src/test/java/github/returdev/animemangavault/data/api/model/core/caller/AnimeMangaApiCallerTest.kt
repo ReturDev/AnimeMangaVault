@@ -2,7 +2,8 @@ package github.returdev.animemangavault.data.api.model.core.caller
 
 import github.returdev.animemangavault.core.exceptions.ApiExceptions
 import github.returdev.animemangavault.core.exceptions.NetworkException
-import github.returdev.animemangavault.data.api.model.core.ApiResponseCode
+import github.returdev.animemangavault.data.api.core.ApiResponseCode
+import github.returdev.animemangavault.data.api.core.caller.AnimeMangaApiCaller
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch

@@ -3,7 +3,7 @@ package github.returdev.animemangavault.data.api.repository
 
 import github.returdev.animemangavault.data.api.model.anime.AnimeApiResponse
 import github.returdev.animemangavault.data.api.model.anime.AnimeSearchApiResponse
-import github.returdev.animemangavault.data.api.model.core.caller.AnimeMangaApiCaller
+import github.returdev.animemangavault.data.api.core.caller.AnimeMangaApiCaller
 import github.returdev.animemangavault.data.api.service.ApiService
 import kotlinx.coroutines.flow.StateFlow
 import javax.inject.Inject

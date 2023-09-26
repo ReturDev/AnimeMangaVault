@@ -1,4 +1,4 @@
-package github.returdev.animemangavault.data.api.model.core.caller
+package github.returdev.animemangavault.data.api.core.caller
 
 import kotlinx.coroutines.flow.StateFlow
 import retrofit2.Call
