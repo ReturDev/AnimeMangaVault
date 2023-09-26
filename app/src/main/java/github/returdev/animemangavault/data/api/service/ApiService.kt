@@ -33,7 +33,6 @@ interface ApiService {
      * @param page The page number.
      * @param limit The limit of results per page. The maximum Api limit is 25.
      * @param title The title of the anime.
-     * @param startWithLetter The letter with which the anime starts.
      * @param type The type of the anime.
      * @param score The score of the anime.
      * @param status The status of the anime.
@@ -51,7 +50,6 @@ interface ApiService {
         @Query("page") page : Int,
         @Query("limit") limit : Int,
         @Query("q") title : String?,
-        @Query("letter") startWithLetter : String?,
         @Query("type") type : String?,
         @Query("score") score : Int?,
         @Query("status") status : String?,
