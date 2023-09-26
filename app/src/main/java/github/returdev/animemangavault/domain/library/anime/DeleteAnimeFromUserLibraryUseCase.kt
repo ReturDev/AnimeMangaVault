@@ -8,7 +8,7 @@ class DeleteAnimeFromUserLibraryUseCase @Inject constructor(
 ) {
 
     operator fun invoke(animeId : Int) : Int{
-        return animeLibraryRepository.removeAnime(animeId)
+        return animeLibraryRepository.deleteAnime(animeId)
     }
 
 }
