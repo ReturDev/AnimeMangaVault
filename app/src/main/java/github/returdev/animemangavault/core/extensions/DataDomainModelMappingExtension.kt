@@ -11,6 +11,8 @@ import github.returdev.animemangavault.data.api.model.components.DataImageRespon
 import github.returdev.animemangavault.data.api.model.components.DataReleasedResponseComponent
 import github.returdev.animemangavault.data.api.model.manga.MangaApiResponse
 import github.returdev.animemangavault.data.api.model.manga.MangaSearchApiResponse
+import github.returdev.animemangavault.data.cache.model.entity.AnimeCacheEntity
+import github.returdev.animemangavault.data.cache.model.entity.MangaCacheEntity
 import github.returdev.animemangavault.data.library.model.entity.AnimeLibraryEntity
 import github.returdev.animemangavault.data.library.model.entity.MangaLibraryEntity
 import github.returdev.animemangavault.domain.model.basic.BasicAnime
@@ -59,21 +61,21 @@ fun MangaApiResponse.ApiMangaExtendedDataResponse.toManga() = FullManga(
     published = this.published.toReleased()
 )
 
-fun AnimeSearchApiResponse.ApiAnimeReducedDataResponse.toBasicAnime() = BasicAnime(
+fun AnimeSearchApiResponse.ApiAnimeReducedDataResponse.toAnimeCacheEntity() = AnimeCacheEntity(
     id = this.id,
-    images = this.images.toImageUrls(),
+    images = this.images.toImageUrls().map { it.url },
     title = this.title,
-    type = this.type,
+    type = this.type ?: "",
     genres = this.genres.map { g -> g.id },
     demographics = this.demographics.map { d -> d.id },
     score = this.score
 )
 
-fun MangaSearchApiResponse.ApiMangaReducedDataResponse.toBasicManga() = BasicManga(
+fun MangaSearchApiResponse.ApiMangaReducedDataResponse.toMangaCacheEntity() = MangaCacheEntity(
     id = this.id,
-    images = this.images.toImageUrls(),
+    images = this.images.toImageUrls().map { it.url },
     title = this.title,
-    type = this.type,
+    type = this.type ?: "",
     genres = this.genres.map { g -> g.id },
     demographics = this.demographics.map { d -> d.id },
     score = this.score

@@ -1,11 +1,9 @@
-package github.returdev.animemangavault.data.mediators
+package github.returdev.animemangavault.data.core.mediator
 
 import androidx.paging.ExperimentalPagingApi
 import androidx.paging.LoadType
 import androidx.paging.PagingState
 import androidx.paging.RemoteMediator
-import androidx.paging.RemoteMediator.MediatorResult
-import github.returdev.animemangavault.core.annotation.IoDispatcher
 import kotlinx.coroutines.CoroutineDispatcher
 
 
@@ -68,7 +66,7 @@ abstract class VisualMediaSearchMediator<Value : Any>(
      *
      * @param apiPage The page number to fetch data from the remote data source.
      * @param loadType The type of data load (refresh, prepend, append).
-     * @return The [MediatorResult] indicating the result of the loading process.
+     * @return The `MediatorResult` indicating the result of the loading process.
      */
     abstract suspend fun getApiDataAndSaveOnCache(apiPage : Int, loadType: LoadType) : MediatorResult
 
