@@ -4,19 +4,24 @@ import android.icu.util.Calendar
 import github.returdev.animemangavault.core.model.components.ImageUrl
 import github.returdev.animemangavault.core.model.components.Released
 import github.returdev.animemangavault.core.model.components.Title
+import github.returdev.animemangavault.core.model.library.UserLibraryVisualMediaStates
 import github.returdev.animemangavault.data.api.model.anime.AnimeApiResponse
 import github.returdev.animemangavault.data.api.model.anime.AnimeSearchApiResponse
 import github.returdev.animemangavault.data.api.model.core.components.DataImageResponseComponent
 import github.returdev.animemangavault.data.api.model.core.components.DataReleasedResponseComponent
 import github.returdev.animemangavault.data.api.model.manga.MangaApiResponse
 import github.returdev.animemangavault.data.api.model.manga.MangaSearchApiResponse
+import github.returdev.animemangavault.data.library.model.entity.AnimeLibraryEntity
+import github.returdev.animemangavault.data.library.model.entity.MangaLibraryEntity
 import github.returdev.animemangavault.domain.model.basic.BasicAnime
 import github.returdev.animemangavault.domain.model.basic.BasicManga
 import github.returdev.animemangavault.domain.model.full.FullAnime
 import github.returdev.animemangavault.domain.model.full.FullManga
 import github.returdev.animemangavault.domain.model.reduced.ReducedAnime
 import github.returdev.animemangavault.domain.model.reduced.ReducedManga
+import java.util.Date
 
+/***** Data to Domain *****/
 
 fun AnimeApiResponse.ApiAnimeExtendedDataResponse.toFullAnime() = FullAnime(
     id = this.id,
@@ -88,6 +93,20 @@ fun MangaSearchApiResponse.ApiMangaReducedDataResponse.toReducedManga() = Reduce
     score = this.score
 )
 
+fun AnimeLibraryEntity.toReducedAnime() = ReducedAnime(
+    id = this.id,
+    imageUrl = this.imageUrl,
+    defaultTitle = this.defaultTitle,
+    score = this.score
+)
+
+fun MangaLibraryEntity.toReducedManga() = ReducedManga(
+    id = this.id,
+    imageUrl = this.imageUrl,
+    defaultTitle = this.defaultTitle,
+    score = this.score
+)
+
 fun DataImageResponseComponent.toImageUrls() = listOf(
 
     ImageUrl.SmallImageUrl(this.webpFormat.smallImageUrl),
@@ -110,3 +129,24 @@ fun DataReleasedResponseComponent.toReleased() : Released {
     return Released(from, to)
 
 }
+
+
+/***** Domain to Data *****/
+
+fun ReducedAnime.toAnimeLibraryEntity(state: UserLibraryVisualMediaStates) = AnimeLibraryEntity(
+    id = this.id,
+    imageUrl = this.imageUrl,
+    defaultTitle = this.defaultTitle,
+    score = this.score,
+    state = state.name,
+    addedDate = Date()
+)
+
+fun ReducedManga.toMangaLibraryEntity(state: UserLibraryVisualMediaStates) = MangaLibraryEntity (
+    id = this.id,
+    imageUrl = this.imageUrl,
+    defaultTitle = this.defaultTitle,
+    score = this.score,
+    state = state.name,
+    addedDate = Date()
+)

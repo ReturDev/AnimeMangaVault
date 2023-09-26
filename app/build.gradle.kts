@@ -61,6 +61,11 @@ android {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
         }
     }
+    kapt {
+        arguments {
+            arg("room.schemaLocation", "$projectDir/schemas".toString())
+        }
+    }
 }
 
 dependencies {
@@ -114,6 +119,7 @@ dependencies {
 
     //Paging
     implementation("androidx.paging:paging-runtime-ktx:$pagingVersion")
+    implementation("androidx.paging:paging-compose:3.2.1")
     testImplementation("androidx.paging:paging-common-ktx:$pagingVersion")
     androidTestImplementation("androidx.paging:paging-common-ktx:$pagingVersion")
 
