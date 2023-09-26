@@ -2,7 +2,7 @@ package github.returdev.animemangavault.data.library.repository
 
 import androidx.paging.PagingData
 import github.returdev.animemangavault.core.model.library.UserLibraryOrderBy
-import github.returdev.animemangavault.core.model.library.UserLibrarySortDirection
+import github.returdev.animemangavault.core.model.core.filters.SortDirection
 import github.returdev.animemangavault.core.model.library.UserLibraryVisualMediaStates
 import github.returdev.animemangavault.domain.model.reduced.ReducedManga
 import kotlinx.coroutines.flow.Flow
@@ -14,7 +14,7 @@ interface MangaLibraryRepository {
     fun getMangasByState(
         state: UserLibraryVisualMediaStates,
         orderBy: UserLibraryOrderBy,
-        sortDirection: UserLibrarySortDirection
+        sortDirection: SortDirection
     ): Flow<PagingData<ReducedManga>>
 
     fun getMangaStateById(id : Int) : UserLibraryVisualMediaStates?

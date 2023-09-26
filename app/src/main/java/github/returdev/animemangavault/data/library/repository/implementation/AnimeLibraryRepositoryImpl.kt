@@ -6,7 +6,7 @@ import androidx.paging.map
 import github.returdev.animemangavault.core.extensions.toAnimeLibraryEntity
 import github.returdev.animemangavault.core.extensions.toReducedAnime
 import github.returdev.animemangavault.core.model.library.UserLibraryOrderBy
-import github.returdev.animemangavault.core.model.library.UserLibrarySortDirection
+import github.returdev.animemangavault.core.model.core.filters.SortDirection
 import github.returdev.animemangavault.core.model.library.UserLibraryVisualMediaStates
 import github.returdev.animemangavault.data.library.dao.AnimeLibraryDao
 import github.returdev.animemangavault.data.library.repository.AnimeLibraryRepository
@@ -31,7 +31,7 @@ class AnimeLibraryRepositoryImpl @Inject constructor(
     override fun getAnimesByState(
         state: UserLibraryVisualMediaStates,
         orderBy: UserLibraryOrderBy,
-        sortDirection: UserLibrarySortDirection
+        sortDirection: SortDirection
     ): Flow<PagingData<ReducedAnime>> {
 
         val orderByNum = when(orderBy){
@@ -44,8 +44,8 @@ class AnimeLibraryRepositoryImpl @Inject constructor(
             config = LibraryRepositoryUtil.getPagerConfig(),
             pagingSourceFactory = {
                 when(sortDirection){
-                    UserLibrarySortDirection.ASCENDANT -> animeLibraryDao.getAnimesByState(state.name, orderByNum)
-                    UserLibrarySortDirection.DESCENDANT -> animeLibraryDao.getAnimeByStateDesc(state.name, orderByNum)
+                    SortDirection.ASCENDANT -> animeLibraryDao.getAnimesByState(state.name, orderByNum)
+                    SortDirection.DESCENDANT -> animeLibraryDao.getAnimeByStateDesc(state.name, orderByNum)
                 }
             }
         ).flow.map { pagingData -> pagingData.map { entity -> entity.toReducedAnime()} }

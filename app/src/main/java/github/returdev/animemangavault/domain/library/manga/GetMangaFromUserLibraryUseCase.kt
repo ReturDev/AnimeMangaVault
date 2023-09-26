@@ -2,7 +2,7 @@ package github.returdev.animemangavault.domain.library.manga
 
 import androidx.paging.PagingData
 import github.returdev.animemangavault.core.model.library.UserLibraryOrderBy
-import github.returdev.animemangavault.core.model.library.UserLibrarySortDirection
+import github.returdev.animemangavault.core.model.core.filters.SortDirection
 import github.returdev.animemangavault.core.model.library.UserLibraryVisualMediaStates
 import github.returdev.animemangavault.data.library.repository.MangaLibraryRepository
 import github.returdev.animemangavault.domain.model.reduced.ReducedManga
@@ -16,7 +16,7 @@ class GetMangaFromUserLibraryUseCase @Inject constructor(
     operator fun invoke(
         state: UserLibraryVisualMediaStates,
         orderBy: UserLibraryOrderBy,
-        sortDirection: UserLibrarySortDirection
+        sortDirection: SortDirection
     ): Flow<PagingData<ReducedManga>> {
         return mangaLibraryRepository.getMangasByState(state, orderBy, sortDirection)
     }

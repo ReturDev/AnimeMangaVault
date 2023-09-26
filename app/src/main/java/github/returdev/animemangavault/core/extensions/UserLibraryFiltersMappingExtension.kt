@@ -1,9 +1,9 @@
 package github.returdev.animemangavault.core.extensions
 
 import github.returdev.animemangavault.core.model.library.UserLibraryOrderBy
-import github.returdev.animemangavault.core.model.library.UserLibrarySortDirection
+import github.returdev.animemangavault.core.model.core.filters.SortDirection
 import github.returdev.animemangavault.core.model.library.UserLibraryVisualMediaStates
-import github.returdev.animemangavault.ui.model.filters.core.SortDirection
+import github.returdev.animemangavault.ui.model.filters.core.SortDirectionUi
 import github.returdev.animemangavault.ui.model.filters.library.UserLibraryOrderByUi
 import github.returdev.animemangavault.ui.model.filters.library.UserLibraryVisualMediaStatesUi
 
@@ -18,11 +18,11 @@ fun UserLibraryOrderByUi.toUserLibraryOrderBy() : UserLibraryOrderBy {
 
 }
 
-fun SortDirection.toUserLibrarySortDirection() : UserLibrarySortDirection {
+fun SortDirectionUi.toUserLibrarySortDirection() : SortDirection {
 
     return when(this){
-        SortDirection.ASCENDANT -> UserLibrarySortDirection.ASCENDANT
-        SortDirection.DESCENDANT -> UserLibrarySortDirection.DESCENDANT
+        SortDirectionUi.ASCENDANT -> SortDirection.ASCENDANT
+        SortDirectionUi.DESCENDANT -> SortDirection.DESCENDANT
     }
 
 }

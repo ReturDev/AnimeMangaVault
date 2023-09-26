@@ -10,7 +10,7 @@ import github.returdev.animemangavault.R
  * @param abbreviationResource The resource ID of the abbreviation for the sorting direction.
  * @param iconResource The resource ID of the icon representing the sorting direction.
  */
-enum class SortDirection(
+enum class SortDirectionUi(
     @StringRes val abbreviationResource : Int,
     @DrawableRes val iconResource: Int
 ) {
