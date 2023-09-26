@@ -1,9 +1,9 @@
 package github.returdev.animemangavault.data.api.repository
 
 
+import github.returdev.animemangavault.data.api.core.caller.AnimeMangaApiCaller
 import github.returdev.animemangavault.data.api.model.anime.AnimeApiResponse
 import github.returdev.animemangavault.data.api.model.anime.AnimeSearchApiResponse
-import github.returdev.animemangavault.data.api.core.caller.AnimeMangaApiCaller
 import github.returdev.animemangavault.data.api.service.ApiService
 import kotlinx.coroutines.flow.StateFlow
 import javax.inject.Inject
@@ -45,7 +45,6 @@ class AnimeApiRepository @Inject constructor(
      * @param page The page number of results to retrieve.
      * @param limit The maximum number of results per page.
      * @param title The title to search for (optional).
-     * @param startWithLetter Filter anime titles starting with a specific letter (optional).
      * @param type The type of anime (optional).
      * @param score The minimum score of anime (optional).
      * @param status The status of anime (optional).
@@ -61,9 +60,8 @@ class AnimeApiRepository @Inject constructor(
      */
     suspend fun getAnimeSearch(
         page: Int,
-        limit: Int,
+        limit: Int = ApiService.MAX_REQUEST_LIMIT,
         title: String? = null,
-        startWithLetter: String? = null,
         type: String? = null,
         score: Int? = null,
         status: String? = null,
@@ -77,11 +75,16 @@ class AnimeApiRepository @Inject constructor(
         hasNetworkConnection : StateFlow<Boolean>
     ): AnimeSearchApiResponse {
 
+        val limitChecked = if(limit > ApiService.MAX_REQUEST_LIMIT){
+            ApiService.MAX_REQUEST_LIMIT
+        } else {
+            limit
+        }
+
         return caller.executeCall(
             hasNetworkConnection,
             apiService.getAnimeSearch(
-                page, limit, title, startWithLetter,
-                type, score, status, rating, genres, orderBy, sort,
+                page, limitChecked, title, type, score, status, rating, genres, orderBy, sort,
                 producers, startDate, endDate
             )
         )
@@ -99,15 +102,21 @@ class AnimeApiRepository @Inject constructor(
      */
     suspend fun getTopAnime(
         page: Int,
-        limit: Int,
+        limit: Int = ApiService.MAX_REQUEST_LIMIT,
         type: String? = null,
         filter: String? = null,
         hasNetworkConnection : StateFlow<Boolean>
     ): AnimeSearchApiResponse {
 
+        val limitChecked = if(limit > ApiService.MAX_REQUEST_LIMIT){
+            ApiService.MAX_REQUEST_LIMIT
+        } else {
+            limit
+        }
+
         return caller.executeCall(
             hasNetworkConnection,
-            apiService.getTopAnime(page,limit, type, filter)
+            apiService.getTopAnime(page,limitChecked, type, filter)
         )
 
     }
@@ -123,14 +132,20 @@ class AnimeApiRepository @Inject constructor(
      */
     suspend fun getAnimeSeasonNow(
         page: Int,
-        limit: Int,
+        limit: Int = ApiService.MAX_REQUEST_LIMIT,
         filter: String? = null,
         hasNetworkConnection : StateFlow<Boolean>
     ): AnimeSearchApiResponse {
 
+        val limitChecked = if(limit > ApiService.MAX_REQUEST_LIMIT){
+            ApiService.MAX_REQUEST_LIMIT
+        } else {
+            limit
+        }
+
         return caller.executeCall(
             hasNetworkConnection,
-            apiService.getAnimeSeasonNow(page, limit, filter)
+            apiService.getAnimeSeasonNow(page, limitChecked, filter)
         )
 
     }
@@ -150,14 +165,20 @@ class AnimeApiRepository @Inject constructor(
         year: String,
         season: String,
         page: Int,
-        limit: Int,
+        limit: Int = ApiService.MAX_REQUEST_LIMIT,
         filter: String? = null,
         hasNetworkConnection : StateFlow<Boolean>
     ): AnimeSearchApiResponse {
 
+        val limitChecked = if(limit > ApiService.MAX_REQUEST_LIMIT){
+            ApiService.MAX_REQUEST_LIMIT
+        } else {
+            limit
+        }
+
         return caller.executeCall(
             hasNetworkConnection,
-            apiService.getAnimeSeason(year, season, page, limit, filter)
+            apiService.getAnimeSeason(year, season, page, limitChecked, filter)
         )
 
     }

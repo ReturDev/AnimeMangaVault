@@ -59,7 +59,7 @@ class MangaApiRepository @Inject constructor(
      */
     private suspend fun getMangaSearch(
         page: Int,
-        limit: Int,
+        limit: Int = ApiService.MAX_REQUEST_LIMIT,
         title: String? = null,
         type: String? = null,
         score: Int? = null,
@@ -73,10 +73,16 @@ class MangaApiRepository @Inject constructor(
         hasNetworkConnection : StateFlow<Boolean>
     ): MangaSearchApiResponse {
 
+        val limitChecked = if(limit > ApiService.MAX_REQUEST_LIMIT){
+            ApiService.MAX_REQUEST_LIMIT
+        } else {
+            limit
+        }
+
         return caller.executeCall(
             hasNetworkConnection,
             apiService.getMangaSearch(
-                page, limit, title, type, score, status, genres,
+                page, limitChecked, title, type, score, status, genres,
                 orderBy, sort, magazines, startDate, endDate
             )
         )
@@ -95,15 +101,21 @@ class MangaApiRepository @Inject constructor(
      */
     suspend fun getTopManga(
         page: Int,
-        limit: Int,
+        limit: Int = ApiService.MAX_REQUEST_LIMIT,
         type: String? = null,
         filter : String? = null,
         hasNetworkConnection : StateFlow<Boolean>
     ): MangaSearchApiResponse {
 
+        val limitChecked = if(limit > ApiService.MAX_REQUEST_LIMIT){
+            ApiService.MAX_REQUEST_LIMIT
+        } else {
+            limit
+        }
+
         return caller.executeCall(
             hasNetworkConnection,
-            apiService.getTopManga(page, limit, type, filter)
+            apiService.getTopManga(page, limitChecked, type, filter)
         )
 
     }
