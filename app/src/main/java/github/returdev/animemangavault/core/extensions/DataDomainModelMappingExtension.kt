@@ -109,6 +109,34 @@ fun MangaLibraryEntity.toReducedManga() = ReducedManga(
     score = this.score
 )
 
+fun AnimeCacheEntity.toBasicAnime() = BasicAnime(
+    id = this.id,
+    images = listOf(
+        ImageUrl.SmallImageUrl(this.images[0]),
+        ImageUrl.NormalImageUrl(this.images[1]),
+        ImageUrl.LargeImageUrl(this.images[2])
+    ),
+    title = this.title,
+    score = this.score,
+    type = this.type,
+    genres = this.genres,
+    demographics = this.demographics
+)
+
+fun MangaCacheEntity.toBasicManga() = BasicManga(
+    id = this.id,
+    images = listOf(
+        ImageUrl.SmallImageUrl(this.images[0]),
+        ImageUrl.NormalImageUrl(this.images[1]),
+        ImageUrl.LargeImageUrl(this.images[2])
+    ),
+    title = this.title,
+    score = this.score,
+    type = this.type,
+    genres = this.genres,
+    demographics = this.demographics
+)
+
 fun DataImageResponseComponent.toImageUrls() = listOf(
 
     ImageUrl.SmallImageUrl(this.webpFormat.smallImageUrl),
