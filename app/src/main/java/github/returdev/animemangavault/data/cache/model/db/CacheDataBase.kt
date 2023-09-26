@@ -5,6 +5,7 @@ import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import github.returdev.animemangavault.data.cache.dao.AnimeCacheDao
 import github.returdev.animemangavault.data.cache.dao.MangaCacheDao
+import github.returdev.animemangavault.data.cache.model.converter.IntListConverter
 import github.returdev.animemangavault.data.cache.model.converter.StringListConverter
 import github.returdev.animemangavault.data.cache.model.entity.AnimeCacheEntity
 import github.returdev.animemangavault.data.cache.model.entity.MangaCacheEntity
@@ -13,7 +14,7 @@ import github.returdev.animemangavault.data.cache.model.entity.MangaCacheEntity
  * Cache database class that extends RoomDatabase and defines the entities and version.
  */
 @Database(entities = [AnimeCacheEntity::class, MangaCacheEntity::class], version = 1)
-@TypeConverters(StringListConverter::class)
+@TypeConverters(StringListConverter::class, IntListConverter::class)
 abstract class CacheDataBase : RoomDatabase() {
 
 

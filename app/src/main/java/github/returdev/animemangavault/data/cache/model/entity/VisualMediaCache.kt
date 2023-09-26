@@ -7,6 +7,6 @@ sealed class VisualMediaCache{
     abstract val title : String
     abstract val score : Float
     abstract val type : String
-    abstract val genres : List<String>
-    abstract val demographics : List<String>
+    abstract val genres : List<Int>
+    abstract val demographics : List<Int>
 }
