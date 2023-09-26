@@ -1,6 +1,9 @@
 package github.returdev.animemangavault.data.api.repository
 
 
+import github.returdev.animemangavault.core.model.core.filters.Filters
+import github.returdev.animemangavault.core.model.core.filters.SortDirection
+import github.returdev.animemangavault.core.network.NetworkState
 import github.returdev.animemangavault.data.api.core.caller.AnimeMangaApiCaller
 import github.returdev.animemangavault.data.api.model.manga.MangaApiResponse
 import github.returdev.animemangavault.data.api.model.manga.MangaSearchApiResponse
@@ -27,13 +30,13 @@ class MangaApiRepository @Inject constructor(
      * Retrieves manga information by its unique identifier.
      *
      * @param id The unique identifier of the manga.
-     * @param hasNetworkConnection Indicates whether there is an active network connection.
+     * @param networkState A [StateFlow] representing the current network state.
      * @return The response containing manga information.
      */
-    suspend fun getMangaById(id: String, hasNetworkConnection : StateFlow<Boolean>): MangaApiResponse {
+    suspend fun getMangaById(id: String, networkState : StateFlow<NetworkState>): MangaApiResponse {
 
         return caller.executeCall(
-            hasNetworkConnection,
+            networkState,
             apiService.getMangaById(id)
         )
 
@@ -54,7 +57,7 @@ class MangaApiRepository @Inject constructor(
      * @param magazines The magazines of manga (optional).
      * @param startDate The start date filter (optional).
      * @param endDate The end date filter (optional).
-     * @param hasNetworkConnection Indicates whether there is an active network connection.
+     * @param networkState A [StateFlow] representing the current network state.
      * @return The response containing the list of manga based on the search criteria.
      */
     private suspend fun getMangaSearch(
@@ -70,7 +73,7 @@ class MangaApiRepository @Inject constructor(
         magazines: String? = null,
         startDate: String? = null,
         endDate: String? = null,
-        hasNetworkConnection : StateFlow<Boolean>
+        networkState : StateFlow<NetworkState>
     ): MangaSearchApiResponse {
 
         val limitChecked = if(limit > ApiService.MAX_REQUEST_LIMIT){
@@ -80,7 +83,7 @@ class MangaApiRepository @Inject constructor(
         }
 
         return caller.executeCall(
-            hasNetworkConnection,
+            networkState,
             apiService.getMangaSearch(
                 page, limitChecked, title, type, score, status, genres,
                 orderBy, sort, magazines, startDate, endDate
@@ -90,13 +93,45 @@ class MangaApiRepository @Inject constructor(
     }
 
     /**
+     * Get sorted manga data based on the search filters from the API.
+     *
+     * @param page The page number of the search results.
+     * @param title The text to search for in the manga title.
+     * @param filters The filters to apply to the search (e.g., type, status, genres, orderBy, sort).
+     * @param networkState A [StateFlow] representing the current network state.
+     * @return An [MangaSearchApiResponse] containing a list of sorted manga based on the search parameters.
+     */
+    suspend fun getMangaSortSearch(
+        page : Int,
+        title : String,
+        filters : Filters,
+        networkState : StateFlow<NetworkState>
+    ): MangaSearchApiResponse {
+
+        return getMangaSearch(
+            page = page,
+            limit = ApiService.MAX_REQUEST_LIMIT,
+            title = title,
+            type = filters.type,
+            status = filters.status,
+            genres = filters.genres.joinToString(","),
+            orderBy = filters.orderBy,
+            sort = when(filters.sort){
+                SortDirection.ASCENDANT -> "asc"
+                SortDirection.DESCENDANT -> "desc"
+            },
+            networkState = networkState
+        )
+    }
+
+    /**
      * Retrieves a list of top manga.
      *
      * @param page The page number of results to retrieve.
      * @param limit The maximum number of results per page.
      * @param type The type of manga (optional).
      * @param filter A filter parameter (optional).
-     * @param hasNetworkConnection Indicates whether there is an active network connection.
+     * @param networkState A [StateFlow] representing the current network state.
      * @return The response containing the list of top manga.
      */
     suspend fun getTopManga(
@@ -104,7 +139,7 @@ class MangaApiRepository @Inject constructor(
         limit: Int = ApiService.MAX_REQUEST_LIMIT,
         type: String? = null,
         filter : String? = null,
-        hasNetworkConnection : StateFlow<Boolean>
+        networkState : StateFlow<NetworkState>
     ): MangaSearchApiResponse {
 
         val limitChecked = if(limit > ApiService.MAX_REQUEST_LIMIT){
@@ -114,7 +149,7 @@ class MangaApiRepository @Inject constructor(
         }
 
         return caller.executeCall(
-            hasNetworkConnection,
+            networkState,
             apiService.getTopManga(page, limitChecked, type, filter)
         )
 

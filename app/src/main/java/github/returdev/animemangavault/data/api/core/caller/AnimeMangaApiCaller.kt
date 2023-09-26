@@ -3,6 +3,7 @@ package github.returdev.animemangavault.data.api.core.caller
 
 import github.returdev.animemangavault.core.exceptions.ApiExceptions.*
 import github.returdev.animemangavault.core.exceptions.NetworkException
+import github.returdev.animemangavault.core.network.NetworkState
 import github.returdev.animemangavault.data.api.core.ApiResponseCode
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.StateFlow
@@ -30,16 +31,16 @@ class AnimeMangaApiCaller @Inject constructor() : Caller {
     /**
      * Executes a given [Call] and returns the result of the call, with support for retries.
      *
-     * @param hasNetworkConnection Indicates whether there is an active network connection.
+     * @param networkState Indicates whether there is an active network connection.
      *                            If `false`, a [NetworkException] is thrown, and the call is not executed.
      * @param call The [Call] to execute.
      * @return The result of the call.
-     * @throws NetworkException if [hasNetworkConnection] is `false`.
+     * @throws NetworkException if [networkState] is [NetworkState.Lost].
      * @throws RateLimitException if the API responds with a "TOO_MANY_REQUEST" error after exhausting retries.
      * @throws ServerInternalException if the API responds with an "INTERNAL_SERVER_ERROR".
      * @throws RuntimeException for unexpected API response codes.
      */
-    override suspend fun <R> executeCall(hasNetworkConnection : StateFlow<Boolean>, call: Call<R>): R {
+    override suspend fun <R> executeCall(networkState : StateFlow<NetworkState>, call: Call<R>): R {
 
         resetCaller()
 
@@ -47,7 +48,7 @@ class AnimeMangaApiCaller @Inject constructor() : Caller {
 
         while (retryCount <= maxRetries){
 
-            if (!hasNetworkConnection.value){
+            if (networkState.value is NetworkState.Lost){
                 throw NetworkException()
             }
 
