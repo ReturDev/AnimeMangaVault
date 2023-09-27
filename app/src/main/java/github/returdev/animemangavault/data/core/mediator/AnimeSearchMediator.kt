@@ -5,7 +5,7 @@ import androidx.paging.LoadType
 import androidx.room.withTransaction
 import github.returdev.animemangavault.core.annotation.IoDispatcher
 import github.returdev.animemangavault.core.extensions.toAnimeCacheEntity
-import github.returdev.animemangavault.core.model.core.filters.Filters
+import github.returdev.animemangavault.core.model.core.filters.SearchFilters
 import github.returdev.animemangavault.core.network.NetworkConnectivity
 import github.returdev.animemangavault.data.api.repository.AnimeApiRepository
 import github.returdev.animemangavault.data.cache.dao.AnimeCacheDao
@@ -13,12 +13,11 @@ import github.returdev.animemangavault.data.cache.model.db.CacheDataBase
 import github.returdev.animemangavault.data.cache.model.entity.AnimeCacheEntity
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.withContext
-import javax.inject.Inject
 
 
-class AnimeSearchMediator @Inject constructor(
+class AnimeSearchMediator constructor(
     private val title : String,
-    private val filters: Filters,
+    private val filters: SearchFilters.AnimeFilters,
     private val networkConnectivity : NetworkConnectivity,
     private val cacheDataBase: CacheDataBase,
     private val animeCacheDao: AnimeCacheDao,
@@ -55,7 +54,7 @@ class AnimeSearchMediator @Inject constructor(
 
                 animeCacheDao.insertPage(
                     response.data.map {
-                            apiAnimeData -> apiAnimeData.toAnimeCacheEntity()
+                            animeApiData -> animeApiData.toAnimeCacheEntity()
                     }
                 )
 

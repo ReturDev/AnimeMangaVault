@@ -2,20 +2,16 @@ package github.returdev.animemangavault.data.cache.repository.implementation
 
 import androidx.paging.ExperimentalPagingApi
 import androidx.paging.Pager
-import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import androidx.paging.map
 import androidx.sqlite.db.SimpleSQLiteQuery
 import github.returdev.animemangavault.core.annotation.IoDispatcher
 import github.returdev.animemangavault.core.extensions.toBasicAnime
-import github.returdev.animemangavault.core.extensions.toReducedAnime
-import github.returdev.animemangavault.core.model.core.filters.Filters
+import github.returdev.animemangavault.core.model.core.filters.SearchFilters
 import github.returdev.animemangavault.core.network.NetworkConnectivity
 import github.returdev.animemangavault.data.api.repository.AnimeApiRepository
-import github.returdev.animemangavault.data.api.service.ApiService
 import github.returdev.animemangavault.data.cache.dao.AnimeCacheDao
 import github.returdev.animemangavault.data.cache.model.db.CacheDataBase
-import github.returdev.animemangavault.data.cache.model.entity.AnimeCacheEntity
 import github.returdev.animemangavault.data.cache.repository.AnimeCacheRepository
 import github.returdev.animemangavault.data.cache.repository.core.CacheRepositoryUtil
 import github.returdev.animemangavault.data.core.mediator.AnimeSearchMediator
@@ -52,7 +48,7 @@ class AnimeCacheRepositoryImpl @Inject constructor(
      * @param filters The filters used for refining the Anime data.
      * @return A [Flow] of [PagingData] containing [BasicAnime] objects.
      */
-    override fun getAnimeSearch(title: String, filters: Filters): Flow<PagingData<BasicAnime>> {
+    override fun getAnimeSearch(title: String, filters: SearchFilters.AnimeFilters): Flow<PagingData<BasicAnime>> {
         return Pager(
             config = CacheRepositoryUtil.getPagerConfig(),
             remoteMediator = AnimeSearchMediator(
@@ -71,19 +67,12 @@ class AnimeCacheRepositoryImpl @Inject constructor(
         ).flow.map { pagingData -> pagingData.map { anime -> anime.toBasicAnime() } }
     }
 
-    /**
-     * Clears all Anime data from the cache database.
-     */
-    override fun clearCache() {
-        animeCacheDao.clearTable()
-    }
 
     /**
      * Clears all Anime data from the cache database and resets the primary key auto-increment value.
      */
     override fun clearAndResetPrimaryKey() {
-        clearCache()
-
+        animeCacheDao.clearTable()
         animeCacheDao.executeRawQuery(
             SimpleSQLiteQuery(
                 query = CacheRepositoryUtil.RESET_PRIMARY_KEY_AUTO_G,

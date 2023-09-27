@@ -5,24 +5,22 @@ import androidx.paging.LoadType
 import androidx.room.withTransaction
 import github.returdev.animemangavault.core.annotation.IoDispatcher
 import github.returdev.animemangavault.core.extensions.toMangaCacheEntity
-import github.returdev.animemangavault.core.model.core.filters.Filters
+import github.returdev.animemangavault.core.model.core.filters.SearchFilters
 import github.returdev.animemangavault.core.network.NetworkConnectivity
 import github.returdev.animemangavault.data.api.repository.MangaApiRepository
 import github.returdev.animemangavault.data.cache.dao.MangaCacheDao
 import github.returdev.animemangavault.data.cache.model.db.CacheDataBase
 import github.returdev.animemangavault.data.cache.model.entity.MangaCacheEntity
-import github.returdev.animemangavault.data.library.model.entity.AnimeLibraryEntity
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.withContext
-import javax.inject.Inject
 
-class MangaSearchMediator @Inject constructor(
+class MangaSearchMediator constructor(
     private val title : String,
-    private val filters: Filters,
+    private val filters : SearchFilters.MangaFilters,
     private val networkConnectivity : NetworkConnectivity,
-    private val cacheDataBase: CacheDataBase,
-    private val mangaCacheDao: MangaCacheDao,
-    private val mangaApiRepository: MangaApiRepository,
+    private val cacheDataBase : CacheDataBase,
+    private val mangaCacheDao : MangaCacheDao,
+    private val mangaApiRepository : MangaApiRepository,
     @IoDispatcher dispatcher : CoroutineDispatcher
 ) : VisualMediaSearchMediator<MangaCacheEntity>(dispatcher) {
 
@@ -55,7 +53,7 @@ class MangaSearchMediator @Inject constructor(
 
                 mangaCacheDao.insertPage(
                     response.data.map {
-                            apiAnimeData -> apiAnimeData.toMangaCacheEntity()
+                            mangaApiData -> mangaApiData.toMangaCacheEntity()
                     }
                 )
 

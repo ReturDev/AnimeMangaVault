@@ -7,11 +7,9 @@ import androidx.paging.map
 import androidx.sqlite.db.SimpleSQLiteQuery
 import github.returdev.animemangavault.core.annotation.IoDispatcher
 import github.returdev.animemangavault.core.extensions.toBasicManga
-import github.returdev.animemangavault.core.model.core.filters.Filters
+import github.returdev.animemangavault.core.model.core.filters.SearchFilters
 import github.returdev.animemangavault.core.network.NetworkConnectivity
-import github.returdev.animemangavault.data.api.repository.AnimeApiRepository
 import github.returdev.animemangavault.data.api.repository.MangaApiRepository
-import github.returdev.animemangavault.data.cache.dao.AnimeCacheDao
 import github.returdev.animemangavault.data.cache.dao.MangaCacheDao
 import github.returdev.animemangavault.data.cache.model.db.CacheDataBase
 import github.returdev.animemangavault.data.cache.repository.MangaCacheRepository
@@ -48,7 +46,7 @@ class MangaCacheRepositoryImpl @Inject constructor(
      * @param filters The filters used for refining the Manga data.
      * @return A [Flow] of [PagingData] containing [BasicManga] objects.
      */
-    override fun getMangaSearch(title: String, filters: Filters): Flow<PagingData<BasicManga>> {
+    override fun getMangaSearch(title: String, filters: SearchFilters.MangaFilters): Flow<PagingData<BasicManga>> {
         return Pager(
             config = CacheRepositoryUtil.getPagerConfig(),
             remoteMediator = MangaSearchMediator(
@@ -66,18 +64,12 @@ class MangaCacheRepositoryImpl @Inject constructor(
         ).flow.map { data -> data.map { manga -> manga.toBasicManga() } }
     }
 
-    /**
-     * Clears all Manga data from the cache database.
-     */
-    override fun clearCache() {
-        mangaCacheDao.clearTable()
-    }
 
     /**
      * Clears all Manga data from the cache database and resets the primary key auto-increment value.
      */
     override fun clearAndResetPrimaryKey() {
-        clearCache()
+        mangaCacheDao.clearTable()
         mangaCacheDao.executeRawQuery(
             SimpleSQLiteQuery(
                 query = CacheRepositoryUtil.RESET_PRIMARY_KEY_AUTO_G,

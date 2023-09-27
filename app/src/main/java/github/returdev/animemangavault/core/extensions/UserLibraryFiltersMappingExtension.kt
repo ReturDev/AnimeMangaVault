@@ -1,7 +1,7 @@
 package github.returdev.animemangavault.core.extensions
 
 import github.returdev.animemangavault.core.model.library.UserLibraryOrderBy
-import github.returdev.animemangavault.core.model.core.filters.SortDirection
+import github.returdev.animemangavault.core.model.core.filters.common.SortDirection
 import github.returdev.animemangavault.core.model.library.UserLibraryVisualMediaStates
 import github.returdev.animemangavault.ui.model.filters.core.SortDirectionUi
 import github.returdev.animemangavault.ui.model.filters.library.UserLibraryOrderByUi

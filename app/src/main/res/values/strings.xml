@@ -79,13 +79,29 @@
     <string name="library_vm_state_dropped">Dropped</string>
 
     //Filters
-        //Order By
+        //Order By Library
     <string name="order_by_added_date">Added Date</string>
     <string name="order_by_title">Title</string>
     <string name="order_by_score">Score</string>
         //Sort Direction
     <string name="sort_direction_asc_abbreviation">Asc</string>
     <string name="sort_direction_desc_abbreviation">Desc</string>
+        //Order By
+    <string name="order_title">Title</string>
+    <string name="order_type">Type</string>
+    <string name="order_start_date">Start Date</string>
+    <string name="order_end_date">End Date</string>
+    <string name="order_score">Score</string>
+    <string name="order_scored_by">Scorers</string>
+    <string name="order_rank">Rank</string>
+    <string name="order_popularity">Popularity</string>
+    <string name="order_favorites">Favorites</string>
+            //Anime
+    <string name="anime_order_rating">Rating</string>
+    <string name="anime_order_episodes">Episodes</string>
+            //Manga
+    <string name="manga_order_chapters">Chapters</string>
+    <string name="manga_order_volumes">Volumes</string>
 
 
 </resources>

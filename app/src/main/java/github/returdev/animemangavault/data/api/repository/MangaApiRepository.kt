@@ -1,8 +1,8 @@
 package github.returdev.animemangavault.data.api.repository
 
 
-import github.returdev.animemangavault.core.model.core.filters.Filters
-import github.returdev.animemangavault.core.model.core.filters.SortDirection
+import github.returdev.animemangavault.core.model.core.filters.SearchFilters
+import github.returdev.animemangavault.core.model.core.filters.common.SortDirection
 import github.returdev.animemangavault.core.network.NetworkState
 import github.returdev.animemangavault.data.api.core.caller.AnimeMangaApiCaller
 import github.returdev.animemangavault.data.api.model.manga.MangaApiResponse
@@ -104,7 +104,7 @@ class MangaApiRepository @Inject constructor(
     suspend fun getMangaSortSearch(
         page : Int,
         title : String,
-        filters : Filters,
+        filters : SearchFilters.MangaFilters,
         networkState : StateFlow<NetworkState>
     ): MangaSearchApiResponse {
 
@@ -112,10 +112,10 @@ class MangaApiRepository @Inject constructor(
             page = page,
             limit = ApiService.MAX_REQUEST_LIMIT,
             title = title,
-            type = filters.type,
-            status = filters.status,
+            type = filters.type?.toString(),
+            status = filters.status?.toString(),
             genres = filters.genres.joinToString(","),
-            orderBy = filters.orderBy,
+            orderBy = filters.orderBy?.toString(),
             sort = when(filters.sort){
                 SortDirection.ASCENDANT -> "asc"
                 SortDirection.DESCENDANT -> "desc"
