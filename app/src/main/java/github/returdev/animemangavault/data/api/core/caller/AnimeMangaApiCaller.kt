@@ -102,4 +102,5 @@ class AnimeMangaApiCaller @Inject constructor() : Caller {
         currentDelay = initialDelayMillis
     }
 
+
 }

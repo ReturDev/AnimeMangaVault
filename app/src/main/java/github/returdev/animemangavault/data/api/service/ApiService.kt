@@ -126,15 +126,13 @@ interface ApiService {
      * @param page The page number.
      * @param limit The limit of results per page. The maximum Api limit is 25.
      * @param type The type of manga.
-     * @param filter The filter for the manga list.
      * @return A Call object with the API response containing the top manga list.
      */
     @GET("top/manga")
     fun getTopManga(
         @Query("page") page: Int,
         @Query("limit") limit: Int,
-        @Query("type") type : String?,
-        @Query("filter") filter : String?
+        @Query("type") type : String?
     ) : Call<MangaSearchApiResponse>
 
 

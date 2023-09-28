@@ -5,6 +5,10 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import github.returdev.animemangavault.BuildConfig.BASE_API_URL
+import github.returdev.animemangavault.data.api.repository.AnimeApiRepository
+import github.returdev.animemangavault.data.api.repository.MangaApiRepository
+import github.returdev.animemangavault.data.api.repository.implementation.AnimeApiRepositoryImpl
+import github.returdev.animemangavault.data.api.repository.implementation.MangaApiRepositoryImpl
 import github.returdev.animemangavault.data.api.service.ApiService
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -15,7 +19,7 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-object RetrofitModule {
+object ApiModule {
 
     private const val MAX_TIMEOUT_SECONDS = 3L
 
@@ -47,6 +51,18 @@ object RetrofitModule {
     @Singleton
     fun provideApiService(retrofit: Retrofit) : ApiService {
         return retrofit.create(ApiService::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun provideAnimeApiRepository(animeApiRepositoryImpl: AnimeApiRepositoryImpl) : AnimeApiRepository{
+        return animeApiRepositoryImpl
+    }
+
+    @Provides
+    @Singleton
+    fun provideMangaApiRepository(mangaApiRepositoryImpl: MangaApiRepositoryImpl) : MangaApiRepository{
+        return mangaApiRepositoryImpl
     }
 
 }
