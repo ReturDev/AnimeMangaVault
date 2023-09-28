@@ -1,7 +1,7 @@
 package github.returdev.animemangavault.domain.model.full
 
-import github.returdev.animemangavault.domain.model.components.ImageUrl
-import github.returdev.animemangavault.domain.model.components.Title
+import github.returdev.animemangavault.core.model.components.ImageUrl
+import github.returdev.animemangavault.core.model.components.Title
 
 /**
  * Sealed class representing detailed information about visual media items such as anime and manga.
@@ -21,14 +21,14 @@ import github.returdev.animemangavault.domain.model.components.Title
 sealed class FullVisualMedia{
 
     abstract val id : Int
-    abstract val type : String
+    abstract val type : String?
     abstract val images : List<ImageUrl>
     abstract val titles : List<Title>
     abstract val score : Float
     abstract val numberOfScorers: Long
     abstract val rank: Int
     abstract val synopsis: String
-    abstract val genres: List<String>
-    abstract val demographics: List<String>
+    abstract val genres: List<Int>
+    abstract val demographics: List<Int>
 
 }

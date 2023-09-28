@@ -2,7 +2,9 @@ package github.returdev.animemangavault.data.api.model.core.caller
 
 import github.returdev.animemangavault.core.exceptions.ApiExceptions
 import github.returdev.animemangavault.core.exceptions.NetworkException
-import github.returdev.animemangavault.data.api.model.core.ApiResponseCode
+import github.returdev.animemangavault.core.network.NetworkState
+import github.returdev.animemangavault.data.api.core.ApiResponseCode
+import github.returdev.animemangavault.data.api.core.caller.AnimeMangaApiCaller
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
@@ -37,7 +39,7 @@ class AnimeMangaApiCallerTest {
     fun `should return a response in the first try`() = runBlocking{
 
         val body = Any()
-        val networkConnection = MutableStateFlow(true)
+        val networkConnection = MutableStateFlow(NetworkState.Available)
 
         Mockito.`when`(fakeResponse.isSuccessful).thenReturn(true)
         Mockito.`when`(fakeResponse.body()).thenReturn(body)
@@ -52,7 +54,7 @@ class AnimeMangaApiCallerTest {
     @Test
     fun `should throw a ServerInternalException`() = runBlocking{
 
-        val networkConnection = MutableStateFlow(true)
+        val networkConnection = MutableStateFlow(NetworkState.Available)
 
         Mockito.`when`(fakeResponse.isSuccessful).thenReturn(false)
         Mockito.`when`(fakeResponse.code()).thenReturn(ApiResponseCode.INTERNAL_SERVER_ERROR)
@@ -67,7 +69,7 @@ class AnimeMangaApiCallerTest {
     @Test
     fun `should return the result after 1 TOO_MANY_REQUEST error codes `() = runBlocking{
         val body = Any()
-        val networkConnection = MutableStateFlow(true)
+        val networkConnection = MutableStateFlow(NetworkState.Available)
 
         Mockito.`when`(fakeResponse.isSuccessful)
             .thenReturn(false)
@@ -87,7 +89,7 @@ class AnimeMangaApiCallerTest {
     @Test
     fun `should throw a RateLimitException`() = runBlocking{
 
-        val networkConnection = MutableStateFlow(true)
+        val networkConnection = MutableStateFlow(NetworkState.Available)
 
         Mockito.`when`(fakeResponse.isSuccessful).thenReturn(false)
         Mockito.`when`(fakeResponse.code()).thenReturn(ApiResponseCode.TOO_MANY_REQUEST)
@@ -101,7 +103,7 @@ class AnimeMangaApiCallerTest {
 
     @Test
     fun `should throw a RunTimeException`() = runBlocking{
-        val networkConnection = MutableStateFlow(true)
+        val networkConnection = MutableStateFlow(NetworkState.Available)
 
         Mockito.`when`(fakeResponse.isSuccessful).thenReturn(false)
 
@@ -114,7 +116,7 @@ class AnimeMangaApiCallerTest {
 
     @Test
     fun `should throw a NetworkException`() = runBlocking{
-        val networkConnection = MutableStateFlow(false)
+        val networkConnection = MutableStateFlow(NetworkState.Lost)
 
         try {
             caller.executeCall(networkConnection,call)
@@ -127,7 +129,7 @@ class AnimeMangaApiCallerTest {
     @Test
     fun `should throw a NetworkException after 2 tries by rate limit code`() = runBlocking {
 
-        val networkConnection = MutableStateFlow(true)
+        val networkConnection = MutableStateFlow<NetworkState>(NetworkState.Available)
 
         Mockito.`when`(fakeResponse.isSuccessful).thenReturn(false)
         Mockito.`when`(fakeResponse.code()).thenReturn(ApiResponseCode.TOO_MANY_REQUEST)
@@ -136,7 +138,7 @@ class AnimeMangaApiCallerTest {
 
             launch {
                 delay((caller.initialDelayMillis * 2.5).toLong())
-                networkConnection.value = false
+                networkConnection.value = NetworkState.Lost
             }
             caller.executeCall(networkConnection,call)
             fail("Expected NetworkException was not thrown")

@@ -61,6 +61,11 @@ android {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
         }
     }
+    kapt {
+        arguments {
+            arg("room.schemaLocation", "$projectDir/schemas".toString())
+        }
+    }
 }
 
 dependencies {
@@ -70,6 +75,7 @@ dependencies {
     val okhttp3Version = "4.11.0"
     val mockitoVersion = "3.12.4"
     val roomVersion = "2.5.0"
+    val pagingVersion = "3.2.1"
 
     implementation("androidx.core:core-ktx:1.9.0")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.6.2")
@@ -97,7 +103,6 @@ dependencies {
     implementation("com.squareup.retrofit2:retrofit:$retrofitVersion")
     implementation("com.squareup.retrofit2:converter-gson:$retrofitVersion")
 
-
     //Logging Interceptor
     implementation("com.squareup.okhttp3:logging-interceptor:$okhttp3Version")
 
@@ -111,9 +116,15 @@ dependencies {
     implementation("androidx.room:room-ktx:$roomVersion")
     kapt ("androidx.room:room-compiler:$roomVersion")
     implementation ("androidx.room:room-paging:$roomVersion")
-    
+
     //Coil
     implementation("io.coil-kt:coil-compose:2.4.0")
+
+    //Paging
+    implementation("androidx.paging:paging-runtime-ktx:$pagingVersion")
+    implementation("androidx.paging:paging-compose:3.2.1")
+    testImplementation("androidx.paging:paging-common-ktx:$pagingVersion")
+    androidTestImplementation("androidx.paging:paging-common-ktx:$pagingVersion")
 
 }
 

@@ -1,6 +1,71 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">AnimeMangaVault</string>
 
+    //Genres
+    <string name="genre_action">Action</string>
+    <string name="genre_adventure">Adventure</string>
+    <string name="genre_avant_garde">Avant Garde</string>
+    <string name="genre_award_winning">Award Winning</string>
+    <string name="genre_boys_love">Boys Love</string>
+    <string name="genre_comedy">Comedy</string>
+    <string name="genre_drama">Drama</string>
+    <string name="genre_fantasy">Fantasy</string>
+    <string name="genre_girls_love">Girls Love</string>
+    <string name="genre_gourmet">Gourmet</string>
+    <string name="genre_horror">Horror</string>
+    <string name="genre_mystery">Mystery</string>
+    <string name="genre_romance">Romance</string>
+    <string name="genre_sci_fi">Sci-Fi</string>
+    <string name="genre_slice_of_life">Slice of Life</string>
+    <string name="genre_sports">Sports</string>
+    <string name="genre_super_natural">Supernatural</string>
+    <string name="genre_suspense">Suspense</string>
+    <string name="explicit_genre_ecchi">Ecchi</string>
+    <string name="explicit_genre_erotica">Erotica</string>
+    <string name="explicit_genre_hentai">Hentai</string>
+
+    //Demographics
+    <string name="demographic_josei">Josei</string>
+    <string name="demographic_kids">Kids</string>
+    <string name="demographic_seinen">Seinen</string>
+    <string name="demographic_shoujo">Shoujo</string>
+    <string name="demographic_shounen">Shounen</string>
+
+    //Types
+    <string name="type_unknown">Unknown</string>
+        //Anime
+    <string name="anime_type_tv">TV</string>
+    <string name="anime_type_movie">Movie</string>
+    <string name="anime_type_ova">OVA</string>
+    <string name="anime_type_special">Special</string>
+    <string name="anime_type_ona">ONA</string>
+    <string name="anime_type_music">Music</string>
+        //Manga
+    <string name="manga_type_manga">Manga</string>
+    <string name="manga_type_novel">Novel</string>
+    <string name="manga_type_light_novel">Light Novel</string>
+    <string name="manga_type_one_shot">One Shot</string>
+    <string name="manga_type_doujin">Doujin</string>
+    <string name="manga_type_manhwa">Manhwa</string>
+    <string name="manga_type_manhua">Manhua</string>
+
+    //Status
+    <string name="status_finished">Finished</string>
+    <string name="status_upcoming">Upcoming</string>
+        //Anime
+    <string name="anime_status_airing">Airing</string>
+        //Manga
+    <string name="manga_status_publishing">Publishing</string>
+    <string name="manga_status_hiatus">Hiatus</string>
+    <string name="manga_status_discontinued">Discontinued</string>
+    <string name="manga_status_upcoming">Upcoming</string>
+
+    //Season
+    <string name="season_spring">Spring</string>
+    <string name="season_summer">Summer</string>
+    <string name="season_fall">Fall</string>
+    <string name="season_winter">Winter</string>
+
     //Errors
     <string name="network_connection_error">Connection error</string>
     <string name="api_server_internal_error">Our service is not available, please try it later</string>
@@ -18,5 +83,38 @@
     <string name="top_anime">Top Anime</string>
     <string name="top_manga">Top Manga</string>
     <string name="this_season">This Season</string>
+
+    //Library
+    <string name="library_vm_state_following">Following</string>
+    <string name="library_vm_state_favourites">Favourites</string>
+    <string name="library_vm_state_completed">Completed</string>
+    <string name="library_vm_state_on_hold">On Hold</string>
+    <string name="library_vm_state_dropped">Dropped</string>
+
+    //Filters
+        //Order By Library
+    <string name="order_by_added_date">Added Date</string>
+    <string name="order_by_title">Title</string>
+    <string name="order_by_score">Score</string>
+        //Sort Direction
+    <string name="sort_direction_asc_abbreviation">Asc</string>
+    <string name="sort_direction_desc_abbreviation">Desc</string>
+        //Order By
+    <string name="order_title">Title</string>
+    <string name="order_type">Type</string>
+    <string name="order_start_date">Start Date</string>
+    <string name="order_end_date">End Date</string>
+    <string name="order_score">Score</string>
+    <string name="order_scored_by">Scorers</string>
+    <string name="order_rank">Rank</string>
+    <string name="order_popularity">Popularity</string>
+    <string name="order_favorites">Favorites</string>
+            //Anime
+    <string name="anime_order_rating">Rating</string>
+    <string name="anime_order_episodes">Episodes</string>
+            //Manga
+    <string name="manga_order_chapters">Chapters</string>
+    <string name="manga_order_volumes">Volumes</string>
+
 
 </resources>

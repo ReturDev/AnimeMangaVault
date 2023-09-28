@@ -1,6 +1,6 @@
 package github.returdev.animemangavault.domain.model.basic
 
-import github.returdev.animemangavault.domain.model.components.ImageUrl
+import github.returdev.animemangavault.core.model.components.ImageUrl
 
 /**
  * Sealed class representing basic information about visual media such as anime and manga.
@@ -18,7 +18,7 @@ sealed class BasicVisualMedia{
     abstract val images: List<ImageUrl>
     abstract val title: String
     abstract val score: Float
-    abstract val type : String
-    abstract val genres : List<String>
-    abstract val demographics : List<String>
+    abstract val type : String?
+    abstract val genres : List<Int>
+    abstract val demographics : List<Int>
 }

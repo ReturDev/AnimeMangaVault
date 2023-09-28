@@ -1,10 +1,10 @@
 package github.returdev.animemangavault.data.api.model.manga
 
 import com.google.gson.annotations.SerializedName
-import github.returdev.animemangavault.data.api.model.core.components.DataGenreResponseComponent
-import github.returdev.animemangavault.data.api.model.core.components.DataImageResponseComponent
-import github.returdev.animemangavault.data.api.model.core.components.DataReleasedResponseComponent
-import github.returdev.animemangavault.data.api.model.core.components.DataTitleResponseComponent
+import github.returdev.animemangavault.data.api.model.components.DataGenreResponseComponent
+import github.returdev.animemangavault.data.api.model.components.DataImageResponseComponent
+import github.returdev.animemangavault.data.api.model.components.DataReleasedResponseComponent
+import github.returdev.animemangavault.data.api.model.components.DataTitleResponseComponent
 
 /**
  * Represents a response containing manga data from the API.
