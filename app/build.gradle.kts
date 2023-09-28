@@ -99,6 +99,9 @@ dependencies {
     androidTestImplementation("com.google.dagger:hilt-android-testing:$hiltVersion")
     kaptAndroidTest ("com.google.dagger:hilt-android-compiler:$hiltVersion")
 
+    //HiltNavigation
+    implementation("androidx.hilt:hilt-navigation-compose:1.0.0")
+
     //Retrofit
     implementation("com.squareup.retrofit2:retrofit:$retrofitVersion")
     implementation("com.squareup.retrofit2:converter-gson:$retrofitVersion")
