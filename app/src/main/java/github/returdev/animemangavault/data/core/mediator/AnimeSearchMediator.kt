@@ -34,7 +34,7 @@ class AnimeSearchMediator constructor(
         return try {
 
             val response = withContext(dispatcher){
-                animeApiRepository.getAnimeSortSearch(
+                animeApiRepository.getAnimeSearch(
                     page = apiPage,
                     title = title,
                     filters = filters,
