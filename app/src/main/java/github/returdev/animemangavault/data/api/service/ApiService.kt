@@ -117,8 +117,7 @@ interface ApiService {
     fun getTopAnime(
         @Query("page") page: Int,
         @Query("limit") limit: Int,
-        @Query("type") type: String?,
-        @Query("filter") filter: String?
+        @Query("type") type: String?
     ): Call<AnimeSearchApiResponse>
 
 

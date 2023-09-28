@@ -55,7 +55,7 @@ class MangaLibraryDaoTest {
         val animePageResultAsc = animeLoadResultAsc as PagingSource.LoadResult.Page
         val animePageResultDesc = animeLoadResultDesc as PagingSource.LoadResult.Page
 
-        val animeListFiltered = mangaLibraryList.filter { it.state == state}.sortedBy { it.defaultTitle }
+        val animeListFiltered = mangaLibraryList.filter { it.state == state}.sortedBy { it.score }
 
         assertTrue(animePageResultAsc.data.all { it.state == state })
         assertTrue(animePageResultDesc.data.all { it.state == state })

@@ -9,7 +9,7 @@ import github.returdev.animemangavault.core.annotation.IoDispatcher
 import github.returdev.animemangavault.core.extensions.toBasicAnime
 import github.returdev.animemangavault.core.model.core.filters.SearchFilters
 import github.returdev.animemangavault.core.network.NetworkConnectivity
-import github.returdev.animemangavault.data.api.repository.AnimeApiRepository
+import github.returdev.animemangavault.data.api.repository.implementation.AnimeApiRepositoryImpl
 import github.returdev.animemangavault.data.cache.dao.AnimeCacheDao
 import github.returdev.animemangavault.data.cache.model.db.CacheDataBase
 import github.returdev.animemangavault.data.cache.repository.AnimeCacheRepository
@@ -37,7 +37,7 @@ class AnimeCacheRepositoryImpl @Inject constructor(
     private val networkConnectivity: NetworkConnectivity,
     private val cacheDataBase: CacheDataBase,
     private val animeCacheDao: AnimeCacheDao,
-    private val animeApiRepository: AnimeApiRepository,
+    private val animeApiRepository: AnimeApiRepositoryImpl,
     @IoDispatcher private val dispatcher: CoroutineDispatcher
 ) : AnimeCacheRepository {
 
