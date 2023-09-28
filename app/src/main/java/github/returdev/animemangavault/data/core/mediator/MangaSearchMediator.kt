@@ -7,7 +7,7 @@ import github.returdev.animemangavault.core.annotation.IoDispatcher
 import github.returdev.animemangavault.core.extensions.toMangaCacheEntity
 import github.returdev.animemangavault.core.model.core.filters.SearchFilters
 import github.returdev.animemangavault.core.network.NetworkConnectivity
-import github.returdev.animemangavault.data.api.repository.MangaApiRepository
+import github.returdev.animemangavault.data.api.repository.implementation.MangaApiRepositoryImpl
 import github.returdev.animemangavault.data.cache.dao.MangaCacheDao
 import github.returdev.animemangavault.data.cache.model.db.CacheDataBase
 import github.returdev.animemangavault.data.cache.model.entity.MangaCacheEntity
@@ -20,7 +20,7 @@ class MangaSearchMediator constructor(
     private val networkConnectivity : NetworkConnectivity,
     private val cacheDataBase : CacheDataBase,
     private val mangaCacheDao : MangaCacheDao,
-    private val mangaApiRepository : MangaApiRepository,
+    private val mangaApiRepository : MangaApiRepositoryImpl,
     @IoDispatcher dispatcher : CoroutineDispatcher
 ) : VisualMediaSearchMediator<MangaCacheEntity>(dispatcher) {
 
