@@ -15,7 +15,7 @@ class IntListConverter {
      * @return A list of strings.
      */
     @TypeConverter
-    fun toList(string: String) = string.split(",").map { it -> it.toInt() }
+    fun toList(string: String) = string.split(",").filter{it.isNotEmpty()}.map { it -> it.toInt() }
 
 
     /**

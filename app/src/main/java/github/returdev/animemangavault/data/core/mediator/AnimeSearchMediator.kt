@@ -7,7 +7,7 @@ import github.returdev.animemangavault.core.annotation.IoDispatcher
 import github.returdev.animemangavault.core.extensions.toAnimeCacheEntity
 import github.returdev.animemangavault.core.model.core.filters.SearchFilters
 import github.returdev.animemangavault.core.network.NetworkConnectivity
-import github.returdev.animemangavault.data.api.repository.AnimeApiRepository
+import github.returdev.animemangavault.data.api.repository.implementation.AnimeApiRepositoryImpl
 import github.returdev.animemangavault.data.cache.dao.AnimeCacheDao
 import github.returdev.animemangavault.data.cache.model.db.CacheDataBase
 import github.returdev.animemangavault.data.cache.model.entity.AnimeCacheEntity
@@ -21,7 +21,7 @@ class AnimeSearchMediator constructor(
     private val networkConnectivity : NetworkConnectivity,
     private val cacheDataBase: CacheDataBase,
     private val animeCacheDao: AnimeCacheDao,
-    private val animeApiRepository: AnimeApiRepository,
+    private val animeApiRepository: AnimeApiRepositoryImpl,
     @IoDispatcher dispatcher : CoroutineDispatcher
 ) : VisualMediaSearchMediator<AnimeCacheEntity>(dispatcher) {
 
@@ -34,7 +34,7 @@ class AnimeSearchMediator constructor(
         return try {
 
             val response = withContext(dispatcher){
-                animeApiRepository.getAnimeSortSearch(
+                animeApiRepository.getAnimeSearch(
                     page = apiPage,
                     title = title,
                     filters = filters,
