@@ -10,8 +10,6 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import github.returdev.animemangavault.ui.navigation.Destination.DetailedItemScreen
 import github.returdev.animemangavault.ui.navigation.Destination.NoArgumentsDestination
-import github.returdev.animemangavault.ui.screen.HomeScreen
-import github.returdev.animemangavault.ui.screen.LibraryScreen
 
 @Composable
 fun NavigationGraph (
