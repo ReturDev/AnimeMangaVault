@@ -1,4 +1,4 @@
-package github.returdev.animemangavault.ui.navigation
+package github.returdev.animemangavault.ui.core.navigation
 
 import androidx.navigation.NamedNavArgument
 import androidx.navigation.NavType

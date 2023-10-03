@@ -71,6 +71,18 @@
     <string name="api_server_internal_error">Our service is not available, please try it later</string>
     <string name="generic_error">An error has occurred</string>
 
+    //Items
+    <string name="icon_score_description">Score</string>
+
+    //SearchBar
+    <string name="search_bar_search_hint">Search…</string>
+    <string name="search_bar_icon_content_desc">Search icon</string>
+
+    //HomeScreen
+    <string name="top_anime">Top Anime</string>
+    <string name="top_manga">Top Manga</string>
+    <string name="this_season">This Season</string>
+
     //Library
     <string name="library_vm_state_following">Following</string>
     <string name="library_vm_state_favourites">Favourites</string>

@@ -81,7 +81,7 @@ interface AnimeApiRepository {
         limit: Int = ApiService.MAX_REQUEST_LIMIT,
         type: AnimeTypeFilters? = null,
         networkState : StateFlow<NetworkState>
-    ): AnimeSearchApiResponse
+    ): List<ReducedAnime>
 
     /**
      * Retrieves a list of anime for a specific season and year.
@@ -92,7 +92,7 @@ interface AnimeApiRepository {
      * @param limit The maximum number of results per page.
      * @param type The type of anime (optional).
      * @param networkState A [StateFlow] representing the current network state.
-     * @return An [AnimeSearchApiResponse] containing the list of anime for the specified season and year.
+     * @return An [ReducedAnime] list of anime for the specified season and year.
      */
     suspend fun getAnimeSeason(
         year: String,

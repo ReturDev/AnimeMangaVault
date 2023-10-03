@@ -3,7 +3,7 @@ package github.returdev.animemangavault.ui.model.components.anime
 import androidx.annotation.StringRes
 import github.returdev.animemangavault.R
 
-enum class Season(@StringRes stringResource: Int) {
+enum class Season(@StringRes val stringResource: Int) {
 
     SPRING(R.string.season_spring),
     SUMMER(R.string.season_summer),

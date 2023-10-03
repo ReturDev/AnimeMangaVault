@@ -10,6 +10,7 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.compose.rememberNavController
 import dagger.hilt.android.AndroidEntryPoint
 import github.returdev.animemangavault.ui.screen.nav.NavigationScreen
+
 import github.returdev.animemangavault.ui.theme.AnimeMangaVaultTheme
 
 @AndroidEntryPoint
@@ -23,8 +24,10 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
+
                     val navController = rememberNavController()
                     NavigationScreen(navController)
+
                 }
             }
         }

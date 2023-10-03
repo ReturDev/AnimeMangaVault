@@ -7,6 +7,7 @@ import github.returdev.animemangavault.data.api.model.manga.MangaSearchApiRespon
 import github.returdev.animemangavault.data.api.service.ApiService
 import github.returdev.animemangavault.domain.model.full.FullAnime
 import github.returdev.animemangavault.domain.model.full.FullManga
+import github.returdev.animemangavault.domain.model.reduced.ReducedManga
 import kotlinx.coroutines.flow.StateFlow
 
 interface MangaApiRepository {
@@ -43,13 +44,13 @@ interface MangaApiRepository {
      * @param limit The maximum number of results per page.
      * @param type The type of manga (optional).
      * @param networkState A [StateFlow] representing the current network state.
-     * @return An [MangaSearchApiResponse] containing the list of top manga.
+     * @return An [ReducedManga] list of top manga.
      */
     suspend fun getTopManga(
         page: Int,
         limit: Int = ApiService.MAX_REQUEST_LIMIT,
         type: MangaTypeFilters? = null,
         networkState : StateFlow<NetworkState>
-    ): MangaSearchApiResponse
+    ): List<ReducedManga>
 
 }

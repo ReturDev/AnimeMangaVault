@@ -17,7 +17,7 @@ data class Released(
 ){
 
     override fun toString(): String {
-        val dateFormat = DateFormat.getPatternInstance("dd/mm/yyyy HH:mm", Locale.getDefault())
+        val dateFormat = DateFormat.getPatternInstance("dd/MM/yyyy", Locale.getDefault())
 
         val fromFormatted = dateFormat.format(from)
         val toFormatted = to?.let { dateFormat.format(it) } ?: "??/??/??"
