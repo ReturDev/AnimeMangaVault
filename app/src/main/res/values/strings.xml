@@ -1,4 +1,4 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
     <string name="app_name">AnimeMangaVault</string>
 
     //Genres
@@ -72,11 +72,10 @@
     <string name="generic_error">An error has occurred</string>
 
     //Items
-    <string name="icon_score_description">Score icon</string>
-    <string name="visual_media_cover_content_description">Cover of %s</string>
+    <string name="icon_score_description">Score</string>
 
     //SearchBar
-    <string name="search_bar_search" tools:ignore="PrivateResource">Search</string>
+    <string name="search_bar_search_hint">Search…</string>
     <string name="search_bar_icon_content_desc">Search icon</string>
 
     //HomeScreen
