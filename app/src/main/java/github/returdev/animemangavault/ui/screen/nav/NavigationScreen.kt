@@ -38,8 +38,8 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import github.returdev.animemangavault.R
-import github.returdev.animemangavault.ui.navigation.Destination
-import github.returdev.animemangavault.ui.navigation.NavigationGraph
+import github.returdev.animemangavault.ui.core.navigation.Destination
+import github.returdev.animemangavault.ui.core.navigation.NavigationGraph
 import github.returdev.animemangavault.ui.theme.AnimeMangaVaultTheme
 import kotlinx.coroutines.delay
 
