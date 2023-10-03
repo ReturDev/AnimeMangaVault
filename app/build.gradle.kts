@@ -76,6 +76,7 @@ dependencies {
     val mockitoVersion = "3.12.4"
     val roomVersion = "2.5.0"
     val pagingVersion = "3.2.1"
+    val navVersion = "2.6.0"
 
     implementation("androidx.core:core-ktx:1.9.0")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.6.2")
@@ -93,11 +94,16 @@ dependencies {
     debugImplementation("androidx.compose.ui:ui-tooling")
     debugImplementation("androidx.compose.ui:ui-test-manifest")
 
+    //Navigation
+    implementation("androidx.navigation:navigation-compose:$navVersion")
+
     //Hilt
     implementation("com.google.dagger:hilt-android:$hiltVersion")
     kapt("com.google.dagger:hilt-compiler:$hiltVersion")
     androidTestImplementation("com.google.dagger:hilt-android-testing:$hiltVersion")
     kaptAndroidTest ("com.google.dagger:hilt-android-compiler:$hiltVersion")
+    //HiltNavigation
+    implementation("androidx.hilt:hilt-navigation-compose:1.0.0")
 
     //HiltNavigation
     implementation("androidx.hilt:hilt-navigation-compose:1.0.0")
