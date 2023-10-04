@@ -124,6 +124,10 @@
     //Detailed Item Screen
     <string name="show_more">Show more</string>
     <string name="show_less">Show less</string>
+    <string name="vm_detail_alternative_titles">Alternative Titles</string>
+    <string name="title_language_japanese">Japanese</string>
+    <string name="title_language_english">English</string>
+    <string name="title_language_synonyms">Synonyms</string>
 
 
 
