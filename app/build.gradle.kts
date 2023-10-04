@@ -97,13 +97,14 @@ dependencies {
     //Navigation
     implementation("androidx.navigation:navigation-compose:$navVersion")
 
+    //Constraint
+    implementation("androidx.constraintlayout:constraintlayout-compose:1.0.1")
+
     //Hilt
     implementation("com.google.dagger:hilt-android:$hiltVersion")
     kapt("com.google.dagger:hilt-compiler:$hiltVersion")
     androidTestImplementation("com.google.dagger:hilt-android-testing:$hiltVersion")
     kaptAndroidTest ("com.google.dagger:hilt-android-compiler:$hiltVersion")
-    //HiltNavigation
-    implementation("androidx.hilt:hilt-navigation-compose:1.0.0")
 
     //HiltNavigation
     implementation("androidx.hilt:hilt-navigation-compose:1.0.0")
