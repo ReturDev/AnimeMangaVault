@@ -22,7 +22,7 @@ class AnimeLibraryRepositoryImpl @Inject constructor(
     private val animeLibraryDao: AnimeLibraryDao
 ) : AnimeLibraryRepository {
 
-    override fun insertAnime(state: UserLibraryVisualMediaStates, reducedAnime: ReducedAnime) {
+    override suspend fun insertAnime(state: UserLibraryVisualMediaStates, reducedAnime: ReducedAnime) {
         animeLibraryDao.insertAnime(
             reducedAnime.toAnimeLibraryEntity(state)
         )
@@ -52,17 +52,17 @@ class AnimeLibraryRepositoryImpl @Inject constructor(
 
     }
 
-    override fun getAnimeStateById(id: Int): UserLibraryVisualMediaStates? {
+    override suspend fun getAnimeStateById(id: Int): UserLibraryVisualMediaStates? {
         return animeLibraryDao.getAnimeStateById(id)?.let { status ->
             UserLibraryVisualMediaStates.valueOf(status)
         }
     }
 
-    override fun updateAnimeState(id: Int, newState: UserLibraryVisualMediaStates) : Int {
+    override suspend fun updateAnimeState(id: Int, newState: UserLibraryVisualMediaStates) : Int {
         return animeLibraryDao.updateAnimeState(id, newState.name)
     }
 
-    override fun deleteAnime(id: Int): Int {
+    override suspend fun deleteAnime(id: Int): Int {
         return animeLibraryDao.deleteAnime(id)
     }
 }

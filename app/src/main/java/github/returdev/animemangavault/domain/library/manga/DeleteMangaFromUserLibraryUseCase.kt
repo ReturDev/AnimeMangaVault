@@ -7,7 +7,7 @@ class DeleteMangaFromUserLibraryUseCase @Inject constructor(
     private val mangaLibraryRepository: MangaLibraryRepository
 ) {
 
-    operator fun invoke(mangaId : Int) : Int{
+    suspend operator fun invoke(mangaId : Int) : Int{
         return mangaLibraryRepository.deleteManga(mangaId)
     }
 

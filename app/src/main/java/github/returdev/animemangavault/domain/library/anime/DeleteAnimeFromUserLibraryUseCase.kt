@@ -7,7 +7,7 @@ class DeleteAnimeFromUserLibraryUseCase @Inject constructor(
     private val animeLibraryRepository: AnimeLibraryRepository
 ) {
 
-    operator fun invoke(animeId : Int) : Int{
+    suspend operator  fun invoke(animeId : Int) : Int{
         return animeLibraryRepository.deleteAnime(animeId)
     }
 

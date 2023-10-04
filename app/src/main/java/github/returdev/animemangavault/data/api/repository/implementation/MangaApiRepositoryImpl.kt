@@ -1,7 +1,7 @@
 package github.returdev.animemangavault.data.api.repository.implementation
 
 
-import github.returdev.animemangavault.core.extensions.toManga
+import github.returdev.animemangavault.core.extensions.toFullManga
 import github.returdev.animemangavault.core.extensions.toReducedManga
 import github.returdev.animemangavault.core.model.core.filters.SearchFilters
 import github.returdev.animemangavault.core.model.core.filters.common.SortDirection
@@ -47,7 +47,7 @@ class MangaApiRepositoryImpl @Inject constructor(
         return caller.executeCall(
             networkState,
             apiService.getMangaById(id)
-        ).data.toManga()
+        ).data.toFullManga()
 
     }
 

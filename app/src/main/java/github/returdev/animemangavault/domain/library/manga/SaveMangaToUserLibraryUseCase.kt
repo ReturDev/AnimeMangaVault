@@ -9,7 +9,7 @@ class SaveMangaToUserLibraryUseCase @Inject constructor(
     private val mangaLibraryRepository: MangaLibraryRepository
 ) {
 
-    operator fun invoke(state : UserLibraryVisualMediaStates, reducedManga: ReducedManga){
+    suspend operator fun invoke(state : UserLibraryVisualMediaStates, reducedManga: ReducedManga){
         mangaLibraryRepository.insertManga(state, reducedManga)
     }
 

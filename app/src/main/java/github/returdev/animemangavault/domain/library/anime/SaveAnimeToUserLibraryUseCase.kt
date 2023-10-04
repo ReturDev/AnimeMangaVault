@@ -9,7 +9,7 @@ class SaveAnimeToUserLibraryUseCase @Inject constructor(
     private val animeLibraryRepository: AnimeLibraryRepository
 ) {
 
-    operator fun invoke(state : UserLibraryVisualMediaStates, reducedAnime: ReducedAnime) {
+    suspend operator fun invoke(state : UserLibraryVisualMediaStates, reducedAnime: ReducedAnime) {
 
         animeLibraryRepository.insertAnime(state, reducedAnime)
 
