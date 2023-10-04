@@ -117,7 +117,14 @@
     <string name="menu_bar_home">Home</string>
     <string name="menu_bar_library">Library</string>
 
+    //NetworkConnection
     <string name="network_connection_back">Back online</string>
     <string name="network_connection_lost">No connection</string>
+
+    //Detailed Item Screen
+    <string name="show_more">Show more</string>
+    <string name="show_less">Show less</string>
+
+
 
 </resources>
