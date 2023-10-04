@@ -26,6 +26,7 @@ data class MangaApiResponse(
      * @property numberOfScorers The number of users who scored the manga.
      * @property rank The rank of the manga.
      * @property synopsis The synopsis/description of the manga.
+     * @property status The status of the manga (e.g., "Publishing," "Completed," etc.).
      * @property genres The list of genres associated with the manga.
      * @property demographics The list of demographics associated with the manga.
      * @property chapters The number of chapters in the manga.
@@ -42,6 +43,7 @@ data class MangaApiResponse(
         @SerializedName("scored_by") val numberOfScorers : Long,
         @SerializedName("rank") val rank : Int,
         @SerializedName("synopsis") val synopsis : String,
+        @SerializedName("status") val status : String,
         @SerializedName("genres") val genres : List<DataGenreResponseComponent>,
         @SerializedName("demographics") val demographics : List<DataGenreResponseComponent>,
         @SerializedName("chapters") val chapters : Int,

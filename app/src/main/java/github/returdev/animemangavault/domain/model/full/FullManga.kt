@@ -32,6 +32,7 @@ data class FullManga (
     override val numberOfScorers: Long,
     override val rank: Int,
     override val synopsis: String,
+    override val status: String,
     override val genres: List<Int>,
     override val demographics: List<Int>,
     val chapters: Int,

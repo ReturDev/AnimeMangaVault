@@ -29,6 +29,7 @@ sealed class FullVisualMediaUi{
     abstract val numberOfScorers: Long
     abstract val rank: Int
     abstract val synopsis: String
+    abstract val status : Any
     abstract val genres: List<Genres>
     abstract val demographics: List<Any>
 

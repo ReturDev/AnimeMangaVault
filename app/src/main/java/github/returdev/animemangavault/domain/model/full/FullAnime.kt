@@ -34,11 +34,11 @@ data class FullAnime (
     override val numberOfScorers: Long,
     override val rank: Int,
     override val synopsis: String,
+    override val status: String,
     override val genres: List<Int>,
     override val demographics: List<Int>,
     val source: String,
     val episodes: Int,
-    val status: String,
     val airing: Boolean,
     val aired: Released,
     val season: String?
