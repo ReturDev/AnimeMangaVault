@@ -134,6 +134,21 @@
     <string name="btn_vm_detail_save_in_library">Add to Library</string>
     <string name="btn_vm_detail_saved">Added to %s</string>
     <string name="navigate_back">Navigate back</string>
+        //Detailed Item Information
+    <string name="vm_detail_information_label">Information</string>
+    <string name="vm_detail_synopsis_label">Synopsis</string>
+    <string name="rank">Rank</string>
+    <string name="vm_information_scorers">Scorers</string>
+    <string name="vm_information_source">Source</string>
+    <string name="vm_information_episodes">Episodes</string>
+    <string name="vm_information_status">Status</string>
+    <string name="vm_information_season">Season</string>
+    <string name="vm_information_aired">Aired</string>
+    <string name="vm_information_published">Published</string>
+    <string name="vm_information_chapters">Chapters</string>
+    <string name="vm_information_volumes">Volumes</string>
+    <string name="vm_information_aired_from">From: %s</string>
+    <string name="vm_information_aired_to">"To: %s"</string>
 
 
 
