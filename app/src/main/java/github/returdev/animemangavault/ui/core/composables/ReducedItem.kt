@@ -48,7 +48,7 @@ fun ReducedItem(
         ) {
 
             ScoreView(score = reducedVisualMedia.score)
-            CoverImageView(reducedVisualMedia.imageUrl)
+            CoverImageView(imageUrl = reducedVisualMedia.imageUrl)
             ItemFooter(reducedVisualMedia.defaultTitle)
 
         }
