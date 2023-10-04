@@ -150,6 +150,10 @@
     <string name="vm_information_aired_from">From: %s</string>
     <string name="vm_information_aired_to">"To: %s"</string>
 
+    //Add To Library Dialog
+    <string name="save">Save</string>
+    <string name="cancel">Cancel</string>
+
 
 
 
