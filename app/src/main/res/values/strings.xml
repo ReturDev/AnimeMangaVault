@@ -154,7 +154,8 @@
     <string name="save">Save</string>
     <string name="cancel">Cancel</string>
 
+    //Button Retry
+    <string name="retry">Retry</string>
 
-
-
+    
 </resources>
