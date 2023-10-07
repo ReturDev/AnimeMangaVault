@@ -5,6 +5,8 @@ import github.returdev.animemangavault.core.model.components.Released
 import github.returdev.animemangavault.core.model.components.Title
 import github.returdev.animemangavault.ui.model.components.common.Genres
 import github.returdev.animemangavault.ui.model.components.manga.MangaDemographics
+import github.returdev.animemangavault.ui.model.components.manga.MangaStatus
+import github.returdev.animemangavault.ui.model.components.manga.MangaTypes
 
 /**
  * Data class representing detailed information about a manga for UI purposes.
@@ -26,13 +28,14 @@ import github.returdev.animemangavault.ui.model.components.manga.MangaDemographi
  */
 data class FullMangaUi(
     override val id: Int,
-    override val type: Any,
+    override val type: MangaTypes,
     override val images: List<ImageUrl>,
     override val titles: List<Title>,
     override val score: Float,
     override val numberOfScorers: Long,
     override val rank: Int,
     override val synopsis: String,
+    override val status: MangaStatus,
     override val genres: List<Genres>,
     override val demographics: List<MangaDemographics>,
     val chapters: Int,

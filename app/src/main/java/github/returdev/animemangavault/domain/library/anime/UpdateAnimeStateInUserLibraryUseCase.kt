@@ -8,7 +8,7 @@ class UpdateAnimeStateInUserLibraryUseCase @Inject constructor(
     private val animeLibraryRepository: AnimeLibraryRepository
 ) {
 
-    operator fun invoke(animeId : Int, newState : UserLibraryVisualMediaStates) : Int{
+    suspend operator fun invoke(animeId : Int, newState : UserLibraryVisualMediaStates) : Int{
         return animeLibraryRepository.updateAnimeState(animeId, newState)
     }
 

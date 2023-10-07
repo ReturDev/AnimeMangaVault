@@ -13,6 +13,7 @@ import coil.compose.AsyncImage
 
 @Composable
 fun CoverImageView(
+    modifier: Modifier = Modifier,
     imageUrl : String
 ){
 
@@ -20,10 +21,9 @@ fun CoverImageView(
         model = imageUrl ,
         contentScale = ContentScale.Crop,
         contentDescription = null,
-        modifier = Modifier
+        modifier = modifier
             .width(125.dp)
             .height(187.5.dp)
-            .padding(vertical = 4.dp)
             .clip(RoundedCornerShape(8.dp))
     )
 

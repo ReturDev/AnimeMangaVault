@@ -8,7 +8,7 @@ class GetMangaStateByIdFromUserLibraryUseCase @Inject constructor(
     private val mangaLibraryRepository: MangaLibraryRepository
 ) {
 
-    operator fun invoke(mangaId : Int) : UserLibraryVisualMediaStates? {
+    suspend operator fun invoke(mangaId : Int) : UserLibraryVisualMediaStates? {
         return mangaLibraryRepository.getMangaStateById(mangaId)
     }
 

@@ -29,23 +29,38 @@ sealed class Destination(protected val route : String, vararg params : String){
 
     }
 
-    sealed class ArgumentsDestination(route: String) : Destination(route)
-
-    object DetailedItemScreen : Destination(
-        "detailed" ,
-        "id", "title", "type_resource", "rank", "vm_type"
+    object DetailedItemScreenDestination : Destination(
+        "detailed" ,"id", "title","vm_type"
     ) {
+
+        const val ID = "id"
+        const val TITLE = "title"
+        const val VISUAL_MEDIA_TYPE = "vm_type"
 
         override fun getArguments(): List<NamedNavArgument> {
             return listOf(
-                navArgument(name = "id"){type= NavType.StringType},
-                navArgument(name = "title"){type= NavType.StringType},
-                navArgument(name = "type_resource"){type= NavType.IntType; defaultValue = -1},
-                navArgument(name = "rank"){type= NavType.FloatType},
-                navArgument(name = "vm_type"){type= NavType.StringType}
+                navArgument(name = ID){type= NavType.StringType},
+                navArgument(name = TITLE){type= NavType.StringType},
+                navArgument(name = VISUAL_MEDIA_TYPE){type= NavType.StringType}
             )
         }
 
+        operator fun invoke(id : String, title : String, vmType : String ): String {
+            return route.appendParams(id,title,vmType)
+        }
+
+    }
+
+    protected fun String.appendParams(vararg params: Any?): String {
+        val builder = StringBuilder(this)
+
+        params.forEach {
+            it?.toString()?.let { arg ->
+                builder.append("/$arg")
+            }
+        }
+
+        return builder.toString()
     }
 
 }

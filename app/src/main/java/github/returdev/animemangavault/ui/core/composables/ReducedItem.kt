@@ -38,8 +38,10 @@ fun ReducedItem(
 ){
 
     ElevatedCard(
-        modifier = modifier.clip(CardDefaults.elevatedShape).clickable { onClick() },
-
+        modifier = modifier
+            .clip(CardDefaults.elevatedShape)
+            .clickable { onClick() },
+        elevation = CardDefaults.cardElevation(3.dp)
     ) {
         Column(
             modifier = Modifier
@@ -48,7 +50,7 @@ fun ReducedItem(
         ) {
 
             ScoreView(score = reducedVisualMedia.score)
-            CoverImageView(reducedVisualMedia.imageUrl)
+            CoverImageView(imageUrl = reducedVisualMedia.imageUrl)
             ItemFooter(reducedVisualMedia.defaultTitle)
 
         }
@@ -115,7 +117,9 @@ private fun ItemFooter(title : String){
 fun PreviewItem(){
     AnimeMangaVaultTheme {
         Column(
-            modifier = Modifier.fillMaxSize().background(MaterialTheme.colorScheme.surface)
+            modifier = Modifier
+                .fillMaxSize()
+                .background(MaterialTheme.colorScheme.surface)
         ) {
             ReducedItem(reducedVisualMedia = ReducedAnimeUi(
                 5, "", "SDDF", 4.4f

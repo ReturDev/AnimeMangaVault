@@ -21,7 +21,7 @@ import javax.inject.Singleton
 class MangaLibraryRepositoryImpl @Inject constructor(
     private val mangaLibraryDao: MangaLibraryDao
 ) : MangaLibraryRepository {
-    override fun insertManga(state: UserLibraryVisualMediaStates, reducedManga: ReducedManga) {
+    override suspend fun insertManga(state: UserLibraryVisualMediaStates, reducedManga: ReducedManga) {
         mangaLibraryDao.insertManga(
             reducedManga.toMangaLibraryEntity(state)
         )
@@ -53,17 +53,17 @@ class MangaLibraryRepositoryImpl @Inject constructor(
 
     }
 
-    override fun getMangaStateById(id: Int): UserLibraryVisualMediaStates? {
+    override suspend fun getMangaStateById(id: Int): UserLibraryVisualMediaStates? {
         return mangaLibraryDao.getMangaStateById(id)?.let { state ->
             UserLibraryVisualMediaStates.valueOf(state)
         }
     }
 
-    override fun updateMangaState(id: Int, newState: UserLibraryVisualMediaStates): Int {
+    override suspend fun updateMangaState(id: Int, newState: UserLibraryVisualMediaStates): Int {
         return mangaLibraryDao.updateMangaState(id, newState.name)
     }
 
-    override fun deleteManga(id: Int): Int {
+    override suspend fun deleteManga(id: Int): Int {
         return mangaLibraryDao.deleteManga(id)
     }
 

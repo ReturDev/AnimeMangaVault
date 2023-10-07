@@ -72,6 +72,7 @@ fun MangaStatus.toMangaStatusFilters() : MangaStatusFilters {
         MangaStatus.FINISHED -> MangaStatusFilters.COMPLETE
         MangaStatus.ON_HIATUS -> MangaStatusFilters.HIATUS
         MangaStatus.DISCONTINUED -> MangaStatusFilters.DISCONTINUED
+        MangaStatus.UPCOMING -> MangaStatusFilters.UPCOMING
     }
 
 }

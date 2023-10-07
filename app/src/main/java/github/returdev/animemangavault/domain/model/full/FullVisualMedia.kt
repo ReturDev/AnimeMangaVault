@@ -28,6 +28,7 @@ sealed class FullVisualMedia{
     abstract val numberOfScorers: Long
     abstract val rank: Int
     abstract val synopsis: String
+    abstract val status : String
     abstract val genres: List<Int>
     abstract val demographics: List<Int>
 

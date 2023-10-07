@@ -39,11 +39,11 @@ data class FullAnimeUi(
     override val numberOfScorers: Long,
     override val rank: Int,
     override val synopsis: String,
+    override val status: AnimeStatus,
     override val genres: List<Genres>,
     override val demographics: List<AnimeDemographics>,
     val source: String,
     val episodes: Int,
-    val status: AnimeStatus,
     val airing: Boolean,
     val aired: Released,
     val season: Season?

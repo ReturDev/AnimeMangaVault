@@ -117,7 +117,49 @@
     <string name="menu_bar_home">Home</string>
     <string name="menu_bar_library">Library</string>
 
+    //NetworkConnection
     <string name="network_connection_back">Back online</string>
     <string name="network_connection_lost">No connection</string>
+
+    //Detailed Item Screen
+        //Detailed Item Synopsis
+    <string name="show_more">Show more</string>
+    <string name="show_less">Show less</string>
+        //Detailed Item Alternative Titles
+    <string name="vm_detail_alternative_titles">Alternative Titles</string>
+    <string name="title_language_japanese">Japanese</string>
+    <string name="title_language_english">English</string>
+    <string name="title_language_synonyms">Synonyms</string>
+        //Detailed Item Header
+    <string name="btn_vm_detail_save_in_library">Add to Library</string>
+    <string name="btn_vm_detail_saved">Added to %s</string>
+    <string name="navigate_back">Navigate back</string>
+        //Detailed Item Information
+    <string name="vm_detail_information_label">Information</string>
+    <string name="vm_detail_synopsis_label">Synopsis</string>
+    <string name="rank">Rank</string>
+    <string name="vm_information_scorers">Scorers</string>
+    <string name="vm_information_source">Source</string>
+    <string name="vm_information_episodes">Episodes</string>
+    <string name="vm_information_status">Status</string>
+    <string name="vm_information_season">Season</string>
+    <string name="vm_information_aired">Aired</string>
+    <string name="vm_information_published">Published</string>
+    <string name="vm_information_chapters">Chapters</string>
+    <string name="vm_information_volumes">Volumes</string>
+    <string name="vm_information_aired_from">From: %s</string>
+    <string name="vm_information_aired_to">"To: %s"</string>
+
+    //Add To Library Dialog
+    <string name="save">Save</string>
+    <string name="cancel">Cancel</string>
+
+    //Button Retry
+    <string name="retry">Retry</string>
+
+    //State in library changed
+    <string name="delete_vm_in_user_library">Has been removed from the library</string>
+    <string name="change_vm_state_in_user_library">Has been added to %s.</string>
+
 
 </resources>

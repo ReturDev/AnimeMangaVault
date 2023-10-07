@@ -15,6 +15,7 @@ import github.returdev.animemangavault.ui.model.components.anime.AnimeTypes
 import github.returdev.animemangavault.ui.model.components.anime.Season
 import github.returdev.animemangavault.ui.model.components.common.Genres
 import github.returdev.animemangavault.ui.model.components.manga.MangaDemographics
+import github.returdev.animemangavault.ui.model.components.manga.MangaStatus
 import github.returdev.animemangavault.ui.model.components.manga.MangaTypes
 import github.returdev.animemangavault.ui.model.full.FullAnimeUi
 import github.returdev.animemangavault.ui.model.full.FullMangaUi
@@ -51,6 +52,7 @@ fun FullManga.toFullMangaUi() = FullMangaUi(
     numberOfScorers = this.numberOfScorers,
     rank = this.rank,
     synopsis = this.synopsis,
+    status = MangaStatus.getStatus(this.status),
     genres = this.genres.map { g -> Genres.valueOf(g) },
     demographics = this.demographics.map { d -> MangaDemographics.valueOf(d) },
     chapters = this.chapters,

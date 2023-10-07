@@ -9,7 +9,7 @@ import kotlinx.coroutines.flow.Flow
 
 interface AnimeLibraryRepository {
 
-    fun insertAnime(state : UserLibraryVisualMediaStates, reducedAnime: ReducedAnime)
+    suspend fun insertAnime(state : UserLibraryVisualMediaStates, reducedAnime: ReducedAnime)
 
     fun getAnimesByState(
         state : UserLibraryVisualMediaStates,
@@ -17,10 +17,10 @@ interface AnimeLibraryRepository {
         sortDirection : SortDirection
     ) : Flow<PagingData<ReducedAnime>>
 
-    fun getAnimeStateById(id : Int) : UserLibraryVisualMediaStates?
+    suspend fun getAnimeStateById(id : Int) : UserLibraryVisualMediaStates?
 
-    fun updateAnimeState(id : Int, newState : UserLibraryVisualMediaStates) : Int
+    suspend fun updateAnimeState(id : Int, newState : UserLibraryVisualMediaStates) : Int
 
-    fun deleteAnime(id : Int) : Int
+    suspend fun deleteAnime(id : Int) : Int
 
 }

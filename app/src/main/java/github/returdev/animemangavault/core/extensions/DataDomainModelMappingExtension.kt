@@ -44,7 +44,7 @@ fun AnimeApiResponse.ApiAnimeExtendedDataResponse.toFullAnime() = FullAnime(
     season = this.season
 )
 
-fun MangaApiResponse.ApiMangaExtendedDataResponse.toManga() = FullManga(
+fun MangaApiResponse.ApiMangaExtendedDataResponse.toFullManga() = FullManga(
     id = this.id,
     type = this.type,
     images = this.images.toImageUrls(),
@@ -53,6 +53,7 @@ fun MangaApiResponse.ApiMangaExtendedDataResponse.toManga() = FullManga(
     numberOfScorers = this.numberOfScorers,
     rank = this.rank,
     synopsis = this.synopsis,
+    status = this.status,
     genres = this.genres.map { g -> g.id },
     demographics = this.demographics.map { d -> d.id },
     chapters = this.chapters,

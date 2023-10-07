@@ -1,5 +1,6 @@
 package github.returdev.animemangavault.ui.core.navigation
 
+import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavBackStackEntry
@@ -8,32 +9,32 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import github.returdev.animemangavault.ui.core.navigation.Destination.DetailedItemScreen
-import github.returdev.animemangavault.ui.core.navigation.Destination.NoArgumentsDestination
+import github.returdev.animemangavault.ui.screen.detailed.DetailedItemScreen
 import github.returdev.animemangavault.ui.screen.home.HomeScreen
 
 @Composable
 fun NavigationGraph (
     navController: NavHostController,
+    snackBarHostState : SnackbarHostState,
     modifier : Modifier
 ) {
 
-    NavHost(navController = navController, startDestination = NoArgumentsDestination.HomeScreen()){
+    NavHost(navController = navController, startDestination = Destination.NoArgumentsDestination.HomeScreen()){
 
 
-        composable(destination = NoArgumentsDestination.HomeScreen){
-            HomeScreen(modifier, navController)
+        composable(destination = Destination.NoArgumentsDestination.HomeScreen){
+            HomeScreen(modifier, navController, snackBarHostState)
         }
 
-        composable(destination = NoArgumentsDestination.LibraryScreen){
+        composable(destination = Destination.NoArgumentsDestination.LibraryScreen){
             //TODO Introduce LibraryScreen
         }
 
-        composable(destination = NoArgumentsDestination.SearchScreen){
+        composable(destination = Destination.NoArgumentsDestination.SearchScreen){
             //TODO Introduce SearchScreen
         }
-        composable(destination = DetailedItemScreen){
-            //TODO Introduce DetailedItemScreen
+        composable(destination = Destination.DetailedItemScreenDestination){
+            DetailedItemScreen(navController, snackBarHostState, it)
         }
 
     }

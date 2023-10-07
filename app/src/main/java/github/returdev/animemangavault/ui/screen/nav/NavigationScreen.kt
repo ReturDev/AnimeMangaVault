@@ -13,12 +13,15 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Home
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Snackbar
+import androidx.compose.material3.SnackbarData
+import androidx.compose.material3.SnackbarHost
+import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -26,6 +29,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -38,13 +42,13 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import github.returdev.animemangavault.R
+import github.returdev.animemangavault.ui.core.composables.CustomSnackbar
 import github.returdev.animemangavault.ui.core.navigation.Destination
 import github.returdev.animemangavault.ui.core.navigation.NavigationGraph
 import github.returdev.animemangavault.ui.theme.AnimeMangaVaultTheme
 import kotlinx.coroutines.delay
 
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun NavigationScreen(
     navController : NavHostController,
@@ -61,6 +65,7 @@ fun NavigationScreen(
     var bottomBarItemSelected by remember { mutableStateOf(0)  }
     var isVisibleConnectionView by remember { mutableStateOf(false) }
 
+    val snackBarHostState = remember { SnackbarHostState() }
 
 
     val uiState by viewModel.uiState.collectAsState()
@@ -68,9 +73,21 @@ fun NavigationScreen(
     Column(Modifier.fillMaxSize()) {
 
         Scaffold(
-            modifier = Modifier.fillMaxWidth().weight(1f),
+            modifier = Modifier
+                .fillMaxWidth()
+                .weight(1f),
             bottomBar = {
-                if (showBottomBar) {
+                AnimatedVisibility(
+                    visible = showBottomBar,
+                    enter = slideInVertically(
+                        animationSpec = tween(200),
+                        initialOffsetY = {it}
+                    ),
+                    exit = slideOutVertically(
+                        animationSpec = tween(200),
+                        targetOffsetY = {it}
+                    )
+                ) {
                     BottomNavigationBar(bottomBarItemSelected) { selection ->
                         navController.navigate(bottomRoutes[selection]){
                             launchSingleTop = true
@@ -78,10 +95,23 @@ fun NavigationScreen(
                         }
                     }
                 }
+            },
+            snackbarHost = {
+                SnackbarHost(snackBarHostState) {
+                    CustomSnackbar(
+                        snackbarData = it,
+                        containerColor = MaterialTheme.colorScheme.tertiaryContainer,
+                        contentColor = MaterialTheme.colorScheme.onTertiaryContainer,
+                        actionColor = MaterialTheme.colorScheme.tertiary
+                    )
+                }
             }
         ){ paddingValues ->
 
-            NavigationGraph(navController = navController, modifier = Modifier.padding(paddingValues))
+            NavigationGraph(
+                navController = navController,
+                snackBarHostState = snackBarHostState,
+                modifier = Modifier.padding(paddingValues))
 
         }
 
@@ -164,7 +194,10 @@ private fun ConnectionAlert(state : NavigationUiState){
     }
 
         Row(
-            modifier = Modifier.fillMaxWidth().background(backgroundColor).padding(8.dp),
+            modifier = Modifier
+                .fillMaxWidth()
+                .background(backgroundColor)
+                .padding(8.dp),
             horizontalArrangement = Arrangement.Center
         ) {
             Icon(
@@ -180,6 +213,7 @@ private fun ConnectionAlert(state : NavigationUiState){
         }
 
 }
+
 
 @Preview
 @Composable

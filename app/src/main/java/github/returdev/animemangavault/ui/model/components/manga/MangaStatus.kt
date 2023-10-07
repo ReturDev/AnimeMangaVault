@@ -14,7 +14,8 @@ enum class MangaStatus(@StringRes val stringResource : Int) {
     PUBLISHING(R.string.manga_status_publishing),
     FINISHED (R.string.status_finished),
     ON_HIATUS(R.string.manga_status_hiatus),
-    DISCONTINUED(R.string.manga_status_discontinued);
+    DISCONTINUED(R.string.manga_status_discontinued),
+    UPCOMING(R.string.status_upcoming);
 
     companion object{
         /**
