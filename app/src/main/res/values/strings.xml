@@ -157,5 +157,9 @@
     //Button Retry
     <string name="retry">Retry</string>
 
-    
+    //State in library changed
+    <string name="delete_vm_in_user_library">Has been removed from the library</string>
+    <string name="change_vm_state_in_user_library">Has been added to %s.</string>
+
+
 </resources>

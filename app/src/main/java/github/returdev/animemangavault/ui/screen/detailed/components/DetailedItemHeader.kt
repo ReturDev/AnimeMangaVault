@@ -17,6 +17,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
+import androidx.compose.material3.surfaceColorAtElevation
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.painter.Painter
@@ -41,7 +42,7 @@ fun DetailedItemHeader(
 ){
     Surface(
         modifier = Modifier.defaultMinSize(),
-        color = MaterialTheme.colorScheme.secondaryContainer,
+        color = MaterialTheme.colorScheme.surfaceColorAtElevation(1.dp),
         shadowElevation = 8.dp,
         shape = RoundedCornerShape(bottomStart = 8.dp, bottomEnd = 8.dp)
     ) {
@@ -63,7 +64,8 @@ fun DetailedItemHeader(
                 modifier = Modifier.fillMaxWidth(),
                 text = defaultTitle,
                 textAlign = TextAlign.Center,
-                style = MaterialTheme.typography.titleLarge
+                style = MaterialTheme.typography.titleLarge,
+                color = MaterialTheme.colorScheme.onSecondaryContainer
             )
 
         }
@@ -108,7 +110,7 @@ private fun HeaderTop(
                 bottom.linkTo(parent.bottom)
             },
             colors = IconButtonDefaults.iconButtonColors(
-                contentColor = MaterialTheme.colorScheme.onSecondaryContainer
+                contentColor = MaterialTheme.colorScheme.primary
             ),
             onClick = { clickNavBack() }
         ) {
