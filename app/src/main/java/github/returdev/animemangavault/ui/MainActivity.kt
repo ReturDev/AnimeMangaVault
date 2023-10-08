@@ -10,7 +10,6 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.compose.rememberNavController
 import dagger.hilt.android.AndroidEntryPoint
 import github.returdev.animemangavault.ui.screen.nav.NavigationScreen
-
 import github.returdev.animemangavault.ui.theme.AnimeMangaVaultTheme
 
 @AndroidEntryPoint

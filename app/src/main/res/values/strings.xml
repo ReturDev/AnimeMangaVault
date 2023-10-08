@@ -114,8 +114,11 @@
             //Manga
     <string name="manga_order_chapters">Chapters</string>
     <string name="manga_order_volumes">Volumes</string>
+
+    //Menu Bar
     <string name="menu_bar_home">Home</string>
     <string name="menu_bar_library">Library</string>
+
 
     //NetworkConnection
     <string name="network_connection_back">Back online</string>
@@ -160,6 +163,10 @@
     //State in library changed
     <string name="delete_vm_in_user_library">Has been removed from the library</string>
     <string name="change_vm_state_in_user_library">Has been added to %s.</string>
+
+    //Library order
+    <string name="sort_icon_content_description">Sort</string>
+    <string name="order_by_icon_content_description">Order by</string>
 
 
 </resources>

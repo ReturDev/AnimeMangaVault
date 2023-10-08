@@ -11,6 +11,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import github.returdev.animemangavault.ui.screen.detailed.DetailedItemScreen
 import github.returdev.animemangavault.ui.screen.home.HomeScreen
+import github.returdev.animemangavault.ui.screen.library.LibraryScreen
 
 @Composable
 fun NavigationGraph (
@@ -19,18 +20,18 @@ fun NavigationGraph (
     modifier : Modifier
 ) {
 
-    NavHost(navController = navController, startDestination = Destination.NoArgumentsDestination.HomeScreen()){
+    NavHost(navController = navController, startDestination = Destination.NoArgumentsDestination.HomeScreenDirection()){
 
 
-        composable(destination = Destination.NoArgumentsDestination.HomeScreen){
+        composable(destination = Destination.NoArgumentsDestination.HomeScreenDirection){
             HomeScreen(modifier, navController, snackBarHostState)
         }
 
-        composable(destination = Destination.NoArgumentsDestination.LibraryScreen){
-            //TODO Introduce LibraryScreen
+        composable(destination = Destination.NoArgumentsDestination.LibraryScreenDirection){
+            LibraryScreen(modifier, navController, snackBarHostState)
         }
 
-        composable(destination = Destination.NoArgumentsDestination.SearchScreen){
+        composable(destination = Destination.NoArgumentsDestination.SearchScreenDirection){
             //TODO Introduce SearchScreen
         }
         composable(destination = Destination.DetailedItemScreenDestination){
