@@ -7,9 +7,11 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ExperimentalLayoutApi
 import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.ElevatedSuggestionChip
 import androidx.compose.material3.MaterialTheme
@@ -66,7 +68,7 @@ private fun InformationContent(
             createVerticalChain(scoreCons,imageCons, chainStyle = ChainStyle.Packed)
 
             CoverImageView(
-                modifier = Modifier.constrainAs(imageCons) {
+                modifier = Modifier.width(150.dp).aspectRatio(0.67f).constrainAs(imageCons) {
                         start.linkTo(parent.start)
                         end.linkTo(parent.end)
                     }

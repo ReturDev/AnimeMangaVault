@@ -8,6 +8,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.IntrinsicSize
+import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -30,6 +31,7 @@ import github.returdev.animemangavault.ui.model.reduced.ReducedVisualMediaUi
 import github.returdev.animemangavault.ui.theme.AnimeMangaVaultTheme
 
 
+
 @Composable
 fun ReducedItem(
     modifier: Modifier = Modifier,
@@ -38,19 +40,17 @@ fun ReducedItem(
 ){
 
     ElevatedCard(
-        modifier = modifier
-            .clip(CardDefaults.elevatedShape)
+        modifier = modifier.width(150.dp).clip(CardDefaults.elevatedShape)
             .clickable { onClick() },
         elevation = CardDefaults.cardElevation(3.dp)
     ) {
         Column(
-            modifier = Modifier
-                .width(IntrinsicSize.Min)
-                .padding(8.dp)
+            modifier = Modifier.fillMaxWidth().padding(8.dp),
+            horizontalAlignment = Alignment.CenterHorizontally
         ) {
 
-            ScoreView(score = reducedVisualMedia.score)
-            CoverImageView(imageUrl = reducedVisualMedia.imageUrl)
+            ScoreView(modifier = modifier.fillMaxWidth(),score = reducedVisualMedia.score)
+            CoverImageView(modifier = Modifier.fillMaxWidth().aspectRatio(0.67f),imageUrl = reducedVisualMedia.imageUrl)
             ItemFooter(reducedVisualMedia.defaultTitle)
 
         }
