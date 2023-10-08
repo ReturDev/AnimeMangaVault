@@ -1,6 +1,5 @@
 package github.returdev.animemangavault.ui.screen.home
 
-import android.util.Log
 import androidx.compose.animation.Crossfade
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -34,8 +33,7 @@ import github.returdev.animemangavault.ui.core.composables.LoadingReducedItem
 import github.returdev.animemangavault.ui.core.composables.ReducedItem
 import github.returdev.animemangavault.ui.core.composables.RetryButton
 import github.returdev.animemangavault.ui.core.composables.VisualSearchBar
-import github.returdev.animemangavault.ui.core.navigation.Destination
-import github.returdev.animemangavault.ui.model.filters.core.VisualMediaTypes
+import github.returdev.animemangavault.ui.core.navigation.navigateToItemDetails
 import github.returdev.animemangavault.ui.model.reduced.ReducedVisualMediaUi
 
 @Composable
@@ -54,13 +52,14 @@ fun HomeScreen(
         modifier.verticalScroll(rememberScrollState())
     ){
 
+
         VisualSearchBar {/*TODO Insert click method*/}
 
         HorizontalListContainer(
             headerText = stringResource(R.string.top_anime),
             homeUiState = topAnimeState.value,
             retry = {homeViewModel.reloadTopAnimes()},
-            onClickElement = {vm -> navigateToDetails(navController,vm) }
+            onClickElement = {vm -> navController.navigateToItemDetails(vm) }
         )
 
         Spacer(modifier = Modifier.height(40.dp))
@@ -69,14 +68,14 @@ fun HomeScreen(
             headerText = stringResource(R.string.top_manga),
             homeUiState = topMangaState.value,
             retry =  {homeViewModel.reloadTopMangas()},
-            onClickElement = {vm -> navigateToDetails(navController,vm) }
+            onClickElement = {vm -> navController.navigateToItemDetails(vm) }
         )
         Spacer(modifier = Modifier.height(40.dp))
         HorizontalListContainer(
             headerText = stringResource(R.string.this_season),
             homeUiState = currentSeason.value,
             retry =  {homeViewModel.reloadCurrentSeason()},
-            onClickElement = {vm -> navigateToDetails(navController,vm) }
+            onClickElement = {vm -> navController.navigateToItemDetails(vm) }
         )
 
         Spacer(modifier = Modifier.height(16.dp))
@@ -183,16 +182,6 @@ private fun LoadingHorizontalList(){
     }
 }
 
-private fun navigateToDetails(navController: NavHostController, vm : ReducedVisualMediaUi){
-
-    Log.e("DDD", Destination.DetailedItemScreenDestination.fullRoute)
-    navController.navigate(route = Destination.DetailedItemScreenDestination(
-        vm.id.toString(),
-        vm.defaultTitle,
-        VisualMediaTypes.getType(vm).name
-    ))
-
-}
 
 @Preview
 @Composable

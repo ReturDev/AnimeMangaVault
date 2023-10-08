@@ -79,7 +79,7 @@ dependencies {
     val navVersion = "2.6.0"
 
     implementation("androidx.core:core-ktx:1.9.0")
-    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.6.2")
+    implementation("androidx.lifecycle:lifecycle-runtime-compose:2.6.0-beta01")
     implementation("androidx.activity:activity-compose:1.7.2")
     implementation(platform("androidx.compose:compose-bom:2023.03.00"))
     implementation("androidx.compose.ui:ui")
@@ -93,6 +93,7 @@ dependencies {
     androidTestImplementation("androidx.compose.ui:ui-test-junit4")
     debugImplementation("androidx.compose.ui:ui-tooling")
     debugImplementation("androidx.compose.ui:ui-test-manifest")
+
 
     //Navigation
     implementation("androidx.navigation:navigation-compose:$navVersion")
@@ -132,9 +133,7 @@ dependencies {
 
     //Paging
     implementation("androidx.paging:paging-runtime-ktx:$pagingVersion")
-    implementation("androidx.paging:paging-compose:3.2.1")
-    testImplementation("androidx.paging:paging-common-ktx:$pagingVersion")
-    androidTestImplementation("androidx.paging:paging-common-ktx:$pagingVersion")
+    implementation("androidx.paging:paging-compose:$pagingVersion")
 
 }
 
