@@ -111,7 +111,8 @@ fun NavigationScreen(
             NavigationGraph(
                 navController = navController,
                 snackBarHostState = snackBarHostState,
-                modifier = Modifier.padding(paddingValues))
+                modifier = Modifier.padding(paddingValues)
+            )
 
         }
 
