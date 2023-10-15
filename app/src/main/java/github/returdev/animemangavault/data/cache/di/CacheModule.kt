@@ -10,6 +10,10 @@ import dagger.hilt.components.SingletonComponent
 import github.returdev.animemangavault.data.cache.dao.AnimeCacheDao
 import github.returdev.animemangavault.data.cache.dao.MangaCacheDao
 import github.returdev.animemangavault.data.cache.model.db.CacheDataBase
+import github.returdev.animemangavault.data.cache.repository.AnimeCacheRepository
+import github.returdev.animemangavault.data.cache.repository.MangaCacheRepository
+import github.returdev.animemangavault.data.cache.repository.implementation.AnimeCacheRepositoryImpl
+import github.returdev.animemangavault.data.cache.repository.implementation.MangaCacheRepositoryImpl
 import javax.inject.Singleton
 
 @Module
@@ -34,6 +38,18 @@ object CacheModule {
     @Singleton
     fun provideMangaCacheDao(cache : CacheDataBase) : MangaCacheDao {
         return  cache.getMangaCacheDao()
+    }
+
+    @Provides
+    @Singleton
+    fun provideAnimeCacheRepository(animeCacheRepositoryImpl: AnimeCacheRepositoryImpl) : AnimeCacheRepository{
+        return animeCacheRepositoryImpl
+    }
+
+    @Provides
+    @Singleton
+    fun provideMangaCacheRepository(mangaCacheRepositoryImpl: MangaCacheRepositoryImpl) : MangaCacheRepository{
+        return mangaCacheRepositoryImpl
     }
 
 }

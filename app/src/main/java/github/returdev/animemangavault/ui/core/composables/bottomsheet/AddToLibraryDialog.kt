@@ -1,6 +1,5 @@
-package github.returdev.animemangavault.ui.core.composables
+package github.returdev.animemangavault.ui.core.composables.bottomsheet
 
-import android.content.res.Configuration
 import androidx.annotation.StringRes
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.background
@@ -10,12 +9,8 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.navigationBars
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -27,7 +22,6 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.ModalBottomSheet
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
 import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -40,14 +34,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.constraintlayout.compose.ConstraintLayout
-import github.returdev.animemangavault.R
 import github.returdev.animemangavault.ui.model.filters.library.UserLibraryVisualMediaStatesUi
-import github.returdev.animemangavault.ui.theme.AnimeMangaVaultTheme
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -67,10 +56,8 @@ fun AddToLibraryDialog(
     }
 
     ModalBottomSheet(
-
         onDismissRequest = {onCloseDialog()},
-        sheetState = modalSheetState,
-        dragHandle = null
+        sheetState = modalSheetState
     ) {
 
         DialogBody(
@@ -99,7 +86,7 @@ private fun DialogBody(
         .fillMaxWidth()
         .padding(16.dp)) {
 
-        DialogButtons(onCancel = onCancel , onSave = { onSave(stateSelected) })
+        BottomSheetTopButtons(onClickStartBtn = onCancel , onClickEndBtn = { onSave(stateSelected) })
 
         DialogStateList(
             stateSelected = stateSelected,
@@ -108,49 +95,12 @@ private fun DialogBody(
             }
         )
 
-        //Temporary fix until the bottom sheet bug with WindowInsets.navigationBars is resolved.
-        Spacer(
-            modifier = Modifier.height(
-                with(LocalDensity.current) { (WindowInsets.navigationBars.getBottom(LocalDensity.current)/2).toDp() }
-            )
-        )
+        BottomSpacerBottomSheet()
 
     }
 
 }
 
-@Composable
-private fun DialogButtons(
-    onCancel : () -> Unit,
-    onSave : () -> Unit
-) {
-
-    ConstraintLayout(Modifier.fillMaxWidth()) {
-
-        val (cancelCons, saveCons) = createRefs()
-
-        TextButton(
-            modifier = Modifier.constrainAs(cancelCons){
-                start.linkTo(parent.start)
-                top.linkTo(parent.top)
-            },
-            onClick = { onCancel() }
-        ) {
-            Text(text = stringResource(id = R.string.cancel))
-        }
-
-        TextButton(
-            modifier = Modifier.constrainAs(saveCons){
-                end.linkTo(parent.end)
-                top.linkTo(parent.top)
-            },
-            onClick = { onSave()}
-        ) {
-            Text(text = stringResource(id = R.string.save))
-        }
-
-    }
-}
 
 @Composable
 private fun DialogStateList(
@@ -208,9 +158,7 @@ private inline fun LibraryStateItem(
         verticalAlignment = Alignment.CenterVertically
     ) {
         Text(
-            modifier = Modifier
-                .weight(1f)
-                .defaultMinSize(minHeight = 24.dp),
+            modifier = Modifier.weight(1f).defaultMinSize(minHeight = 24.dp),
             text = stringResource(id = stateSelectedRes),
             color = contentColor
         )
@@ -221,21 +169,6 @@ private inline fun LibraryStateItem(
                 tint = contentColor
             )
         }
-    }
-
-}
-
-@Preview(
-    uiMode = Configuration.UI_MODE_NIGHT_YES
-)
-@Composable
-fun DialogPrev() {
-
-    AnimeMangaVaultTheme {
-
-
-
-
     }
 
 }

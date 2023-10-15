@@ -7,7 +7,6 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.defaultMinSize
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -16,23 +15,22 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import github.returdev.animemangavault.R
 import github.returdev.animemangavault.ui.core.composables.ErrorIcon
-import github.returdev.animemangavault.ui.core.composables.LoadingReducedItem
-import github.returdev.animemangavault.ui.core.composables.ReducedItem
+import github.returdev.animemangavault.ui.core.composables.items.LoadingReducedItem
+import github.returdev.animemangavault.ui.core.composables.items.ReducedItem
 import github.returdev.animemangavault.ui.core.composables.RetryButton
 import github.returdev.animemangavault.ui.core.composables.VisualSearchBar
+import github.returdev.animemangavault.ui.core.navigation.Destination
 import github.returdev.animemangavault.ui.core.navigation.navigateToItemDetails
 import github.returdev.animemangavault.ui.model.reduced.ReducedVisualMediaUi
 
@@ -40,7 +38,6 @@ import github.returdev.animemangavault.ui.model.reduced.ReducedVisualMediaUi
 fun HomeScreen(
     modifier: Modifier,
     navController : NavHostController,
-    snackBarHostState : SnackbarHostState,
     homeViewModel: HomeViewModel = hiltViewModel()
 ){
 
@@ -53,7 +50,9 @@ fun HomeScreen(
     ){
 
 
-        VisualSearchBar {/*TODO Insert click method*/}
+        VisualSearchBar {
+            navController.navigate(Destination.NoArgumentsDestination.SearchScreenDestination.fullRoute)
+        }
 
         HorizontalListContainer(
             headerText = stringResource(R.string.top_anime),
@@ -182,13 +181,3 @@ private fun LoadingHorizontalList(){
     }
 }
 
-
-@Preview
-@Composable
-fun EE() {
-    Column(Modifier.fillMaxSize()) {
-        ErrorLayout(errorState = HomeUiState.Error.GenericError) {
-            
-        }
-    }
-}

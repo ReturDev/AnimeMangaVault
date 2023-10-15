@@ -7,7 +7,7 @@ import github.returdev.animemangavault.R
  *
  * @property stringResource The string resource ID for the corresponding property name.
  */
-enum class AnimeOrderByProperties(val stringResource : Int) {
+enum class AnimeOrderByUi(val stringResource : Int) {
     TITLE(R.string.order_title),
     START_DATE(R.string.order_start_date),
     END_DATE(R.string.order_end_date),

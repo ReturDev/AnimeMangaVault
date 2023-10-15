@@ -1,5 +1,6 @@
 package github.returdev.animemangavault.ui.model.components.common
 
+import android.util.Log
 import androidx.annotation.StringRes
 import github.returdev.animemangavault.R
 
@@ -30,7 +31,8 @@ enum class Genres(val id : Int, @StringRes val stringResource : Int) {
     SLICE_OF_LIFE(36, R.string.genre_slice_of_life),
     SPORTS(30, R.string.genre_sports),
     SUPERNATURAL(37, R.string.genre_super_natural),
-    SUSPENSE(41, R.string.genre_suspense);
+    ANIME_SUSPENSE(41, R.string.genre_suspense),
+    MANGA_SUSPENSE(45, R.string.genre_suspense);
 
 
     companion object{
@@ -40,7 +42,7 @@ enum class Genres(val id : Int, @StringRes val stringResource : Int) {
          * @param id The unique identifier of the genre.
          * @return The corresponding Genres enum value.
          */
-        fun valueOf(id: Int) = values().first { g -> g.id == id }
+        fun valueOf(id: Int): Genres = values().first { g -> g.id == id }
     }
 
 }

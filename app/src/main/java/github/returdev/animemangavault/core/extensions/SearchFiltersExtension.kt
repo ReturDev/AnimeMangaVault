@@ -14,10 +14,10 @@ import github.returdev.animemangavault.ui.model.components.anime.AnimeTypes
 import github.returdev.animemangavault.ui.model.components.common.Genres
 import github.returdev.animemangavault.ui.model.components.manga.MangaStatus
 import github.returdev.animemangavault.ui.model.components.manga.MangaTypes
-import github.returdev.animemangavault.ui.model.filters.SearchFiltersUi
+import github.returdev.animemangavault.ui.model.filters.search.SearchFiltersUi
 import github.returdev.animemangavault.ui.model.filters.core.SortDirectionUi
-import github.returdev.animemangavault.ui.model.filters.search.AnimeOrderByProperties
-import github.returdev.animemangavault.ui.model.filters.search.MangaOrderByProperties
+import github.returdev.animemangavault.ui.model.filters.search.AnimeOrderByUi
+import github.returdev.animemangavault.ui.model.filters.search.MangaOrderByUi
 
 fun SortDirectionUi.toSortDirection(): SortDirection {
     return when(this){
@@ -100,40 +100,41 @@ fun Genres.toGenreFilters() : GenreFilters {
         Genres.SLICE_OF_LIFE -> GenreFilters.SLICE_OF_LIFE
         Genres.SPORTS -> GenreFilters.SPORTS
         Genres.SUPERNATURAL -> GenreFilters.SUPERNATURAL
-        Genres.SUSPENSE -> GenreFilters.SUSPENSE
+        Genres.ANIME_SUSPENSE -> GenreFilters.ANIME_SUSPENSE
+        Genres.MANGA_SUSPENSE -> GenreFilters.MANGA_SUSPENSE
     }
 
 }
 
-fun AnimeOrderByProperties.toAnimeOrderByFilters() : AnimeOrderByFilters{
+fun AnimeOrderByUi.toAnimeOrderByFilters() : AnimeOrderByFilters{
 
     return when(this){
-        AnimeOrderByProperties.TITLE -> AnimeOrderByFilters.TITLE
-        AnimeOrderByProperties.START_DATE -> AnimeOrderByFilters.START_DATE
-        AnimeOrderByProperties.END_DATE -> AnimeOrderByFilters.END_DATE
-        AnimeOrderByProperties.EPISODES -> AnimeOrderByFilters.EPISODES
-        AnimeOrderByProperties.SCORE -> AnimeOrderByFilters.SCORE
-        AnimeOrderByProperties.SCORED_BY -> AnimeOrderByFilters.SCORED_BY
-        AnimeOrderByProperties.RANK -> AnimeOrderByFilters.RANK
-        AnimeOrderByProperties.POPULARITY -> AnimeOrderByFilters.POPULARITY
-        AnimeOrderByProperties.FAVORITES -> AnimeOrderByFilters.FAVORITES
+        AnimeOrderByUi.TITLE -> AnimeOrderByFilters.TITLE
+        AnimeOrderByUi.START_DATE -> AnimeOrderByFilters.START_DATE
+        AnimeOrderByUi.END_DATE -> AnimeOrderByFilters.END_DATE
+        AnimeOrderByUi.EPISODES -> AnimeOrderByFilters.EPISODES
+        AnimeOrderByUi.SCORE -> AnimeOrderByFilters.SCORE
+        AnimeOrderByUi.SCORED_BY -> AnimeOrderByFilters.SCORED_BY
+        AnimeOrderByUi.RANK -> AnimeOrderByFilters.RANK
+        AnimeOrderByUi.POPULARITY -> AnimeOrderByFilters.POPULARITY
+        AnimeOrderByUi.FAVORITES -> AnimeOrderByFilters.FAVORITES
     }
 
 }
 
-fun MangaOrderByProperties.toMangaOrderByFilters() : MangaOrderByFilters{
+fun MangaOrderByUi.toMangaOrderByFilters() : MangaOrderByFilters{
 
     return when(this){
-        MangaOrderByProperties.TITLE -> MangaOrderByFilters.TITLE
-        MangaOrderByProperties.START_DATE -> MangaOrderByFilters.START_DATE
-        MangaOrderByProperties.END_DATE -> MangaOrderByFilters.END_DATE
-        MangaOrderByProperties.CHAPTERS -> MangaOrderByFilters.CHAPTERS
-        MangaOrderByProperties.VOLUMES -> MangaOrderByFilters.VOLUMES
-        MangaOrderByProperties.SCORE -> MangaOrderByFilters.SCORE
-        MangaOrderByProperties.SCORED_BY -> MangaOrderByFilters.SCORED_BY
-        MangaOrderByProperties.RANK -> MangaOrderByFilters.RANK
-        MangaOrderByProperties.POPULARITY -> MangaOrderByFilters.POPULARITY
-        MangaOrderByProperties.FAVORITES -> MangaOrderByFilters.FAVORITES
+        MangaOrderByUi.TITLE -> MangaOrderByFilters.TITLE
+        MangaOrderByUi.START_DATE -> MangaOrderByFilters.START_DATE
+        MangaOrderByUi.END_DATE -> MangaOrderByFilters.END_DATE
+        MangaOrderByUi.CHAPTERS -> MangaOrderByFilters.CHAPTERS
+        MangaOrderByUi.VOLUMES -> MangaOrderByFilters.VOLUMES
+        MangaOrderByUi.SCORE -> MangaOrderByFilters.SCORE
+        MangaOrderByUi.SCORED_BY -> MangaOrderByFilters.SCORED_BY
+        MangaOrderByUi.RANK -> MangaOrderByFilters.RANK
+        MangaOrderByUi.POPULARITY -> MangaOrderByFilters.POPULARITY
+        MangaOrderByUi.FAVORITES -> MangaOrderByFilters.FAVORITES
     }
 
 }

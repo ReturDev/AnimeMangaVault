@@ -82,28 +82,28 @@ fun MangaSearchApiResponse.ApiMangaReducedDataResponse.toMangaCacheEntity() = Ma
     score = this.score
 )
 
-fun AnimeSearchApiResponse.ApiAnimeReducedDataResponse.toReducedAnime() = ReducedAnime(
+fun AnimeSearchApiResponse.ApiAnimeReducedDataResponse.toReducedAnimeUi() = ReducedAnime(
     id = this.id,
     imageUrl = images.toImageUrls()[1].url,
     defaultTitle = this.title,
     score = this.score
 )
 
-fun MangaSearchApiResponse.ApiMangaReducedDataResponse.toReducedManga() = ReducedManga(
+fun MangaSearchApiResponse.ApiMangaReducedDataResponse.toReducedMangaUi() = ReducedManga(
     id = this.id,
     imageUrl = images.toImageUrls()[1].url,
     defaultTitle = this.title,
     score = this.score
 )
 
-fun AnimeLibraryEntity.toReducedAnime() = ReducedAnime(
+fun AnimeLibraryEntity.toReducedAnimeUi() = ReducedAnime(
     id = this.id,
     imageUrl = this.imageUrl,
     defaultTitle = this.defaultTitle,
     score = this.score
 )
 
-fun MangaLibraryEntity.toReducedManga() = ReducedManga(
+fun MangaLibraryEntity.toReducedMangaUi() = ReducedManga(
     id = this.id,
     imageUrl = this.imageUrl,
     defaultTitle = this.defaultTitle,

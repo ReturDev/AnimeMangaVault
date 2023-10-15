@@ -24,7 +24,7 @@ enum class MangaTypes(@StringRes val stringResource : Int){
 
             return value?.let {
                 val formattedValue = it.replace(" ","").lowercase()
-                MangaTypes.values().first {type -> type.name.lowercase() == formattedValue }
+                MangaTypes.values().firstOrNull() {type -> type.name.lowercase() == formattedValue }
             } ?: UNKNOWN
         }
     }

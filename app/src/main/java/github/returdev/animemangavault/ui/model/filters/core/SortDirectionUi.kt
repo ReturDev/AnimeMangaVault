@@ -12,10 +12,11 @@ import github.returdev.animemangavault.R
  */
 enum class SortDirectionUi(
     @StringRes val abbreviationResource : Int,
+    @StringRes val stringResource : Int,
     @DrawableRes val iconResource: Int
 ) {
 
-    ASCENDANT(R.string.sort_direction_asc_abbreviation, R.drawable.ic_sort_asc),
-    DESCENDANT(R.string.sort_direction_desc_abbreviation, R.drawable.ic_sort_desc)
+    ASCENDANT(R.string.sort_direction_asc_abbreviation, R.string.sort_direction_ascendant,R.drawable.ic_sort_asc),
+    DESCENDANT(R.string.sort_direction_desc_abbreviation, R.string.sort_direction_descendant,R.drawable.ic_sort_desc)
 
 }

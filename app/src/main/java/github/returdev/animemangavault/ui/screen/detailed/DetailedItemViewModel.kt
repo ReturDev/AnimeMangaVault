@@ -10,8 +10,8 @@ import github.returdev.animemangavault.core.exceptions.ApiExceptions
 import github.returdev.animemangavault.core.exceptions.NetworkException
 import github.returdev.animemangavault.core.extensions.toFullAnimeUi
 import github.returdev.animemangavault.core.extensions.toFullMangaUi
-import github.returdev.animemangavault.core.extensions.toReducedAnime
-import github.returdev.animemangavault.core.extensions.toReducedManga
+import github.returdev.animemangavault.core.extensions.toReducedAnimeUi
+import github.returdev.animemangavault.core.extensions.toReducedMangaUi
 import github.returdev.animemangavault.core.extensions.toUserLibraryVisualMediaStates
 import github.returdev.animemangavault.core.extensions.toUserLibraryVisualMediaStatesUi
 import github.returdev.animemangavault.core.network.NetworkConnectivity
@@ -173,8 +173,8 @@ class DetailedItemViewModel @Inject constructor(
             val reducedVisualMedia = when(
                 val fullVisualMedia: FullVisualMediaUi = (uiState.value as DetailedItemUiState.Success).vmData
             ){
-                is FullAnimeUi -> fullVisualMedia.toReducedAnime()
-                is FullMangaUi -> fullVisualMedia.toReducedManga()
+                is FullAnimeUi -> fullVisualMedia.toReducedAnimeUi()
+                is FullMangaUi -> fullVisualMedia.toReducedMangaUi()
             }
             if (inLibraryState.value.state == null){
                 saveVisualMediaToLibrary(newState!!.toUserLibraryVisualMediaStates(), reducedVisualMedia)

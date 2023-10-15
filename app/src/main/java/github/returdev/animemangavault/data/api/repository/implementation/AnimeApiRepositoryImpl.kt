@@ -2,13 +2,12 @@ package github.returdev.animemangavault.data.api.repository.implementation
 
 
 import github.returdev.animemangavault.core.extensions.toFullAnime
-import github.returdev.animemangavault.core.extensions.toReducedAnime
+import github.returdev.animemangavault.core.extensions.toReducedAnimeUi
 import github.returdev.animemangavault.core.model.core.filters.SearchFilters
 import github.returdev.animemangavault.core.model.core.filters.anime.AnimeTypeFilters
 import github.returdev.animemangavault.core.model.core.filters.common.SortDirection
 import github.returdev.animemangavault.core.network.NetworkState
 import github.returdev.animemangavault.data.api.core.caller.AnimeMangaApiCaller
-import github.returdev.animemangavault.data.api.model.anime.AnimeApiResponse
 import github.returdev.animemangavault.data.api.model.anime.AnimeSearchApiResponse
 import github.returdev.animemangavault.data.api.repository.AnimeApiRepository
 import github.returdev.animemangavault.data.api.service.ApiService
@@ -69,7 +68,7 @@ class AnimeApiRepositoryImpl @Inject constructor(
             title = title,
             type = filters.type?.toString(),
             status = filters.status?.toString(),
-            genres = filters.genres.joinToString(","),
+            genres = filters.genres.joinToString(","){g -> g.id.toString() },
             orderBy = filters.orderBy?.toString(),
             sort = when(filters.sort){
                 SortDirection.ASCENDANT -> "asc"
@@ -134,7 +133,7 @@ class AnimeApiRepositoryImpl @Inject constructor(
         return caller.executeCall(
             networkState,
             apiService.getTopAnime(page,limitChecked, type?.toString())
-        ).data.map { animes -> animes.toReducedAnime() }
+        ).data.map { animes -> animes.toReducedAnimeUi() }
 
     }
 
@@ -163,7 +162,7 @@ class AnimeApiRepositoryImpl @Inject constructor(
         return caller.executeCall(
             networkState,
             apiService.getAnimeSeasonNow(page, limitChecked, type?.toString())
-        ).data.map { anime -> anime.toReducedAnime() }
+        ).data.map { anime -> anime.toReducedAnimeUi() }
 
     }
 

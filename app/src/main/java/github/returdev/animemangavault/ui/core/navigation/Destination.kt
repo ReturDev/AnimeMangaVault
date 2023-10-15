@@ -23,9 +23,9 @@ sealed class Destination(protected val route : String, vararg params : String){
 
         operator fun invoke() : String = route
 
-        object HomeScreenDirection : NoArgumentsDestination("home")
-        object LibraryScreenDirection : NoArgumentsDestination("library")
-        object SearchScreenDirection : NoArgumentsDestination("search")
+        object HomeScreenDestination : NoArgumentsDestination("home")
+        object LibraryScreenDestination : NoArgumentsDestination("library")
+        object SearchScreenDestination : NoArgumentsDestination("search")
 
     }
 
