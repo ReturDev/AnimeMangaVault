@@ -16,7 +16,6 @@ import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.ElevatedSuggestionChip
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.SuggestionChip
 import androidx.compose.material3.SuggestionChipDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -48,7 +47,9 @@ fun LongItem(
 ){
 
     ElevatedCard(
-        modifier = Modifier.fillMaxWidth().clip(CardDefaults.elevatedShape)
+        modifier = Modifier
+            .fillMaxWidth()
+            .clip(CardDefaults.elevatedShape)
             .clickable { onClick() },
         elevation = CardDefaults.elevatedCardElevation(4.dp)
     ) {
@@ -63,7 +64,7 @@ fun LongItem(
 
             ScoreView(
                 modifier = Modifier.constrainAs(scoreCons){
-                    top.linkTo(parent.top)
+                    bottom.linkTo(parent.bottom)
                     end.linkTo(parent.end)
                 },
                 score = score
@@ -79,9 +80,10 @@ fun LongItem(
             )
 
             Text(
-                modifier = Modifier.padding(4.dp)
+                modifier = Modifier
+                    .padding(4.dp)
                     .constrainAs(titleCons) {
-                        top.linkTo(scoreCons.bottom)
+                        top.linkTo(parent.top)
                         start.linkTo(coverCons.end)
                         end.linkTo(parent.end)
                         width = Dimension.fillToConstraints
@@ -95,15 +97,12 @@ fun LongItem(
 
             Text(
                 modifier = Modifier
-                    .padding(horizontal = 4.dp)
+                    .padding(horizontal = 4.dp, vertical = 16.dp)
                     .constrainAs(genresCons) {
                         start.linkTo(coverCons.end)
                         end.linkTo(parent.end)
                         top.linkTo(titleCons.bottom)
-                        bottom.linkTo(demographicCons.top)
                         width = Dimension.fillToConstraints
-                        height = Dimension.fillToConstraints
-
                     },
                 overflow = TextOverflow.Ellipsis,
                 maxLines = 2,
@@ -113,10 +112,12 @@ fun LongItem(
             )
 
             DemographicChips(
-                modifier = Modifier.constrainAs(demographicCons){
-                    end.linkTo(parent.end)
-                    bottom.linkTo(parent.bottom)
-                },
+                modifier = Modifier
+                    .padding(start = 4.dp)
+                    .constrainAs(demographicCons) {
+                        start.linkTo(coverCons.end)
+                        top.linkTo(genresCons.bottom)
+                    },
                 demographicsRes = demographicRes
             )
 
@@ -187,11 +188,12 @@ fun DemographicChips(
     ) {
 
         demographicsRes.forEach { d ->
-            SuggestionChip(
-                onClick = { }, label = {
-                    Text(text = stringResource(id = d))
-                }
+
+            Text(
+                modifier = Modifier.padding(horizontal = 4.dp),
+                text = stringResource(id = d)
             )
+
         }
 
     }

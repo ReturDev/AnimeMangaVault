@@ -91,15 +91,6 @@ class SearchViewModel @Inject constructor(
             )
             .onStart { emit(ChangeAnimeFilters(SearchFiltersUi.AnimeFiltersUi()))}
 
-//        val animeScrollFlow = actionSharedFlow.filterIsInstance<ScrollInAnime>()
-//            .distinctUntilChanged()
-//            .shareIn(
-//                scope = viewModelScope,
-//                started = SharingStarted.WhileSubscribed(5000),
-//                replay = 1
-//            )
-//            .onStart { emit(ScrollInAnime(false)) }
-
         animeUiState = initAnimeUiState(
             animeSearchFlow,
             animeFilterFlow
@@ -125,14 +116,6 @@ class SearchViewModel @Inject constructor(
             )
             .onStart { emit(ChangeMangaFilters(SearchFiltersUi.MangaFiltersUi()))}
 
-//        val mangaScrollFlow = actionSharedFlow.filterIsInstance<ScrollInManga>()
-//            .distinctUntilChanged()
-//            .shareIn(
-//                scope = viewModelScope,
-//                started = SharingStarted.WhileSubscribed(5000),
-//                replay = 1
-//            )
-//            .onStart { emit(ScrollInManga(false)) }
 
 
         mangaUiState = initMangaUiState(
@@ -189,7 +172,6 @@ class SearchViewModel @Inject constructor(
 
         return flowsCombine.map { (search, newFilter) ->
                 SearchUiState.AnimeUiState(
-                    initializedState = search.query == null,
                     lastQuerySent = search.query ?: "",
                     filtersSelected = newFilter.filters,
                     numOfFilters = calculateNumOfFilters(newFilter.filters)
@@ -210,8 +192,8 @@ class SearchViewModel @Inject constructor(
             .flatMapLatest { action ->
                 searchAnime(action.query!!, animeUiState.value.filtersSelected.toAnimeFilters())
                     .map { pagingData -> pagingData.map { it.toBasicAnimeUi() } }
-                    .cachedIn(viewModelScope)
-            }
+
+            }.cachedIn(viewModelScope)
     }
 
     private fun initMangaUiState(
@@ -227,7 +209,6 @@ class SearchViewModel @Inject constructor(
 
         return flowCombine.map { (search, newFilter) ->
                 SearchUiState.MangaUiState(
-                    initializedState = search.query == null || search.query.length < 3,
                     lastQuerySent = search.query ?: "",
                     filtersSelected = newFilter.filters,
                     numOfFilters = calculateNumOfFilters(newFilter.filters),
@@ -250,8 +231,7 @@ class SearchViewModel @Inject constructor(
             .flatMapLatest { action ->
                 searchManga(action.query!!, mangaUiState.value.filtersSelected.toMangaFilters())
                     .map { pagingData -> pagingData.map { it.toBasicMangaUi() } }
-                    .cachedIn(viewModelScope)
-            }
+            }.cachedIn(viewModelScope)
 
     }
 

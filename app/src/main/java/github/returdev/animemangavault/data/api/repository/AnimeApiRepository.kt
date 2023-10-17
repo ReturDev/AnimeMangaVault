@@ -76,7 +76,23 @@ interface AnimeApiRepository {
      * @param networkState A [StateFlow] representing the current network state.
      * @return An [AnimeSearchApiResponse] containing the list of currently airing anime.
      */
-    suspend fun getAnimeCurrentSeason(
+    suspend fun getAnimeCurrentSeasonResponse(
+        page: Int,
+        limit: Int = ApiService.MAX_REQUEST_LIMIT,
+        type: AnimeTypeFilters? = null,
+        networkState : StateFlow<NetworkState>
+    ): AnimeSearchApiResponse
+
+    /**
+     * Retrieves a list of currently airing anime.
+     *
+     * @param page The page number of results to retrieve.
+     * @param limit The maximum number of results per page.
+     * @param type The type of anime (optional).
+     * @param networkState A [StateFlow] representing the current network state.
+     * @return An [ReducedAnime] list of currently airing anime.
+     */
+    suspend fun getAnimeCurrentSeasonList(
         page: Int,
         limit: Int = ApiService.MAX_REQUEST_LIMIT,
         type: AnimeTypeFilters? = null,

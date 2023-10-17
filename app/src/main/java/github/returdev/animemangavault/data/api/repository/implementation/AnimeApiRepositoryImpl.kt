@@ -144,9 +144,38 @@ class AnimeApiRepositoryImpl @Inject constructor(
      * @param limit The maximum number of results per page.
      * @param type The type of anime (optional).
      * @param networkState A [StateFlow] representing the current network state.
+     * @return An [AnimeSearchApiResponse] containing a list of currently airing anime.
+     */
+    override suspend fun getAnimeCurrentSeasonResponse(
+        page: Int,
+        limit: Int,
+        type: AnimeTypeFilters?,
+        networkState: StateFlow<NetworkState>
+    ): AnimeSearchApiResponse {
+
+        val limitChecked = if(limit > ApiService.MAX_REQUEST_LIMIT){
+            ApiService.MAX_REQUEST_LIMIT
+        } else {
+            limit
+        }
+
+        return caller.executeCall(
+            networkState,
+            apiService.getAnimeSeasonNow(page, limitChecked, type?.toString())
+        )
+
+    }
+
+    /**
+     * Retrieves a list of currently airing anime.
+     *
+     * @param page The page number of results to retrieve.
+     * @param limit The maximum number of results per page.
+     * @param type The type of anime (optional).
+     * @param networkState A [StateFlow] representing the current network state.
      * @return An [ReducedAnime] list of currently airing anime.
      */
-    override suspend fun getAnimeCurrentSeason(
+    override suspend fun getAnimeCurrentSeasonList(
         page: Int,
         limit: Int,
         type: AnimeTypeFilters?,
@@ -162,7 +191,7 @@ class AnimeApiRepositoryImpl @Inject constructor(
         return caller.executeCall(
             networkState,
             apiService.getAnimeSeasonNow(page, limitChecked, type?.toString())
-        ).data.map { anime -> anime.toReducedAnimeUi() }
+        ).data.map { animes -> animes.toReducedAnimeUi() }
 
     }
 

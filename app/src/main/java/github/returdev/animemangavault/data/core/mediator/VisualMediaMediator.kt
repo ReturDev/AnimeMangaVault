@@ -8,7 +8,7 @@ import kotlinx.coroutines.CoroutineDispatcher
 
 
 @OptIn(ExperimentalPagingApi::class)
-abstract class VisualMediaSearchMediator<Value : Any>(
+abstract class VisualMediaMediator<Value : Any>(
     val dispatcher : CoroutineDispatcher
 ) : RemoteMediator<Int, Value>(){
 

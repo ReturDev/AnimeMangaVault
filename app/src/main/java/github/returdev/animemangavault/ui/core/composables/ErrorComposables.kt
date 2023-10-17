@@ -135,10 +135,11 @@ fun ErrorIcon(
 
 @Composable
 fun RetryButton(
+    modifier: Modifier = Modifier,
     retry : () -> Unit
 ){
     Button(
-        modifier = Modifier.padding(top = 20.dp),
+        modifier = modifier,
         colors = ButtonDefaults.buttonColors(
             containerColor = MaterialTheme.colorScheme.errorContainer,
             contentColor = MaterialTheme.colorScheme.onErrorContainer

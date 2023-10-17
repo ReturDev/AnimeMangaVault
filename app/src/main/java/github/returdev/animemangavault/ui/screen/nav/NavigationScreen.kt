@@ -191,7 +191,7 @@ private fun ConnectionAlert(state : NavigationUiState){
             modifier = Modifier
                 .fillMaxWidth()
                 .background(backgroundColor)
-                .padding(8.dp),
+                .padding(4.dp),
             horizontalArrangement = Arrangement.Center
         ) {
             Icon(

@@ -8,19 +8,16 @@ import github.returdev.animemangavault.ui.model.filters.search.SearchFiltersUi.M
 @Stable
 sealed class SearchUiState{
 
-    abstract val initializedState : Boolean
     abstract val lastQuerySent : String
     abstract val filtersSelected : SearchFiltersUi
     abstract val numOfFilters : Int
     data class AnimeUiState(
-        override val initializedState : Boolean = true,
         override val lastQuerySent : String = "",
         override val filtersSelected : AnimeFiltersUi = AnimeFiltersUi(),
         override val numOfFilters : Int = 0
     ) : SearchUiState()
 
     data class MangaUiState(
-        override val initializedState : Boolean = true,
         override val lastQuerySent : String = "",
         override val filtersSelected : MangaFiltersUi = MangaFiltersUi(),
         override val numOfFilters : Int = 0

@@ -5,8 +5,8 @@ import androidx.paging.PagingData
 import androidx.paging.map
 import github.returdev.animemangavault.core.extensions.toAnimeLibraryEntity
 import github.returdev.animemangavault.core.extensions.toReducedAnimeUi
-import github.returdev.animemangavault.core.model.library.UserLibraryOrderBy
 import github.returdev.animemangavault.core.model.core.filters.common.SortDirection
+import github.returdev.animemangavault.core.model.library.UserLibraryOrderBy
 import github.returdev.animemangavault.core.model.library.UserLibraryVisualMediaStates
 import github.returdev.animemangavault.data.library.dao.AnimeLibraryDao
 import github.returdev.animemangavault.data.library.repository.AnimeLibraryRepository

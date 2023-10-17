@@ -1,6 +1,5 @@
 package github.returdev.animemangavault.ui.model.components.anime
 
-import android.util.Log
 import androidx.annotation.StringRes
 import github.returdev.animemangavault.R
 

@@ -1,11 +1,8 @@
 package github.returdev.animemangavault.ui.screen.search
 
-import android.util.Log
-import androidx.annotation.StringRes
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -14,9 +11,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.LazyListScope
 import androidx.compose.foundation.lazy.items
-import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.PagerState
 import androidx.compose.foundation.pager.rememberPagerState
@@ -26,7 +21,6 @@ import androidx.compose.material.icons.filled.Clear
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.Badge
 import androidx.compose.material3.BadgedBox
-import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -38,7 +32,6 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -52,22 +45,12 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
-import androidx.paging.CombinedLoadStates
-import androidx.paging.LoadState
-import androidx.paging.compose.LazyPagingItems
+import androidx.paging.PagingData
 import androidx.paging.compose.collectAsLazyPagingItems
-import androidx.paging.compose.itemKey
 import github.returdev.animemangavault.R
-import github.returdev.animemangavault.core.exceptions.ApiExceptions
-import github.returdev.animemangavault.core.exceptions.NetworkException
-import github.returdev.animemangavault.core.extensions.toReducedAnimeUi
-import github.returdev.animemangavault.core.extensions.toReducedMangaUi
-import github.returdev.animemangavault.ui.core.composables.ErrorIcon
 import github.returdev.animemangavault.ui.core.composables.ErrorLayout
-import github.returdev.animemangavault.ui.core.composables.ErrorText
-import github.returdev.animemangavault.ui.core.composables.RetryButton
-import github.returdev.animemangavault.ui.core.composables.items.LongItem
 import github.returdev.animemangavault.ui.core.navigation.navigateToItemDetails
+import github.returdev.animemangavault.ui.core.paging.*
 import github.returdev.animemangavault.ui.core.snackbar.SnackBarController
 import github.returdev.animemangavault.ui.core.snackbar.SnackbarType
 import github.returdev.animemangavault.ui.model.basic.BasicAnimeUi
@@ -75,6 +58,7 @@ import github.returdev.animemangavault.ui.model.basic.BasicMangaUi
 import github.returdev.animemangavault.ui.model.filters.core.VisualMediaTypes
 import github.returdev.animemangavault.ui.model.reduced.ReducedVisualMediaUi
 import github.returdev.animemangavault.ui.screen.search.filters.SearchFiltersDialog
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.launch
 
@@ -88,8 +72,6 @@ fun SearchScreen(
 
     val animeState by viewModel.animeUiState.collectAsState()
     val mangaState by viewModel.mangaUiState.collectAsState()
-    val animeData = viewModel.basicAnimes.collectAsLazyPagingItems()
-    val mangaData = viewModel.basicMangas.collectAsLazyPagingItems()
 
 
     val pagerState = rememberPagerState()
@@ -173,15 +155,13 @@ fun SearchScreen(
             if (page == 0){
 
                 SearchAnimeContentList(
-                    animeData = animeData,
-                    animeState = animeState
+                    basicAnimes = viewModel.basicAnimes
                 ){ vm -> navController.navigateToItemDetails(vm) }
 
             }else{
 
                 SearchMangaContentList(
-                    mangaData = mangaData,
-                    mangaState = mangaState
+                    basicMangas = viewModel.basicMangas,
                 ){ vm -> navController.navigateToItemDetails(vm) }
 
             }
@@ -340,117 +320,46 @@ private fun SearchTabLayout(
 
 }
 
-
-private fun LazyListScope.loadStateItems(
-    loadState : CombinedLoadStates,
-    initializedState: Boolean,
-    isResultEmpty : Boolean,
-    retry: () -> Unit
-){
-    
-    when {
-        loadState.refresh is LoadState.Loading && !initializedState
-        -> {
-            item {
-                SearchContentLoading(modifier = Modifier.fillParentMaxSize())
-            }
-        }
-
-        loadState.refresh is LoadState.Error -> {
-            val error = loadState.refresh as LoadState.Error
-            item {
-                ErrorLayout(
-                    modifier = Modifier.fillParentMaxSize(),
-                    errorMessageRes = getErrorMessageResource(error.error),
-                    showRetryButton = true
-                ) {
-                    retry()
-                }
-            }
-        }
-
-        loadState.source.refresh is LoadState.NotLoading
-                && loadState.source.append.endOfPaginationReached
-                && isResultEmpty -> {
-            item {
-                SearchContentEmpty(modifier = Modifier.fillParentMaxSize())
-            }
-        }
-
-        loadState.refresh is LoadState.NotLoading && loadState.append is LoadState.Loading -> {
-            item { NextPageLoading()}
-        }
-
-        loadState.append is LoadState.Error -> {
-            val error = loadState.append as LoadState.Error
-            item {
-                NextPageError(
-                    errorResource = getErrorMessageResource(error.error),
-                    retry = retry
-                )
-            }
-        }
-    }
-}
-
 @Composable
 private fun SearchAnimeContentList(
-    animeData: LazyPagingItems<BasicAnimeUi>,
-    animeState: SearchUiState.AnimeUiState,
+    basicAnimes: Flow<PagingData<BasicAnimeUi>>,
     onClick: (ReducedVisualMediaUi) -> Unit
 ){
 
-    val animeLazyListState = rememberLazyListState()
-
-
-    val scrolled by remember {
-        derivedStateOf {
-            animeLazyListState.firstVisibleItemScrollOffset > 0
-        }
+    val animeData = basicAnimes.collectAsLazyPagingItems()
+    var pagingState by remember {
+        mutableStateOf<PagingRefreshState>(PagingRefreshState.Initialized)
     }
 
-    LaunchedEffect(key1 = animeState.lastQuerySent){
-        if (scrolled){
-            animeLazyListState.scrollToItem(0)
-        }
-    }
+    PagingRefreshStateLaunchedEffect(
+        pagingItemsState = animeData,
+        changePagingRefreshState = { newState -> pagingState = newState }
+    )
 
-    
-    LazyColumn(
-        modifier = Modifier.fillMaxSize(),
-        state = animeLazyListState,
-        contentPadding = PaddingValues(16.dp),
-        verticalArrangement = Arrangement.spacedBy(8.dp)
-    ){
-
-        items(count = animeData.itemCount, key = animeData.itemKey { it.id }){ index ->
-
-            val item = animeData[index]
-
-            item?.let {
-
-                LongItem(
-                    title = it.title,
-                    score = it.score,
-                    typeRes = it.type.stringResource,
-                    imageUrl = it.images[1].url,
-                    genres = it.genres,
-                    demographicRes = it.demographics.map { d -> d.stringResource }
-                ){
-                    onClick(it.toReducedAnimeUi())
-                }
-
+    when(pagingState){
+        PagingRefreshState.Initialized -> Box(modifier = Modifier.fillMaxSize())
+        PagingRefreshState.Loading -> PagingContentLoading()
+        is PagingRefreshState.Loaded -> {
+            if ((pagingState as PagingRefreshState.Loaded).isEmpty){
+                PagingContentEmpty()
+            }else {
+                PagingAnimeContentLoaded(
+                    animeData = animeData,
+                    onClick = onClick
+                )
             }
+        }
+        is PagingRefreshState.Error -> {
+            val errorState = pagingState as PagingRefreshState.Error
+            ErrorLayout(
+                modifier = Modifier.fillMaxSize(),
+                errorMessageRes = errorState.errorRes,
+                showRetryButton = true,
+                retry = errorState.retry
+            )
 
         }
 
-
-        loadStateItems(
-            loadState = animeData.loadState,
-            initializedState = animeState.initializedState,
-            isResultEmpty = animeData.itemCount == 0,
-            retry = { animeData.retry() }
-        )
 
     }
 
@@ -458,122 +367,47 @@ private fun SearchAnimeContentList(
 
 @Composable
 fun SearchMangaContentList(
-    mangaData : LazyPagingItems<BasicMangaUi>,
-    mangaState : SearchUiState.MangaUiState,
+    basicMangas : Flow<PagingData<BasicMangaUi>>,
     onClick: (ReducedVisualMediaUi) -> Unit
 ) {
 
-    LazyColumn(
-        modifier = Modifier.fillMaxSize(),
-        contentPadding = PaddingValues(16.dp),
-        verticalArrangement = Arrangement.spacedBy(8.dp)
-    ){
+    val mangaData = basicMangas.collectAsLazyPagingItems()
+    var pagingState by remember {
+        mutableStateOf<PagingRefreshState>(PagingRefreshState.Initialized)
+    }
 
-        items(count = mangaData.itemCount, key = mangaData.itemKey { it.id }){ index ->
+    PagingRefreshStateLaunchedEffect(
+        pagingItemsState = mangaData,
+        changePagingRefreshState = { newState -> pagingState = newState }
+    )
 
-            val item = mangaData[index]
-
-            item?.let {
-
-                LongItem(
-                    title = it.title,
-                    score = it.score,
-                    typeRes = it.type.stringResource,
-                    imageUrl = it.images[1].url,
-                    genres = it.genres,
-                    demographicRes = it.demographics.map { d -> d.stringResource }
-                ){ onClick(it.toReducedMangaUi()) }
-
+    when(pagingState){
+        PagingRefreshState.Initialized -> Box(modifier = Modifier.fillMaxSize())
+        PagingRefreshState.Loading -> PagingContentLoading()
+        is PagingRefreshState.Loaded -> {
+            if ((pagingState as PagingRefreshState.Loaded).isEmpty) {
+                PagingContentEmpty()
+            } else {
+                PagingMangaContentLoaded(
+                    mangaData = mangaData,
+                    onClick = onClick
+                )
             }
-
         }
-
-        loadStateItems(
-            loadState = mangaData.loadState,
-            initializedState = mangaState.initializedState,
-            isResultEmpty = mangaData.itemCount == 0,
-            retry = { mangaData.retry() }
-        )
-
-    }
-
-}
-@Composable
-private fun SearchContentLoading(
-    modifier: Modifier
-) {
-    Box(
-        modifier = modifier,
-        contentAlignment = Alignment.Center
-    ){
-        CircularProgressIndicator()
-    }
-}
-
-//TODO Improve SearchContentEmpty
-@Composable
-private fun SearchContentEmpty(
-    modifier: Modifier
-) {
-    Box(
-        modifier = modifier,
-        contentAlignment = Alignment.Center
-    ){
-        Text(
-            text = stringResource(R.string.no_results_found),
-            style = MaterialTheme.typography.headlineLarge,
-            color = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.5f)
-        )
-    }
-}
-
-@Composable
-private fun NextPageLoading(){
-    
-    Box(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(vertical = 8.dp),
-        contentAlignment = Alignment.Center
-    ) {
-
-        CircularProgressIndicator()
-
-    }
-    
-}
-
-@Composable
-private fun NextPageError(
-    @StringRes errorResource : Int,
-    retry : () -> Unit
-){
-    
-    Column(
-        modifier = Modifier.fillMaxWidth(),
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        
-        Row(
-            modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.Center,
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            
-            ErrorIcon()
-            ErrorText(
-                modifier = Modifier.padding(start = 4.dp),
-                errorResource = errorResource,
-                textStyle = MaterialTheme.typography.titleMedium
+        is PagingRefreshState.Error -> {
+            val errorState = pagingState as PagingRefreshState.Error
+            ErrorLayout(
+                modifier = Modifier.fillMaxSize(),
+                errorMessageRes = errorState.errorRes,
+                showRetryButton = true,
+                retry = errorState.retry
             )
-            
         }
-
-        RetryButton (retry = retry)
-        
     }
-    
+
 }
+
+
 
 @Composable
 private fun  SearchHistory(
@@ -595,7 +429,10 @@ private fun  SearchHistory(
                     .padding(16.dp)
             ) {
                 Icon(painterResource(id = R.drawable.ic_history), contentDescription = null)
-                Text(text = it)
+                Text(
+                    modifier = Modifier.padding(start = 4.dp),
+                    text = it
+                )
             }
 
         }
@@ -603,7 +440,6 @@ private fun  SearchHistory(
     }
 
 }
-
 
 @Composable
 private fun ShowSnackbarLaunchedEffect(
@@ -660,24 +496,5 @@ private fun addQueryToHistorySearch(newQuery : String, queryRecord : MutableList
 
     }
 
-}
-
-private fun getErrorMessageResource(
-    error : Throwable
-): Int {
-    return  when(error){
-        ApiExceptions.ServerInternalException -> {
-            ApiExceptions.ServerInternalException.stringRes
-        }
-        ApiExceptions.RateLimitException -> {
-            ApiExceptions.RateLimitException.stringRes
-        }
-        is NetworkException -> {
-            error.stringRes
-        }
-        else -> {
-            R.string.generic_error
-        }
-    }
 }
 

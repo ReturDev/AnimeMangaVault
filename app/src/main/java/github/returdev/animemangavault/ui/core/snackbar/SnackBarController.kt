@@ -1,13 +1,11 @@
 package github.returdev.animemangavault.ui.core.snackbar
 
-import android.util.Log
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.SnackbarData
 import androidx.compose.material3.SnackbarDuration
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
-import github.returdev.animemangavault.ui.core.composables.CustomSnackbar
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 

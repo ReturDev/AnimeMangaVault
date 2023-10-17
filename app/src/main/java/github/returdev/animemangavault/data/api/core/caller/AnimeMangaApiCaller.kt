@@ -1,7 +1,8 @@
 package github.returdev.animemangavault.data.api.core.caller
 
 
-import github.returdev.animemangavault.core.exceptions.ApiExceptions.*
+import github.returdev.animemangavault.core.exceptions.ApiExceptions.RateLimitException
+import github.returdev.animemangavault.core.exceptions.ApiExceptions.ServerInternalException
 import github.returdev.animemangavault.core.exceptions.NetworkException
 import github.returdev.animemangavault.core.network.NetworkState
 import github.returdev.animemangavault.data.api.core.ApiResponseCode

@@ -22,7 +22,6 @@ sealed class Destination(protected val route : String, vararg params : String){
         override fun getArguments(): List<NamedNavArgument> = emptyList()
 
         operator fun invoke() : String = route
-
         object HomeScreenDestination : NoArgumentsDestination("home")
         object LibraryScreenDestination : NoArgumentsDestination("library")
         object SearchScreenDestination : NoArgumentsDestination("search")
@@ -47,6 +46,24 @@ sealed class Destination(protected val route : String, vararg params : String){
 
         operator fun invoke(id : String, title : String, vmType : String ): String {
             return route.appendParams(id,title,vmType)
+        }
+
+    }
+
+    object ShowMoreDestination : Destination(
+        "show_more", "action"
+    ){
+
+        const val ACTION = "action"
+
+        override fun getArguments(): List<NamedNavArgument> {
+            return listOf(
+                navArgument(name = ACTION){type = NavType.StringType}
+            )
+        }
+
+        operator fun invoke(action : String) : String {
+            return route.appendParams(action)
         }
 
     }

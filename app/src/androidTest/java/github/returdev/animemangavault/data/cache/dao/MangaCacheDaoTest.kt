@@ -3,7 +3,6 @@ package github.returdev.animemangavault.data.cache.dao
 import androidx.paging.PagingSource
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
-import dagger.hilt.android.testing.UninstallModules
 import github.returdev.animemangavault.data.cache.model.entity.MangaCacheEntity
 import kotlinx.coroutines.runBlocking
 import org.junit.After

@@ -9,6 +9,8 @@ interface AnimeCacheRepository {
 
     fun getAnimeSearch(title : String, filters: SearchFilters.AnimeFilters): Flow<PagingData<BasicAnime>>
 
+    fun getThisSeason() : Flow<PagingData<BasicAnime>>
+
     fun clearAndResetPrimaryKey()
 
 }

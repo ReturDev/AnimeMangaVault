@@ -14,10 +14,10 @@ import github.returdev.animemangavault.ui.model.components.anime.AnimeTypes
 import github.returdev.animemangavault.ui.model.components.common.Genres
 import github.returdev.animemangavault.ui.model.components.manga.MangaStatus
 import github.returdev.animemangavault.ui.model.components.manga.MangaTypes
-import github.returdev.animemangavault.ui.model.filters.search.SearchFiltersUi
 import github.returdev.animemangavault.ui.model.filters.core.SortDirectionUi
 import github.returdev.animemangavault.ui.model.filters.search.AnimeOrderByUi
 import github.returdev.animemangavault.ui.model.filters.search.MangaOrderByUi
+import github.returdev.animemangavault.ui.model.filters.search.SearchFiltersUi
 
 fun SortDirectionUi.toSortDirection(): SortDirection {
     return when(this){

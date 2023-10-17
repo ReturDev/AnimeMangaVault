@@ -14,6 +14,7 @@ import github.returdev.animemangavault.data.cache.dao.AnimeCacheDao
 import github.returdev.animemangavault.data.cache.model.db.CacheDataBase
 import github.returdev.animemangavault.data.cache.repository.AnimeCacheRepository
 import github.returdev.animemangavault.data.cache.repository.core.CacheRepositoryUtil
+import github.returdev.animemangavault.data.core.mediator.AnimeCurrentSeasonMediator
 import github.returdev.animemangavault.data.core.mediator.AnimeSearchMediator
 import github.returdev.animemangavault.domain.model.basic.BasicAnime
 import kotlinx.coroutines.CoroutineDispatcher
@@ -61,6 +62,22 @@ class AnimeCacheRepositoryImpl @Inject constructor(
                 dispatcher
             ),
 
+            pagingSourceFactory = {
+                animeCacheDao.getAnime()
+            }
+        ).flow.map { pagingData -> pagingData.map { anime -> anime.toBasicAnime() } }
+    }
+
+    override fun getThisSeason(): Flow<PagingData<BasicAnime>> {
+        return Pager(
+            config = CacheRepositoryUtil.getPagerConfig(),
+            remoteMediator = AnimeCurrentSeasonMediator(
+                networkConnectivity,
+                cacheDataBase,
+                animeCacheDao,
+                animeApiRepository,
+                dispatcher
+            ),
             pagingSourceFactory = {
                 animeCacheDao.getAnime()
             }

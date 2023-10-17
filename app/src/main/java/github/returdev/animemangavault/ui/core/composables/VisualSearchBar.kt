@@ -12,6 +12,7 @@ import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
+import androidx.compose.material3.surfaceColorAtElevation
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -28,7 +29,7 @@ fun VisualSearchBar(onClick : () -> Unit){
             .padding(32.dp)
             .clip(RoundedCornerShape(50))
             .clickable { onClick() }
-            .background(MaterialTheme.colorScheme.primaryContainer)
+            .background(MaterialTheme.colorScheme.surfaceColorAtElevation(4.dp))
     ) {
 
         Row(modifier = Modifier
@@ -38,13 +39,13 @@ fun VisualSearchBar(onClick : () -> Unit){
         ) {
             Text(
                 text = stringResource(R.string.search_bar_search_hint),
-                color = MaterialTheme.colorScheme.onPrimaryContainer,
+                color = MaterialTheme.colorScheme.onSurface,
                 modifier = Modifier.weight(1f)
             )
             Icon(
                 imageVector = Icons.Filled.Search,
                 contentDescription = stringResource(R.string.search_bar_icon_content_desc),
-                tint = MaterialTheme.colorScheme.onPrimaryContainer,
+                tint = MaterialTheme.colorScheme.onSurface,
             )
         }
 

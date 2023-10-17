@@ -13,6 +13,7 @@ import github.returdev.animemangavault.ui.screen.detailed.DetailedItemScreen
 import github.returdev.animemangavault.ui.screen.home.HomeScreen
 import github.returdev.animemangavault.ui.screen.library.LibraryScreen
 import github.returdev.animemangavault.ui.screen.search.SearchScreen
+import github.returdev.animemangavault.ui.screen.showmore.ShowMoreScreen
 
 @Composable
 fun NavigationGraph (
@@ -22,7 +23,6 @@ fun NavigationGraph (
 ) {
 
     NavHost(navController = navController, startDestination = Destination.NoArgumentsDestination.HomeScreenDestination()){
-
 
         composable(destination = Destination.NoArgumentsDestination.HomeScreenDestination){
             HomeScreen(modifier = modifier, navController = navController)
@@ -37,6 +37,9 @@ fun NavigationGraph (
         }
         composable(destination = Destination.DetailedItemScreenDestination){
             DetailedItemScreen(navController = navController, snackBarController = snackBarController, navEntry = it)
+        }
+        composable(destination = Destination.ShowMoreDestination) {
+            ShowMoreScreen(navController = navController, navEntry = it)
         }
 
     }

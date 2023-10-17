@@ -2,7 +2,6 @@ package github.returdev.animemangavault.ui.model.components.manga
 
 import androidx.annotation.StringRes
 import github.returdev.animemangavault.R
-import github.returdev.animemangavault.ui.model.components.anime.AnimeTypes
 
 /**
  * Enum class representing different types of manga.
