@@ -1,3 +1,185 @@
 <resources>
-    <string name="app_name">AnimeMangaVault</string>
+    //Genres
+    <string name="genre_action">Action</string>
+    <string name="genre_adventure">Adventure</string>
+    <string name="genre_avant_garde">Avant Garde</string>
+    <string name="genre_award_winning">Award Winning</string>
+    <string name="genre_boys_love">Boys Love</string>
+    <string name="genre_comedy">Comedy</string>
+    <string name="genre_drama">Drama</string>
+    <string name="genre_fantasy">Fantasy</string>
+    <string name="genre_girls_love">Girls Love</string>
+    <string name="genre_gourmet">Gourmet</string>
+    <string name="genre_horror">Horror</string>
+    <string name="genre_mystery">Mystery</string>
+    <string name="genre_romance">Romance</string>
+    <string name="genre_sci_fi">Sci-Fi</string>
+    <string name="genre_slice_of_life">Slice of Life</string>
+    <string name="genre_sports">Sports</string>
+    <string name="genre_super_natural">Supernatural</string>
+    <string name="genre_suspense">Suspense</string>
+    <string name="explicit_genre_ecchi">Ecchi</string>
+    <string name="explicit_genre_erotica">Erotica</string>
+    <string name="explicit_genre_hentai">Hentai</string>
+
+    //Demographics
+    <string name="demographic_josei">Josei</string>
+    <string name="demographic_kids">Kids</string>
+    <string name="demographic_seinen">Seinen</string>
+    <string name="demographic_shoujo">Shoujo</string>
+    <string name="demographic_shounen">Shounen</string>
+
+    //Types
+    <string name="type_unknown">Unknown</string>
+        //Anime
+    <string name="anime_type_tv">TV</string>
+    <string name="anime_type_movie">Movie</string>
+    <string name="anime_type_ova">OVA</string>
+    <string name="anime_type_special">Special</string>
+    <string name="anime_type_ona">ONA</string>
+    <string name="anime_type_music">Music</string>
+        //Manga
+    <string name="manga_type_manga">Manga</string>
+    <string name="manga_type_novel">Novel</string>
+    <string name="manga_type_light_novel">Light Novel</string>
+    <string name="manga_type_one_shot">One Shot</string>
+    <string name="manga_type_doujin">Doujin</string>
+    <string name="manga_type_manhwa">Manhwa</string>
+    <string name="manga_type_manhua">Manhua</string>
+
+    //Status
+    <string name="status_finished">Finished</string>
+    <string name="status_upcoming">Upcoming</string>
+        //Anime
+    <string name="anime_status_airing">Airing</string>
+        //Manga
+    <string name="manga_status_publishing">Publishing</string>
+    <string name="manga_status_hiatus">Hiatus</string>
+    <string name="manga_status_discontinued">Discontinued</string>
+    <string name="manga_status_upcoming">Upcoming</string>
+
+    //Season
+    <string name="season_spring">Spring</string>
+    <string name="season_summer">Summer</string>
+    <string name="season_fall">Fall</string>
+    <string name="season_winter">Winter</string>
+
+    //Errors
+    <string name="network_connection_error">Connection error</string>
+    <string name="api_server_internal_error">Our service is not available, please try it later</string>
+    <string name="generic_error">An error has occurred</string>
+
+    //Items
+    <string name="icon_score_description">Score</string>
+
+    //SearchBar
+    <string name="search_bar_search_hint">Search…</string>
+    <string name="search_bar_icon_content_desc">Search icon</string>
+
+    //HomeScreen
+    <string name="top_anime">Top Anime</string>
+    <string name="top_manga">Top Manga</string>
+    <string name="this_season">This Season</string>
+
+    //Library
+    <string name="library_vm_state_following">Following</string>
+    <string name="library_vm_state_favourites">Favourites</string>
+    <string name="library_vm_state_completed">Completed</string>
+    <string name="library_vm_state_on_hold">On Hold</string>
+    <string name="library_vm_state_dropped">Dropped</string>
+
+    //Filters
+        //Order By Library
+    <string name="order_by_added_date">Added Date</string>
+    <string name="order_by_title">Title</string>
+    <string name="order_by_score">Score</string>
+        //Sort Direction
+    <string name="sort_direction_asc_abbreviation">Asc</string>
+    <string name="sort_direction_desc_abbreviation">Desc</string>
+        //Order By
+    <string name="order_title">Title</string>
+    <string name="order_type">Type</string>
+    <string name="order_start_date">Start Date</string>
+    <string name="order_end_date">End Date</string>
+    <string name="order_score">Score</string>
+    <string name="order_scored_by">Scorers</string>
+    <string name="order_rank">Rank</string>
+    <string name="order_popularity">Popularity</string>
+    <string name="order_favorites">Favorites</string>
+            //Anime
+    <string name="anime_order_rating">Rating</string>
+    <string name="anime_order_episodes">Episodes</string>
+            //Manga
+    <string name="manga_order_chapters">Chapters</string>
+    <string name="manga_order_volumes">Volumes</string>
+
+    //Menu Bar
+    <string name="menu_bar_home">Home</string>
+    <string name="menu_bar_library">Library</string>
+
+
+    //NetworkConnection
+    <string name="network_connection_back">Back online</string>
+    <string name="network_connection_lost">No connection</string>
+
+    //Detailed Item Screen
+        //Detailed Item Synopsis
+    <string name="show_more">Show more</string>
+    <string name="show_less">Show less</string>
+        //Detailed Item Alternative Titles
+    <string name="vm_detail_alternative_titles">Alternative Titles</string>
+    <string name="title_language_japanese">Japanese</string>
+    <string name="title_language_english">English</string>
+    <string name="title_language_synonyms">Synonyms</string>
+        //Detailed Item Header
+    <string name="btn_vm_detail_save_in_library">Add to Library</string>
+    <string name="btn_vm_detail_saved">Added to %s</string>
+    <string name="navigate_back">Navigate back</string>
+        //Detailed Item Information
+    <string name="vm_detail_information_label">Information</string>
+    <string name="vm_detail_synopsis_label">Synopsis</string>
+    <string name="rank">Rank</string>
+    <string name="vm_information_scorers">Scorers</string>
+    <string name="vm_information_source">Source</string>
+    <string name="vm_information_episodes">Episodes</string>
+    <string name="vm_information_status">Status</string>
+    <string name="vm_information_season">Season</string>
+    <string name="vm_information_aired">Aired</string>
+    <string name="vm_information_published">Published</string>
+    <string name="vm_information_chapters">Chapters</string>
+    <string name="vm_information_volumes">Volumes</string>
+    <string name="vm_information_aired_from">From: %s</string>
+    <string name="vm_information_aired_to">"To: %s"</string>
+
+    //Add To Library Dialog
+    <string name="save">Save</string>
+    <string name="cancel">Cancel</string>
+
+    //Button Retry
+    <string name="retry">Retry</string>
+
+    //State in library changed
+    <string name="delete_vm_in_user_library">Has been removed from the library</string>
+    <string name="change_vm_state_in_user_library">Has been added to %s.</string>
+
+    //Library order
+    <string name="sort_icon_content_description">Sort</string>
+    <string name="order_by_icon_content_description">Order by</string>
+
+    <string name="search_bar_clear_text_content_desc">Clear text</string>
+    <string name="search_filter_icon_content_desc">Filters</string>
+    <string name="sort_direction_ascendant">Ascendant</string>
+    <string name="sort_direction_descendant">Descendant</string>
+    <string name="arrow_drop_up_content_desc">Extended</string>
+    <string name="arrow_drop_down_content_desc">Contracted</string>
+    <string name="clear_filters">Clear filters</string>
+
+    <string name="filter_type">Type</string>
+    <string name="filter_status">Status</string>
+    <string name="filter_genres">Genres</string>
+    <string name="filter_order_by">Order by</string>
+    <string name="search_min_characters_query_error">Enter at least 3 characters for your search.</string>
+    <string name="no_results_found">No results found.</string>
+
+
 </resources>

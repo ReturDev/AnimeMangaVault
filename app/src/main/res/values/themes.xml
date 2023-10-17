@@ -2,4 +2,9 @@
 <resources>
 
     <style name="Theme.AnimeMangaVault" parent="android:Theme.Material.Light.NoActionBar" />
+
+    <style name="Theme.AnimeMangaVaultSplash" parent="Theme.SplashScreen">
+        <item name="android:windowBackground">@drawable/ic_launcher_foreground</item>
+        <item name="postSplashScreenTheme">@style/Theme.AnimeMangaVault</item>
+    </style>
 </resources>
