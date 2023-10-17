@@ -3,13 +3,10 @@ package github.returdev.animemangavault.data.library.dao
 import androidx.paging.PagingSource
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
-import github.returdev.animemangavault.data.library.model.db.UserLibraryDataBase
-import github.returdev.animemangavault.data.library.model.entity.AnimeLibraryEntity
 import github.returdev.animemangavault.data.library.model.entity.MangaLibraryEntity
 import kotlinx.coroutines.runBlocking
 import org.junit.After
 import org.junit.Assert.*
-
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test

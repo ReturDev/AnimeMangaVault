@@ -168,5 +168,20 @@
     <string name="sort_icon_content_description">Sort</string>
     <string name="order_by_icon_content_description">Order by</string>
 
+    <string name="search_bar_clear_text_content_desc">Clear text</string>
+    <string name="search_filter_icon_content_desc">Filters</string>
+    <string name="sort_direction_ascendant">Ascendant</string>
+    <string name="sort_direction_descendant">Descendant</string>
+    <string name="arrow_drop_up_content_desc">Extended</string>
+    <string name="arrow_drop_down_content_desc">Contracted</string>
+    <string name="clear_filters">Clear filters</string>
+
+    <string name="filter_type">Type</string>
+    <string name="filter_status">Status</string>
+    <string name="filter_genres">Genres</string>
+    <string name="filter_order_by">Order by</string>
+    <string name="search_min_characters_query_error">Enter at least 3 characters for your search.</string>
+    <string name="no_results_found">No results found.</string>
+
 
 </resources>

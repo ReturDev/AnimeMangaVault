@@ -2,7 +2,6 @@ package github.returdev.animemangavault.ui.model.components.manga
 
 import androidx.annotation.StringRes
 import github.returdev.animemangavault.R
-import github.returdev.animemangavault.ui.model.components.anime.AnimeTypes
 
 /**
  * Enum class representing different types of manga.
@@ -24,7 +23,7 @@ enum class MangaTypes(@StringRes val stringResource : Int){
 
             return value?.let {
                 val formattedValue = it.replace(" ","").lowercase()
-                MangaTypes.values().first {type -> type.name.lowercase() == formattedValue }
+                MangaTypes.values().firstOrNull() {type -> type.name.lowercase() == formattedValue }
             } ?: UNKNOWN
         }
     }

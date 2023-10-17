@@ -1,7 +1,6 @@
 package github.returdev.animemangavault.core.model.components
 
 import android.icu.text.DateFormat
-import android.icu.text.SimpleDateFormat
 import android.icu.util.Calendar
 import java.util.Locale
 

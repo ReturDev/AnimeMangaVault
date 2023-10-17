@@ -1,6 +1,5 @@
 package github.returdev.animemangavault.ui.core.navigation
 
-import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavBackStackEntry
@@ -9,33 +8,38 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import github.returdev.animemangavault.ui.core.snackbar.SnackBarController
 import github.returdev.animemangavault.ui.screen.detailed.DetailedItemScreen
 import github.returdev.animemangavault.ui.screen.home.HomeScreen
 import github.returdev.animemangavault.ui.screen.library.LibraryScreen
+import github.returdev.animemangavault.ui.screen.search.SearchScreen
+import github.returdev.animemangavault.ui.screen.showmore.ShowMoreScreen
 
 @Composable
 fun NavigationGraph (
     navController: NavHostController,
-    snackBarHostState : SnackbarHostState,
+    snackBarController: SnackBarController,
     modifier : Modifier
 ) {
 
-    NavHost(navController = navController, startDestination = Destination.NoArgumentsDestination.HomeScreenDirection()){
+    NavHost(navController = navController, startDestination = Destination.NoArgumentsDestination.HomeScreenDestination()){
 
-
-        composable(destination = Destination.NoArgumentsDestination.HomeScreenDirection){
-            HomeScreen(modifier, navController, snackBarHostState)
+        composable(destination = Destination.NoArgumentsDestination.HomeScreenDestination){
+            HomeScreen(modifier = modifier, navController = navController)
         }
 
-        composable(destination = Destination.NoArgumentsDestination.LibraryScreenDirection){
-            LibraryScreen(modifier, navController, snackBarHostState)
+        composable(destination = Destination.NoArgumentsDestination.LibraryScreenDestination){
+            LibraryScreen(modifier = modifier, navController = navController)
         }
 
-        composable(destination = Destination.NoArgumentsDestination.SearchScreenDirection){
-            //TODO Introduce SearchScreen
+        composable(destination = Destination.NoArgumentsDestination.SearchScreenDestination){
+            SearchScreen(navController = navController,  snackBarController = snackBarController)
         }
         composable(destination = Destination.DetailedItemScreenDestination){
-            DetailedItemScreen(navController, snackBarHostState, it)
+            DetailedItemScreen(navController = navController, snackBarController = snackBarController, navEntry = it)
+        }
+        composable(destination = Destination.ShowMoreDestination) {
+            ShowMoreScreen(navController = navController, navEntry = it)
         }
 
     }

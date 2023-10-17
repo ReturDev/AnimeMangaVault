@@ -26,23 +26,24 @@ import java.util.Date
 /***** Data to Domain *****/
 
 fun AnimeApiResponse.ApiAnimeExtendedDataResponse.toFullAnime() = FullAnime(
-    id = this.id,
-    type = this.type,
-    images = this.images.toImageUrls(),
-    titles = this.titles.mapNotNull { title -> Title.createTitleByKey(title.type, title.title) },
-    score = this.score,
-    numberOfScorers = this.numberOfScorers,
-    rank = this.rank,
-    synopsis = this.synopsis,
-    genres = this.genres.map { g -> g.id },
-    demographics = this.demographics.map { d -> d.id },
-    source = this.source,
-    episodes = this.episodes,
-    status = this.status,
-    airing = this.airing,
-    aired = this.aired.toReleased(),
-    season = this.season
-)
+        id = this.id,
+        type = this.type,
+        images = this.images.toImageUrls(),
+        titles = this.titles.mapNotNull { title -> Title.createTitleByKey(title.type, title.title) },
+        score = this.score,
+        numberOfScorers = this.numberOfScorers,
+        rank = this.rank,
+        synopsis = this.synopsis.orEmpty(),
+        genres = this.genres.map { g -> g.id },
+        demographics = this.demographics.map { d -> d.id },
+        source = this.source,
+        episodes = this.episodes,
+        status = this.status,
+        airing = this.airing,
+        aired = this.aired.toReleased(),
+        season = this.season
+    )
+
 
 fun MangaApiResponse.ApiMangaExtendedDataResponse.toFullManga() = FullManga(
     id = this.id,
@@ -52,7 +53,7 @@ fun MangaApiResponse.ApiMangaExtendedDataResponse.toFullManga() = FullManga(
     score = this.score,
     numberOfScorers = this.numberOfScorers,
     rank = this.rank,
-    synopsis = this.synopsis,
+    synopsis = this.synopsis.orEmpty(),
     status = this.status,
     genres = this.genres.map { g -> g.id },
     demographics = this.demographics.map { d -> d.id },
@@ -82,28 +83,28 @@ fun MangaSearchApiResponse.ApiMangaReducedDataResponse.toMangaCacheEntity() = Ma
     score = this.score
 )
 
-fun AnimeSearchApiResponse.ApiAnimeReducedDataResponse.toReducedAnime() = ReducedAnime(
+fun AnimeSearchApiResponse.ApiAnimeReducedDataResponse.toReducedAnimeUi() = ReducedAnime(
     id = this.id,
     imageUrl = images.toImageUrls()[1].url,
     defaultTitle = this.title,
     score = this.score
 )
 
-fun MangaSearchApiResponse.ApiMangaReducedDataResponse.toReducedManga() = ReducedManga(
+fun MangaSearchApiResponse.ApiMangaReducedDataResponse.toReducedMangaUi() = ReducedManga(
     id = this.id,
     imageUrl = images.toImageUrls()[1].url,
     defaultTitle = this.title,
     score = this.score
 )
 
-fun AnimeLibraryEntity.toReducedAnime() = ReducedAnime(
+fun AnimeLibraryEntity.toReducedAnimeUi() = ReducedAnime(
     id = this.id,
     imageUrl = this.imageUrl,
     defaultTitle = this.defaultTitle,
     score = this.score
 )
 
-fun MangaLibraryEntity.toReducedManga() = ReducedManga(
+fun MangaLibraryEntity.toReducedMangaUi() = ReducedManga(
     id = this.id,
     imageUrl = this.imageUrl,
     defaultTitle = this.defaultTitle,

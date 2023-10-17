@@ -15,7 +15,6 @@ import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.Icon
 import androidx.compose.material3.ScrollableTabRow
-import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Tab
 import androidx.compose.material3.TabRow
 import androidx.compose.material3.Text
@@ -38,7 +37,7 @@ import androidx.paging.PagingData
 import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.itemKey
 import github.returdev.animemangavault.R
-import github.returdev.animemangavault.ui.core.composables.ReducedItem
+import github.returdev.animemangavault.ui.core.composables.items.ReducedItem
 import github.returdev.animemangavault.ui.core.navigation.navigateToItemDetails
 import github.returdev.animemangavault.ui.model.filters.core.SortDirectionUi
 import github.returdev.animemangavault.ui.model.filters.core.VisualMediaTypes
@@ -55,7 +54,6 @@ import kotlinx.coroutines.flow.Flow
 fun LibraryScreen(
     modifier: Modifier,
     navController : NavHostController,
-    snackBarHostState : SnackbarHostState,
     viewModel: LibraryViewModel = hiltViewModel()
 ){
 

@@ -8,7 +8,6 @@ import github.returdev.animemangavault.core.extensions.toAnimeCacheEntity
 import github.returdev.animemangavault.core.model.core.filters.SearchFilters
 import github.returdev.animemangavault.core.network.NetworkConnectivity
 import github.returdev.animemangavault.data.api.repository.AnimeApiRepository
-import github.returdev.animemangavault.data.api.repository.implementation.AnimeApiRepositoryImpl
 import github.returdev.animemangavault.data.cache.dao.AnimeCacheDao
 import github.returdev.animemangavault.data.cache.model.db.CacheDataBase
 import github.returdev.animemangavault.data.cache.model.entity.AnimeCacheEntity
@@ -24,7 +23,7 @@ class AnimeSearchMediator constructor(
     private val animeCacheDao: AnimeCacheDao,
     private val animeApiRepository: AnimeApiRepository,
     @IoDispatcher dispatcher : CoroutineDispatcher
-) : VisualMediaSearchMediator<AnimeCacheEntity>(dispatcher) {
+) : VisualMediaMediator<AnimeCacheEntity>(dispatcher) {
 
     @OptIn(ExperimentalPagingApi::class)
     override suspend fun getApiDataAndSaveOnCache(

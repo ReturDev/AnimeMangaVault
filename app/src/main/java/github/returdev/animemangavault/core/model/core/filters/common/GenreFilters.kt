@@ -1,7 +1,5 @@
 package github.returdev.animemangavault.core.model.core.filters.common
 
-import github.returdev.animemangavault.R
-
 enum class GenreFilters(val id: Int) {
 
     ACTION(1),
@@ -24,6 +22,7 @@ enum class GenreFilters(val id: Int) {
     SLICE_OF_LIFE(36),
     SPORTS(30),
     SUPERNATURAL(37),
-    SUSPENSE(41);
+    ANIME_SUSPENSE(41),
+    MANGA_SUSPENSE(45);
 
 }

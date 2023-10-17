@@ -2,8 +2,6 @@ package github.returdev.animemangavault.domain.home
 
 import github.returdev.animemangavault.core.model.core.filters.manga.MangaTypeFilters
 import github.returdev.animemangavault.core.network.NetworkConnectivity
-import github.returdev.animemangavault.data.api.model.manga.MangaSearchApiResponse
-import github.returdev.animemangavault.data.api.repository.AnimeApiRepository
 import github.returdev.animemangavault.data.api.repository.MangaApiRepository
 import github.returdev.animemangavault.domain.model.reduced.ReducedManga
 import javax.inject.Inject

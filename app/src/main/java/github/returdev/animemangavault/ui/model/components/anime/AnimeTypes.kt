@@ -17,12 +17,11 @@ enum class AnimeTypes(@StringRes val stringResource : Int) {
     UNKNOWN(R.string.type_unknown);
 
     companion object{
-        fun getAnimeType(value : String?) : AnimeTypes{
-            return value?.let {
+        fun getAnimeType(value : String?) : AnimeTypes = value?.let {
                 val formattedValue = it.replace(" ","").lowercase()
-                AnimeTypes.values().first { type -> type.name.lowercase() == formattedValue }
+                AnimeTypes.values().firstOrNull() { type -> type.name.lowercase() == formattedValue }
             } ?: UNKNOWN
-        }
+
     }
 
 }

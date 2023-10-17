@@ -98,42 +98,42 @@ fun ReducedManga.toReducedMangaUi() = ReducedMangaUi(
 
 //From Ui to Domain
 
-fun FullAnimeUi.toReducedAnime() = ReducedAnime(
+fun FullAnimeUi.toReducedAnimeUi() = ReducedAnime(
     id = this.id,
     imageUrl = images[1].url,
     defaultTitle = titles.filterIsInstance<Title.DefaultTitle>().map { default -> default.title }.first(),
     score = this.score
 )
 
-fun FullMangaUi.toReducedManga() = ReducedManga(
+fun FullMangaUi.toReducedMangaUi() = ReducedManga(
     id = this.id,
     imageUrl = images[1].url,
     defaultTitle = titles.filterIsInstance<Title.DefaultTitle>().map { default -> default.title }.first(),
     score = this.score
 )
 
-fun BasicAnimeUi.toReducedAnime() = ReducedAnime(
+fun BasicAnimeUi.toReducedAnimeUi() = ReducedAnimeUi(
     id = this.id,
     imageUrl = images[1].url,
     defaultTitle = title,
     score = this.score
 )
 
-fun BasicMangaUi.toReducedManga() = ReducedManga(
+fun BasicMangaUi.toReducedMangaUi() = ReducedMangaUi(
     id = this.id,
     imageUrl = images[1].url,
     defaultTitle = title,
     score = this.score
 )
 
-fun ReducedAnimeUi.toReducedAnime() = ReducedAnime(
+fun ReducedAnimeUi.toReducedAnimeUi() = ReducedAnime(
     id = this.id,
     imageUrl = this.imageUrl,
     defaultTitle = this.defaultTitle,
     score = this.score
 )
 
-fun ReducedMangaUi.toReducedManga() = ReducedManga(
+fun ReducedMangaUi.toReducedMangaUi() = ReducedManga(
     id = this.id,
     imageUrl = this.imageUrl,
     defaultTitle = this.defaultTitle,

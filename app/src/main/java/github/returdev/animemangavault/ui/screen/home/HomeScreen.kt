@@ -7,7 +7,6 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.defaultMinSize
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -16,8 +15,8 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
@@ -29,18 +28,21 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import github.returdev.animemangavault.R
 import github.returdev.animemangavault.ui.core.composables.ErrorIcon
-import github.returdev.animemangavault.ui.core.composables.LoadingReducedItem
-import github.returdev.animemangavault.ui.core.composables.ReducedItem
 import github.returdev.animemangavault.ui.core.composables.RetryButton
 import github.returdev.animemangavault.ui.core.composables.VisualSearchBar
+import github.returdev.animemangavault.ui.core.composables.items.LoadingReducedItem
+import github.returdev.animemangavault.ui.core.composables.items.ReducedItem
+import github.returdev.animemangavault.ui.core.navigation.Destination
 import github.returdev.animemangavault.ui.core.navigation.navigateToItemDetails
 import github.returdev.animemangavault.ui.model.reduced.ReducedVisualMediaUi
+import github.returdev.animemangavault.ui.screen.showmore.SHOW_MORE_THIS_SEASON
+import github.returdev.animemangavault.ui.screen.showmore.SHOW_MORE_TOP_ANIME
+import github.returdev.animemangavault.ui.screen.showmore.SHOW_MORE_TOP_MANGA
 
 @Composable
 fun HomeScreen(
     modifier: Modifier,
     navController : NavHostController,
-    snackBarHostState : SnackbarHostState,
     homeViewModel: HomeViewModel = hiltViewModel()
 ){
 
@@ -53,11 +55,14 @@ fun HomeScreen(
     ){
 
 
-        VisualSearchBar {/*TODO Insert click method*/}
+        VisualSearchBar {
+            navController.navigate(Destination.NoArgumentsDestination.SearchScreenDestination.fullRoute)
+        }
 
         HorizontalListContainer(
             headerText = stringResource(R.string.top_anime),
             homeUiState = topAnimeState.value,
+            showMore = { navController.navigate(Destination.ShowMoreDestination(SHOW_MORE_TOP_ANIME)) },
             retry = {homeViewModel.reloadTopAnimes()},
             onClickElement = {vm -> navController.navigateToItemDetails(vm) }
         )
@@ -67,6 +72,7 @@ fun HomeScreen(
         HorizontalListContainer(
             headerText = stringResource(R.string.top_manga),
             homeUiState = topMangaState.value,
+            showMore = { navController.navigate(Destination.ShowMoreDestination(SHOW_MORE_TOP_MANGA)) },
             retry =  {homeViewModel.reloadTopMangas()},
             onClickElement = {vm -> navController.navigateToItemDetails(vm) }
         )
@@ -74,6 +80,7 @@ fun HomeScreen(
         HorizontalListContainer(
             headerText = stringResource(R.string.this_season),
             homeUiState = currentSeason.value,
+            showMore = { navController.navigate(Destination.ShowMoreDestination(SHOW_MORE_THIS_SEASON)) },
             retry =  {homeViewModel.reloadCurrentSeason()},
             onClickElement = {vm -> navController.navigateToItemDetails(vm) }
         )
@@ -88,16 +95,29 @@ fun HomeScreen(
 fun HorizontalListContainer(
     headerText : String,
     homeUiState: HomeUiState,
+    showMore : () -> Unit,
     retry: () -> Unit,
     onClickElement : (ReducedVisualMediaUi) -> Unit
     ){
     Column {
-        Text(
-            text = headerText,
-            modifier = Modifier.padding(start = 16.dp, bottom = 16.dp),
-            style = MaterialTheme.typography.titleLarge,
-            color = MaterialTheme.colorScheme.primary
-        )
+
+        Row(
+            modifier = Modifier.fillMaxWidth()
+                .padding(start = 16.dp, bottom = 16.dp, end = 16.dp),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Text(
+                modifier = Modifier.weight(1f),
+                text = headerText,
+                style = MaterialTheme.typography.titleLarge,
+                color = MaterialTheme.colorScheme.secondary
+            )
+            TextButton(
+                onClick = showMore
+            ) {
+                Text(text = stringResource(id = R.string.show_more))
+            }
+        }
 
         Crossfade(targetState = homeUiState, label = "home_crossfade") {
             when(it){
@@ -145,7 +165,7 @@ private fun ErrorLayout(
 
         }
         if (errorState.isRetryAvailable){
-            RetryButton { retry() }
+            RetryButton(Modifier.padding(top = 20.dp)) { retry() }
         }
 
     }
@@ -182,13 +202,16 @@ private fun LoadingHorizontalList(){
     }
 }
 
-
 @Preview
 @Composable
-fun EE() {
-    Column(Modifier.fillMaxSize()) {
-        ErrorLayout(errorState = HomeUiState.Error.GenericError) {
-            
-        }
+fun HH() {
+    Column {
+        HorizontalListContainer(
+            headerText = "",
+            homeUiState = HomeUiState.Loading,
+            showMore = {},
+            retry = {},
+            onClickElement = {}
+        )
     }
 }

@@ -2,7 +2,7 @@ package github.returdev.animemangavault.data.api.repository.implementation
 
 
 import github.returdev.animemangavault.core.extensions.toFullManga
-import github.returdev.animemangavault.core.extensions.toReducedManga
+import github.returdev.animemangavault.core.extensions.toReducedMangaUi
 import github.returdev.animemangavault.core.model.core.filters.SearchFilters
 import github.returdev.animemangavault.core.model.core.filters.common.SortDirection
 import github.returdev.animemangavault.core.model.core.filters.manga.MangaTypeFilters
@@ -73,7 +73,7 @@ class MangaApiRepositoryImpl @Inject constructor(
             title = title,
             type = filters.type?.toString(),
             status = filters.status?.toString(),
-            genres = filters.genres.joinToString(","),
+            genres = filters.genres.joinToString(","){ g -> g.id.toString() },
             orderBy = filters.orderBy?.toString(),
             sort = when (filters.sort) {
                 SortDirection.ASCENDANT -> "asc"
@@ -109,7 +109,7 @@ class MangaApiRepositoryImpl @Inject constructor(
         return caller.executeCall(
             networkState,
             apiService.getTopManga(page, limitChecked, type?.toString())
-        ).data.map { manga -> manga.toReducedManga() }
+        ).data.map { manga -> manga.toReducedMangaUi() }
 
     }
 

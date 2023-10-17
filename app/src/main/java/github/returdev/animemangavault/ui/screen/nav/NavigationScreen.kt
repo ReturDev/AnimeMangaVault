@@ -39,9 +39,9 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import github.returdev.animemangavault.R
-import github.returdev.animemangavault.ui.core.composables.CustomSnackbar
 import github.returdev.animemangavault.ui.core.navigation.Destination
 import github.returdev.animemangavault.ui.core.navigation.NavigationGraph
+import github.returdev.animemangavault.ui.core.snackbar.rememberSnackBarController
 import github.returdev.animemangavault.ui.theme.AnimeMangaVaultTheme
 import kotlinx.coroutines.delay
 
@@ -53,16 +53,17 @@ fun NavigationScreen(
 ){
 
     val bottomRoutes = listOf(
-        Destination.NoArgumentsDestination.HomeScreenDirection(),
-        Destination.NoArgumentsDestination.LibraryScreenDirection()
+        Destination.NoArgumentsDestination.HomeScreenDestination(),
+        Destination.NoArgumentsDestination.LibraryScreenDestination()
     )
-
     val navBackEntryState by navController.currentBackStackEntryAsState()
     var showBottomBar by remember { mutableStateOf(true) }
     var bottomBarItemSelected by remember { mutableStateOf(0)  }
     var isVisibleConnectionView by remember { mutableStateOf(false) }
 
-    val snackBarHostState = remember { SnackbarHostState() }
+    val snackbarController = rememberSnackBarController(
+        snackbarHostState = remember { SnackbarHostState() }
+    )
 
 
     val uiState by viewModel.uiState.collectAsState()
@@ -94,20 +95,15 @@ fun NavigationScreen(
                 }
             },
             snackbarHost = {
-                SnackbarHost(snackBarHostState) {
-                    CustomSnackbar(
-                        snackbarData = it,
-                        containerColor = MaterialTheme.colorScheme.tertiaryContainer,
-                        contentColor = MaterialTheme.colorScheme.onTertiaryContainer,
-                        actionColor = MaterialTheme.colorScheme.tertiary
-                    )
+                SnackbarHost(snackbarController.snackbarHostState) {
+                    snackbarController.Snackbar(it)
                 }
             }
         ){ paddingValues ->
 
             NavigationGraph(
                 navController = navController,
-                snackBarHostState = snackBarHostState,
+                snackBarController = snackbarController,
                 modifier = Modifier.padding(paddingValues)
             )
 
@@ -195,7 +191,7 @@ private fun ConnectionAlert(state : NavigationUiState){
             modifier = Modifier
                 .fillMaxWidth()
                 .background(backgroundColor)
-                .padding(8.dp),
+                .padding(4.dp),
             horizontalArrangement = Arrangement.Center
         ) {
             Icon(

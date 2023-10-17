@@ -2,7 +2,6 @@ package github.returdev.animemangavault.ui.model.components.manga
 
 import androidx.annotation.StringRes
 import github.returdev.animemangavault.R
-import github.returdev.animemangavault.ui.model.components.anime.AnimeStatus
 
 /**
  * Enum class representing different statuses of manga.

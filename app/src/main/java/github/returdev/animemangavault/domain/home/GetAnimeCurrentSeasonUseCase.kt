@@ -16,7 +16,7 @@ class GetAnimeCurrentSeasonUseCase @Inject constructor(
         limit : Int,
         type : AnimeTypeFilters? = null
     ): List<ReducedAnime> {
-        return animeApiRepository.getAnimeCurrentSeason(
+        return animeApiRepository.getAnimeCurrentSeasonList(
             page = page,
             limit = limit,
             type = type,

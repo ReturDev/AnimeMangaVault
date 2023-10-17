@@ -42,7 +42,7 @@ data class MangaApiResponse(
         @SerializedName("score") val score : Float,
         @SerializedName("scored_by") val numberOfScorers : Long,
         @SerializedName("rank") val rank : Int,
-        @SerializedName("synopsis") val synopsis : String,
+        @SerializedName("synopsis") val synopsis : String?,
         @SerializedName("status") val status : String,
         @SerializedName("genres") val genres : List<DataGenreResponseComponent>,
         @SerializedName("demographics") val demographics : List<DataGenreResponseComponent>,

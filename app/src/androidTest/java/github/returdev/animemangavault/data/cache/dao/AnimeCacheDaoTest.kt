@@ -5,9 +5,8 @@ import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
 import github.returdev.animemangavault.data.cache.model.entity.AnimeCacheEntity
 import kotlinx.coroutines.runBlocking
-import org.junit.Assert
-
 import org.junit.After
+import org.junit.Assert
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
