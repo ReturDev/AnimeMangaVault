@@ -12,4 +12,3 @@ This application has been developed using **Android and Kotlin**, following an *
 + Flows
 + Material 3
 + Unit Testing
-+ Ui Testing
