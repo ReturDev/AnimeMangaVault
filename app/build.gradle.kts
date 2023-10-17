@@ -36,10 +36,16 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+
+            resValue("string", "app_name", "A&MVault")
+
             buildConfigField("String", "BASE_API_URL", "\"https://api.jikan.moe/v4/\"")
         }
         getByName("debug"){
             isDebuggable = true
+
+            resValue("string", "app_name", "[DEBUG]A&MVault")
+            
             buildConfigField("String", "BASE_API_URL", "\"https://api.jikan.moe/v4/\"")
         }
     }
@@ -95,7 +101,6 @@ dependencies {
     debugImplementation("androidx.compose.ui:ui-tooling")
     debugImplementation("androidx.compose.ui:ui-test-manifest")
 
-
     //Navigation
     implementation("androidx.navigation:navigation-compose:$navVersion")
 
@@ -136,6 +141,8 @@ dependencies {
     implementation("androidx.paging:paging-runtime-ktx:$pagingVersion")
     implementation("androidx.paging:paging-compose:$pagingVersion")
 
+    //SplashScreen
+    implementation ("androidx.core:core-splashscreen:1.0.0-beta02")
 }
 
 kapt {

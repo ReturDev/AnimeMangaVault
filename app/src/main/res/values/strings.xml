@@ -1,6 +1,4 @@
 <resources>
-    <string name="app_name">AnimeMangaVault</string>
-
     //Genres
     <string name="genre_action">Action</string>
     <string name="genre_adventure">Adventure</string>
