@@ -9,6 +9,7 @@ AnimeMangaVault is a convenient tool for avid manga and anime enthusiasts to kee
 This application has been developed using **Android and Kotlin**, following an **MVVM** architecture. In addition, the following resources have been used for its creation:
 + Jetpack Compose
 + Dagger Hilt
++ Retrofit
 + Oil
 + Room
 + Paging3
